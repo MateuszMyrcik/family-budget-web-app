@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 
 export const Dashboard = () => {
   const expenseManger = ExpensesManger ?? null;
-  console.log("expenseManger", expenseManger);
+
   return (
     <>
       <Provider store={store}>
