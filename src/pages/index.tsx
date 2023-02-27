@@ -1,5 +1,5 @@
-import { Dashboard } from "@/views/dashboard";
+import { SummaryView } from "@/views/summary";
 
 export default function Home() {
-  return <Dashboard></Dashboard>;
+  return <SummaryView />;
 }
