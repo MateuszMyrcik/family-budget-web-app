@@ -39,7 +39,7 @@ export type Expense = {
   amount: Amount;
   date: Date;
   ownership: Ownership;
-  comments?: string;
+  comment?: string;
 
   // cyclic: boolean; // TODO: add cyclic expenses
   // rangeDate?: RangeDate; // TODO: add cyclic expenses

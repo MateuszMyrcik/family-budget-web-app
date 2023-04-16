@@ -27,8 +27,8 @@ export const Select = ({ label, items, error, onChange }: SelectProps) => {
   };
 
   return (
-    <FormControl className="flex-1" error={!!error}>
-      <InputLabel id="demo-simple-select-error-label">{label}</InputLabel>
+    <FormControl className="flex-1 w-full" error={!!error}>
+      <InputLabel>{label}</InputLabel>
 
       <MuiSelect
         labelId="demo-simple-select-error-label"
