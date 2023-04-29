@@ -1,4 +1,4 @@
-import { DefaultTemplate } from "@/app/layout";
+import { PrimaryTemplate } from "@/app/layout";
 import { RootState, store } from "@/app/store";
 
 import { Button } from "@mui/material";
@@ -13,7 +13,7 @@ export const ExpensesView = () => {
   return (
     <>
       <Provider store={store}>
-        <DefaultTemplate>
+        <PrimaryTemplate>
           <div className="w-10/12 mx-auto mt-4">
             <h1>Family budget | Expenses </h1>
 
@@ -42,7 +42,7 @@ export const ExpensesView = () => {
               ))}
             </ul>
           </div>
-        </DefaultTemplate>
+        </PrimaryTemplate>
       </Provider>
     </>
   );

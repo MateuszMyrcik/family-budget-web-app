@@ -18,38 +18,60 @@ const roboto = Roboto({
 
 const theme = createTheme({
   palette: {
+    background: {
+      default: "#ffffff",
+    },
     primary: {
-      light: "#E3F2FD",
-      main: "#2196F3",
-      dark: "#1565C0",
-      contrastText: "#FFFFFF",
+      light: "#eef2f6",
+      main: "#2196f3",
+      dark: "#1e88e5",
+      contrastText: "#ffffff",
     },
     secondary: {
-      light: "#EDE7F6",
-      main: "#673AB7",
-      dark: "#4527A0",
-      contrastText: "#FFFFFF",
+      light: "#ede7f6",
+      main: "#673ab7",
+      dark: "#5e35b1",
+      contrastText: "#ffffff",
     },
     success: {
-      light: "#B9F6CA",
-      main: "#69F0AE",
-      dark: "#00C853",
+      light: "#b9f6ca",
+      main: "#00e676",
+      dark: "#00c853",
     },
     error: {
-      light: "#EF9A9A",
-      main: "#F44336",
-      dark: "#C62828",
+      light: "#ef9a9a",
+      main: "#f44336",
+      dark: "#c62828",
     },
     warning: {
-      light: "#B9F6CA",
-      main: "#FFC107",
-      dark: "#FFC107",
+      light: "#fff8e1",
+      main: "#ffe57f",
+      dark: "#ffc107",
+    },
+    info: {
+      light: "#eef2f6",
+      main: "#2196f3",
+      dark: "#1e88e5",
+    },
+    grey: {
+      50: "#F8FAFC",
+      100: "#EEF2F6",
+      200: "#E3E8EF",
+      300: "#CDD5DF",
+      500: "#697586",
+      600: "#4B5565",
+      700: "#364152",
+      900: "#121926",
+    },
+    text: {
+      primary: "#364152",
+      secondary: "#673ab7",
     },
   },
 });
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const containerClasses = clsx(roboto.className, "min-h-screen bg-gradient");
+  const containerClasses = clsx(roboto.className);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <ThemeProvider theme={theme}>

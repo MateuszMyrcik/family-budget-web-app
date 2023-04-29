@@ -45,7 +45,10 @@ export const AppBar = ({ links }: AppBarProps) => {
   };
 
   return (
-    <MuiAppBar position="static">
+    <MuiAppBar
+      position="fixed"
+      className="bg-white text-primary shadow-none h-[var(--header-height)]"
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -126,12 +129,10 @@ export const AppBar = ({ links }: AppBarProps) => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {links.map(({ label, path }) => (
-              <Button
-                key={label}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                <Link href={path}>{label}</Link>
+              <Button key={label} onClick={handleCloseNavMenu}>
+                <Link className="text-primary" href={path}>
+                  {label}
+                </Link>
               </Button>
             ))}
           </Box>

@@ -1,4 +1,4 @@
-import { DefaultTemplate } from "@/app/layout";
+import { PrimaryTemplate } from "@/app/layout";
 import { Controller, useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -62,7 +62,7 @@ export const ExpenseView = () => {
 
   return (
     <>
-      <DefaultTemplate>
+      <PrimaryTemplate>
         <div className="w-10/12 mx-auto mt-4">
           <h1>Family budget | Expense </h1>
 
@@ -166,7 +166,7 @@ export const ExpenseView = () => {
             </form>
           </div>
         </div>
-      </DefaultTemplate>
+      </PrimaryTemplate>
     </>
   );
 };

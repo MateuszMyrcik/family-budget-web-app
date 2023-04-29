@@ -92,3 +92,9 @@ body {
 .bg-gradient {
   background-image: linear-gradient(to right, #d8eeff, #D3D3D3);
 }
+
+:root {
+  --header-height: 4rem;
+  --footer-height: 3rem;
+  --sidebar-width: 16rem;
+}

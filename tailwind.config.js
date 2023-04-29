@@ -7,29 +7,31 @@ module.exports = {
  theme: {
     extend: {
       backgroundColor: {
-        'primary': '#5DA1D5',
-        'secondary': '#F0F0F0',
-        'accent': '#FFA726',
-        'nav': '#1E3A5F',
-        'input': '#F0F0F0',
+        'primary-light': '#eef2f6',
+        'primary-main': '#2196f3',
+        'primary-dark': '#1e88e5',
+        'secondary-light': '#ede7f6',
+        'secondary-main': '#673ab7',
+        'secondary-dark': '#5e35b1',
+        
       },
       textColor: {
-        'primary': '#5DA1D5',
-        'secondary': '#F0F0F0',
-        'accent': '#FFA726',
-        'dark': '#333333',
-        'placeholder': '#A9A9A9',
-        'label': '#1E3A5F',
+        'primary': "#364152",
+        'secondary': "#673ab7",
+        'dark': '#121926',
       },
       borderColor: {
-        'input': '#D3D3D3',
+        'primary-light': '#eef2f6',
+        'primary-main': '#2196f3',
+        'primary-dark': '#1e88e5',
+        'secondary-light': '#ede7f6',
+        'secondary-main': '#673ab7',
+        'secondary-dark': '#5e35b1',
+        
       },
+      
     },
   },
-    variants: {
-    backgroundColor: ['responsive', 'hover', 'focus'],
-    borderColor: ['responsive', 'hover', 'focus'],
-    textColor: ['responsive', 'hover', 'focus'],
-  },
+  variants: {},
   plugins: [],
 };
