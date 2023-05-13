@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
+import { useLayout } from "./Context";
 
 type DefaultTemplateProps = {
   header?: ReactNode;
@@ -14,6 +15,8 @@ export const BaseTemplate = ({
   sidebar,
   children,
 }: DefaultTemplateProps) => {
+  const { headerHeight, sidebarWidth } = useLayout();
+
   const state = {
     withSidebar: sidebar,
     withHeader: header,
@@ -21,23 +24,34 @@ export const BaseTemplate = ({
   };
 
   const classes = {
-    sidebar: clsx(
-      state.withSidebar &&
-        "fixed top-[var(--header-height)] h-[calc(100vh-var(--header-height))] bg-white"
-    ),
-    content: clsx(
-      state.withSidebar && "ml-[var(--sidebar-width)]",
-      state.withHeader && "mt-[var(--header-height)]"
-    ),
-    contentInner:
-      "p-6 mr-6 bg-primary-light min-h-[calc(100vh-var(--header-height))] rounded-2xl",
+    sidebar: clsx(state.withSidebar && "fixed  bg-white "),
+    contentInner: "p-6 mr-6 bg-primary-light min-h-full flex rounded-2xl",
+  };
+
+  const inlineStyles = {
+    sidebar: {
+      transform: !!sidebarWidth ? "none" : `translateX(-${sidebarWidth}px)`,
+      transition: "transform 300ms cubic-bezier(0, 0, 0.2, 1) 0ms",
+      height: `calc(100vh - ${headerHeight}px)`,
+    },
+    content: {
+      transition: "margin 300ms cubic-bezier(0, 0, 0.2, 1) 0ms",
+      marginLeft: `${sidebarWidth}px`,
+      marginTop: `${headerHeight}px`,
+      marginBottom: `${headerHeight}px`,
+      height: `calc(100vh - ${headerHeight}px)`,
+    },
   };
 
   return (
     <div>
       {header && <header>{header}</header>}
-      {sidebar && <aside className={classes.sidebar}>{sidebar}</aside>}
-      <main className={classes.content}>
+      {sidebar && (
+        <aside className={classes.sidebar} style={inlineStyles.sidebar}>
+          {sidebar}
+        </aside>
+      )}
+      <main style={inlineStyles.content}>
         <div className={classes.contentInner}>{children}</div>
       </main>
       {footer && <footer>{footer}</footer>}

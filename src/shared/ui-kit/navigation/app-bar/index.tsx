@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AppBar as MuiAppBar } from "@mui/material";
+import { AppBar as MuiAppBar, Icon } from "@mui/material";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -19,9 +19,10 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export type AppBarProps = {
   links: NavLink[];
+  onMenuIconClick?: () => void;
 };
 
-export const AppBar = ({ links }: AppBarProps) => {
+export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -45,10 +46,7 @@ export const AppBar = ({ links }: AppBarProps) => {
   };
 
   return (
-    <MuiAppBar
-      position="fixed"
-      className="bg-white text-primary shadow-none h-[var(--header-height)]"
-    >
+    <MuiAppBar position="fixed" className="bg-white text-primary shadow-none">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -69,6 +67,13 @@ export const AppBar = ({ links }: AppBarProps) => {
           >
             LOGO
           </Typography>
+          {/* // TODO: possible bellow components will be reused in diffrent places */}
+          <button
+            onClick={onMenuIconClick}
+            className="flex items-center justify-center bg-secondary-light w-8 h-8 rounded-md text-primary  hover:bg-secondary-dark hover:text-white"
+          >
+            <MenuIcon fontSize="small"></MenuIcon>
+          </button>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton

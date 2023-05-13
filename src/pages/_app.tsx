@@ -10,6 +10,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import clsx from "clsx";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { LayoutProvider } from "@/app/layout";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -75,12 +76,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <ThemeProvider theme={theme}>
-        <div className={containerClasses}>
-          <div className=""></div>
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
-        </div>
+        <LayoutProvider>
+          <div className={containerClasses}>
+            <div className=""></div>
+            <Provider store={store}>
+              <Component {...pageProps} />
+            </Provider>
+          </div>
+        </LayoutProvider>
       </ThemeProvider>
     </LocalizationProvider>
   );
