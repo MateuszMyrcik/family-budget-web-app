@@ -1,19 +1,17 @@
 import * as React from "react";
-import { AppBar as MuiAppBar, Icon } from "@mui/material";
-import Box from "@mui/material/Box";
+import { AppBar as MuiAppBar } from "@mui/material";
+
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import Link from "next/link";
+
 import { NavLink } from "../types";
+import { SettingsOutlined } from "@mui/icons-material";
+import Image from "next/image";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -23,22 +21,12 @@ export type AppBarProps = {
 };
 
 export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -49,24 +37,8 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
     <MuiAppBar position="fixed" className="bg-white text-primary shadow-none">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+          <Image src="/images/logo.svg" alt="Logo" width={80} height={80} />
+
           {/* // TODO: possible bellow components will be reused in diffrent places */}
           <button
             onClick={onMenuIconClick}
@@ -75,44 +47,6 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
             <MenuIcon fontSize="small"></MenuIcon>
           </button>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {links.map((route) => (
-                <MenuItem key={route.label} onClick={handleCloseNavMenu}>
-                  <Link href={route.path}>
-                    <Typography textAlign="center">{route.label}</Typography>
-                  </Link>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -132,23 +66,18 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {links.map(({ label, path }) => (
-              <Button key={label} onClick={handleCloseNavMenu}>
-                <Link className="text-primary" href={path}>
-                  {label}
-                </Link>
-              </Button>
-            ))}
-          </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
+          <div className=" cursor-pointer mr-0 ml-auto h-12 p-2 gap-4 rounded-full flex items-center bg-primary-light hover:bg-primary-main text-primary-main hover:text-primary-light">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar
+                className="h-9 w-9"
+                alt="Remy Sharp"
+                src="/images/thor-avatar.jpeg"
+              />
+            </IconButton>
+            <SettingsOutlined fontSize="small" className="" />
+
+            {/* <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -169,8 +98,8 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
-          </Box>
+            </Menu> */}
+          </div>
         </Toolbar>
       </Container>
     </MuiAppBar>

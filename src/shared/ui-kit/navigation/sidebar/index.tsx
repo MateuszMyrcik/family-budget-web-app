@@ -1,27 +1,27 @@
-import { useLayout } from "@/app/layout";
 import { Drawer } from "@mui/material";
 
 export interface SidebarProps {
-  open: boolean;
-  width: number;
-  top: number;
+  top?: number;
+  drawerOpen: boolean;
+  onDrawerClose?: () => void;
 }
 
-export const Sidebar = ({ open, width, top }: SidebarProps) => {
+export const Sidebar = ({ drawerOpen, onDrawerClose }: SidebarProps) => {
   return (
-    <Drawer
-      variant="persistent"
-      open={open}
-      className="bg-white"
-      anchor="left"
-      sx={{
-        "& .MuiDrawer-paper": {
-          borderRight: "none",
-          top: `${top}px`,
-        },
-      }}
-    >
-      <div className="flex flex-col h-full">Sample drawer content</div>
-    </Drawer>
+    <>
+      <Drawer
+        anchor="left"
+        variant="temporary"
+        open={drawerOpen}
+        onClose={onDrawerClose}
+        sx={{
+          "& .MuiDrawer-paper": {
+            borderRight: "none",
+          },
+        }}
+      >
+        <div className="flex flex-col h-full">Sample drawer content</div>
+      </Drawer>
+    </>
   );
 };

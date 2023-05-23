@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useMedia } from "react-use";
 
 type LayoutProviderProps = { children: React.ReactNode };
 
@@ -11,11 +12,24 @@ export const LayoutContext = createContext({
   footerHeight: 0,
   headerHeight: 0,
   toggleSidebar: () => {},
+  isMobileDrawerOpen: false,
 });
 
 export const LayoutProvider = ({ children }: LayoutProviderProps) => {
+  const isMobile = useMedia("(max-width: 768px)"); // TODO: use theme breakpoints
+
   const [sidebarWidth, setSidebarWidth] = useState(0);
-  const toggleSidebar = () => setSidebarWidth(sidebarWidth ? 0 : SIDEBAR_WIDTH);
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const toggleSidebar = () => {
+    if (isMobile) {
+      setSidebarWidth(0);
+      setIsMobileDrawerOpen(!isMobileDrawerOpen);
+      return;
+    } else {
+      setSidebarWidth(sidebarWidth ? 0 : SIDEBAR_WIDTH);
+      setIsMobileDrawerOpen(false);
+    }
+  };
 
   const dimensions = {
     sidebarWidth: sidebarWidth ? 256 : 0, // 16 rem
@@ -23,8 +37,18 @@ export const LayoutProvider = ({ children }: LayoutProviderProps) => {
     headerHeight: HEADER_HEIGHT, // 5rem
   };
 
+  useEffect(() => {
+    if (isMobile) {
+      setSidebarWidth(0);
+    } else {
+      setSidebarWidth(SIDEBAR_WIDTH);
+    }
+  }, []);
+
   return (
-    <LayoutContext.Provider value={{ toggleSidebar, ...dimensions }}>
+    <LayoutContext.Provider
+      value={{ toggleSidebar, isMobileDrawerOpen, ...dimensions }}
+    >
       {children}
     </LayoutContext.Provider>
   );
