@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { LayoutProvider } from "@/app/layout";
 
 const roboto = Roboto({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["100", "400", "500", "700"],
 });
 

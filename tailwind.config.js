@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     // Or if using `src` directory:
@@ -25,6 +26,17 @@ module.exports = {
         'secondary-light': '#ede7f6',
         'secondary-main': '#673ab7',
         'secondary-dark': '#5e35b1',
+        
+        'success-light': '#b9f6ca',
+        'success-main': '#00e676',
+        'success-dark': '#00c853',
+        'error-light': '#ef9a9a',
+        'error-main': '#f44336',
+        'error-dark': '#c62828',
+        'warning-light': '#fff8e1',
+        'warning-main': '#ffe57f',
+        'warning-dark': '#ffc107',
+
       },
       borderColor: {
         'primary-light': '#eef2f6',
