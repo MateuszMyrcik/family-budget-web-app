@@ -7,9 +7,9 @@ export const IncomesView = () => {
     <>
       <Provider store={store}>
         <PrimaryTemplate>
-          <>
-            <h1>Family budget | Incomes </h1>
-          </>
+          <PrimaryTemplate.Content title="Zarządzaj przychodami">
+            <></>
+          </PrimaryTemplate.Content>
         </PrimaryTemplate>
       </Provider>
     </>

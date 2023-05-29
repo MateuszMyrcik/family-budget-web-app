@@ -63,109 +63,105 @@ export const ExpenseView = () => {
   return (
     <>
       <PrimaryTemplate>
-        <div className="w-10/12 mx-auto mt-4">
-          <h1>Family budget | Expense </h1>
+        <PrimaryTemplate.Content title="Dodaj wydatek">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Field>
+              <Controller
+                name="name"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <TextField
+                    label="Nazwa"
+                    placeholder="Np. Zakupy w sklepie"
+                    error={!!error}
+                    helperText={error?.message || null}
+                    {...field}
+                  />
+                )}
+              />
+            </Field>
 
-          <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Field>
-                <Controller
-                  name="name"
-                  control={control}
-                  render={({ field, fieldState: { error } }) => (
-                    <TextField
-                      label="Nazwa"
-                      placeholder="Np. Zakupy w sklepie"
-                      error={!!error}
-                      helperText={error?.message || null}
-                      {...field}
-                    />
-                  )}
-                />
-              </Field>
+            <Field>
+              <Controller
+                name="category"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <Select
+                    {...field}
+                    error={error}
+                    label={"Wybierz kategorię wydatku"}
+                    items={getExpenseCategoriesItems()}
+                  />
+                )}
+              />
+            </Field>
 
-              <Field>
-                <Controller
-                  name="category"
-                  control={control}
-                  render={({ field, fieldState: { error } }) => (
-                    <Select
-                      {...field}
-                      error={error}
-                      label={"Wybierz kategorię wydatku"}
-                      items={getExpenseCategoriesItems()}
-                    />
-                  )}
-                />
-              </Field>
+            <Field>
+              <Controller
+                name="amountValue"
+                control={control}
+                render={({
+                  field,
+                  fieldState: { error },
+                  formState: { defaultValues },
+                }) => (
+                  <TextField
+                    {...field}
+                    label="Kwota"
+                    placeholder="Wpisz kwotę wydatku"
+                    error={!!error}
+                    helperText={error?.message || null}
+                    type="number"
+                    prefix="PLN"
+                  />
+                )}
+              />
+            </Field>
 
-              <Field>
-                <Controller
-                  name="amountValue"
-                  control={control}
-                  render={({
-                    field,
-                    fieldState: { error },
-                    formState: { defaultValues },
-                  }) => (
-                    <TextField
-                      {...field}
-                      label="Kwota"
-                      placeholder="Wpisz kwotę wydatku"
-                      error={!!error}
-                      helperText={error?.message || null}
-                      type="number"
-                      prefix="PLN"
-                    />
-                  )}
-                />
-              </Field>
+            <Field>
+              <Controller
+                name="date"
+                control={control}
+                render={({
+                  field,
+                  fieldState: { error },
+                  formState: { defaultValues },
+                }) => (
+                  <DatePicker
+                    {...field}
+                    defaultValue={defaultValues?.date}
+                    label="Wybierz datę"
+                    disableFuture
+                    error={!!error}
+                    helperText={error?.message || null}
+                  />
+                )}
+              />
+            </Field>
 
-              <Field>
-                <Controller
-                  name="date"
-                  control={control}
-                  render={({
-                    field,
-                    fieldState: { error },
-                    formState: { defaultValues },
-                  }) => (
-                    <DatePicker
-                      {...field}
-                      defaultValue={defaultValues?.date}
-                      label="Wybierz datę"
-                      disableFuture
-                      error={!!error}
-                      helperText={error?.message || null}
-                    />
-                  )}
-                />
-              </Field>
+            <Field>
+              <Controller
+                name="comment"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <TextField
+                    label="Uwagi"
+                    placeholder="Wpisz uwage do wydatku"
+                    error={!!error}
+                    helperText={error?.message || null}
+                    {...field}
+                  />
+                )}
+              />
+            </Field>
 
-              <Field>
-                <Controller
-                  name="comment"
-                  control={control}
-                  render={({ field, fieldState: { error } }) => (
-                    <TextField
-                      label="Uwagi"
-                      placeholder="Wpisz uwage do wydatku"
-                      error={!!error}
-                      helperText={error?.message || null}
-                      {...field}
-                    />
-                  )}
-                />
-              </Field>
-
-              <div>
-                <Button type="submit" variant="contained" className="min-w-24">
-                  Dodaj
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
+            <div>
+              <Button type="submit" variant="contained" className="min-w-24">
+                Dodaj
+              </Button>
+            </div>
+          </form>
+        </PrimaryTemplate.Content>
       </PrimaryTemplate>
     </>
   );

@@ -7,9 +7,9 @@ export const StatsView = () => {
     <>
       <Provider store={store}>
         <PrimaryTemplate>
-          <>
-            <h1>Family budget | Stats </h1>
-          </>
+          <PrimaryTemplate.Content title="Statystyki">
+            <></>
+          </PrimaryTemplate.Content>
         </PrimaryTemplate>
       </Provider>
     </>

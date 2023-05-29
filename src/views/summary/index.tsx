@@ -7,9 +7,9 @@ export const SummaryView = () => {
     <>
       <Provider store={store}>
         <PrimaryTemplate>
-          <>
-            <h1>Family budget | Summary </h1>
-          </>
+          <PrimaryTemplate.Content title="Podsumowanie">
+            <></>
+          </PrimaryTemplate.Content>
         </PrimaryTemplate>
       </Provider>
     </>
