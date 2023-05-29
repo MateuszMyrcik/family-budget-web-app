@@ -2,13 +2,14 @@ import { AppBar, Sidebar } from "@/shared/ui-kit";
 import { BaseTemplate } from "./BaseTemplate";
 import { NAV_ITEMS } from "./constants";
 import { useLayout } from "./Context";
-import { SidebarContent } from "./SidebarContent";
+import { Content } from "./partials";
+import { SidebarContent } from "./partials/SidebarContent";
 
 type PrimaryTemplateProps = {
   children: React.ReactNode;
 };
 
-export const PrimaryTemplate = ({ children }: PrimaryTemplateProps) => {
+const PrimaryTemplate = ({ children }: PrimaryTemplateProps) => {
   const { headerHeight, toggleSidebar, isMobileDrawerOpen } = useLayout();
 
   const sidebar = (
@@ -31,3 +32,7 @@ export const PrimaryTemplate = ({ children }: PrimaryTemplateProps) => {
     </BaseTemplate>
   );
 };
+
+PrimaryTemplate.Content = Content;
+
+export { PrimaryTemplate };

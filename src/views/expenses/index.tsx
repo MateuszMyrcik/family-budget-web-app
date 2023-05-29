@@ -17,12 +17,8 @@ export const ExpensesView = () => {
     <>
       <Provider store={store}>
         <PrimaryTemplate>
-          <div className="rounded-lg  bg-white w-full">
-            <div className="p-6 border-b">
-              <h1 className="text-lg font-medium">Zarządzaj wydatkami</h1>
-            </div>
-
-            <div className="p-6 space-y-4">
+          <PrimaryTemplate.Content title="Zarządzaj wydatkami">
+            <>
               <div className="flex justify-between">
                 <div
                   className={clsx(
@@ -71,8 +67,8 @@ export const ExpensesView = () => {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
+            </>
+          </PrimaryTemplate.Content>
         </PrimaryTemplate>
       </Provider>
     </>
