@@ -34,50 +34,36 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
   };
 
   return (
-    <MuiAppBar position="fixed" className="bg-white text-primary shadow-none">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Image src="/images/logo.svg" alt="Logo" width={80} height={80} />
-
-          {/* // TODO: possible bellow components will be reused in diffrent places */}
+    <MuiAppBar
+      position="fixed"
+      className="bg-white text-primary shadow-none px-8"
+    >
+      <div className="grid grid-cols-[100px_1fr_100px] items-center">
+        {/* // TODO: possible bellow components will be reused in diffrent places */}
+        <div className="flex items-center">
           <button
             onClick={onMenuIconClick}
             className="flex items-center justify-center bg-secondary-light w-8 h-8 rounded-md text-primary  hover:bg-secondary-dark hover:text-white"
           >
             <MenuIcon fontSize="small"></MenuIcon>
           </button>
+        </div>
 
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+        <div className="flex justify-center">
+          <Image src="/images/logo.svg" alt="Logo" width={80} height={80} />
+        </div>
 
-          <div className=" cursor-pointer mr-0 ml-auto h-12 p-2 gap-4 rounded-full flex items-center bg-primary-light hover:bg-primary-main text-primary-main hover:text-primary-light">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar
-                className="h-9 w-9"
-                alt="Remy Sharp"
-                src="/images/thor-avatar.jpeg"
-              />
-            </IconButton>
-            <SettingsOutlined fontSize="small" className="" />
+        <div className="flex items-center cursor-pointer mr-0 ml-auto h-12 p-2 gap-4 rounded-full bg-primary-light hover:bg-primary-main text-primary-main hover:text-primary-light">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Avatar
+              className="h-9 w-9"
+              alt="Remy Sharp"
+              src="/images/thor-avatar.jpeg"
+            />
+          </IconButton>
+          <SettingsOutlined fontSize="small" className="" />
 
-            {/* <Menu
+          {/* <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -99,9 +85,8 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
                 </MenuItem>
               ))}
             </Menu> */}
-          </div>
-        </Toolbar>
-      </Container>
+        </div>
+      </div>
     </MuiAppBar>
   );
 };
