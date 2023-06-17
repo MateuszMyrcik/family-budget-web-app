@@ -1,4 +1,4 @@
-import { PrimaryTemplate } from "@/app/layout";
+import { getRoutePath, PrimaryTemplate } from "@/app/layout";
 import { Controller, useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,6 +10,7 @@ import { Button, DatePicker, Field, Select, TextField } from "@/shared/ui-kit";
 import { getExpenseCategoriesItems } from "./lib";
 import { FormGroup } from "@mui/material";
 import { ExpenseCategory } from "@/shared/domain";
+import Link from "next/link";
 
 type FormValues = {
   comment: string;
@@ -65,7 +66,7 @@ export const ExpenseView = () => {
       <PrimaryTemplate>
         <PrimaryTemplate.Content title="Dodaj wydatek">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Field>
+            <FormGroup row>
               <Controller
                 name="name"
                 control={control}
@@ -79,9 +80,7 @@ export const ExpenseView = () => {
                   />
                 )}
               />
-            </Field>
 
-            <Field>
               <Controller
                 name="category"
                 control={control}
@@ -94,9 +93,8 @@ export const ExpenseView = () => {
                   />
                 )}
               />
-            </Field>
-
-            <Field>
+            </FormGroup>
+            <FormGroup>
               <Controller
                 name="amountValue"
                 control={control}
@@ -116,9 +114,7 @@ export const ExpenseView = () => {
                   />
                 )}
               />
-            </Field>
 
-            <Field>
               <Controller
                 name="date"
                 control={control}
@@ -137,9 +133,7 @@ export const ExpenseView = () => {
                   />
                 )}
               />
-            </Field>
 
-            <Field>
               <Controller
                 name="comment"
                 control={control}
@@ -153,10 +147,18 @@ export const ExpenseView = () => {
                   />
                 )}
               />
-            </Field>
+            </FormGroup>
 
-            <div>
-              <Button type="submit" variant="contained" className="min-w-24">
+            <div className="flex place-content-between">
+              <Button variant="outlined">
+                <Link href={getRoutePath("/expenses")}>Wróć</Link>
+              </Button>
+              <Button
+                color="primary"
+                type="submit"
+                variant="contained"
+                className="min-w-24"
+              >
                 Dodaj
               </Button>
             </div>

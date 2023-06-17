@@ -2,7 +2,7 @@ import { PrimaryTemplate } from "@/app/layout";
 import { RootState, store } from "@/app/store";
 import { MovingOutlined } from "@mui/icons-material";
 
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import clsx from "clsx";
 
 import { useRouter } from "next/router";
@@ -19,18 +19,25 @@ export const ExpensesView = () => {
         <PrimaryTemplate>
           <PrimaryTemplate.Content title="Zarządzaj wydatkami">
             <>
-              <div className="flex justify-between">
-                <div
-                  className={clsx(
-                    "text-base",
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+                pb={2}
+              >
+                <Typography
+                  variant="body1"
+                  color={
                     isValuePositive(getTotalAmount(expenses))
-                      ? "text-success-main"
-                      : "text-error-main"
-                  )}
+                      ? "success.main"
+                      : "error.main"
+                  }
                 >
                   {getTotalAmount(expenses)}
-                  <MovingOutlined></MovingOutlined>
-                </div>
+                  <MovingOutlined />
+                </Typography>
                 <Button
                   onClick={() => {
                     push("/expense");
@@ -39,7 +46,7 @@ export const ExpensesView = () => {
                 >
                   Dodaj nową transakcję
                 </Button>
-              </div>
+              </Box>
 
               <div className="flex flex-col gap-2 text-sm">
                 {expenses.map(({ amount, date, name, category }, index) => (
