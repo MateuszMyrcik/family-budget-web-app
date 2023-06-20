@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { Provider, useSelector } from "react-redux";
 import { formatDate, getTotalAmount, isValuePositive } from "./lib";
 
-export const ExpensesView = () => {
+export const FinanceView = () => {
   const { expenses } = useSelector((state: RootState) => state.expensesSlice);
   const { push } = useRouter();
 
@@ -17,7 +17,7 @@ export const ExpensesView = () => {
     <>
       <Provider store={store}>
         <PrimaryTemplate>
-          <PrimaryTemplate.Content title="Zarządzaj wydatkami">
+          <PrimaryTemplate.Content title="Zarządzaj finansami">
             <>
               <Box
                 sx={{
@@ -40,7 +40,7 @@ export const ExpensesView = () => {
                 </Typography>
                 <Button
                   onClick={() => {
-                    push("/expense");
+                    push("/transaction");
                   }}
                   variant="contained"
                 >

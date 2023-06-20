@@ -28,7 +28,7 @@ const expenseSchema = yup.object().shape({
   date: yup.date().required(),
 });
 
-export const ExpenseView = () => {
+export const TransactionView = () => {
   const { addExpense } = useExpenseAction();
   const { push } = useRouter();
   const { control, handleSubmit } = useForm<Partial<FormValues>>({
@@ -64,7 +64,7 @@ export const ExpenseView = () => {
   return (
     <>
       <PrimaryTemplate>
-        <PrimaryTemplate.Content title="Dodaj wydatek">
+        <PrimaryTemplate.Content title="Dodaj transakcję">
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup row>
               <Controller
@@ -88,7 +88,7 @@ export const ExpenseView = () => {
                   <Select
                     {...field}
                     error={error}
-                    label={"Wybierz kategorię wydatku"}
+                    label={"Wybierz kategorię"}
                     items={getExpenseCategoriesItems()}
                   />
                 )}
@@ -151,7 +151,7 @@ export const ExpenseView = () => {
 
             <div className="flex place-content-between">
               <Button variant="outlined">
-                <Link href={getRoutePath("/expenses")}>Wróć</Link>
+                <Link href={getRoutePath("/finance")}>Wróć</Link>
               </Button>
               <Button
                 color="primary"
