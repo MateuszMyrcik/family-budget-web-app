@@ -5,8 +5,10 @@ import {
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 
+export type PathName = "/" | "/expenses" | "/incomes" | "/stats";
+
 type NavItem = {
-  path: string;
+  path: PathName;
   label: string;
   suffix?: JSX.Element;
 };
