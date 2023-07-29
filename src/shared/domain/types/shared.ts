@@ -30,21 +30,40 @@ export type Image = {
   url: string;
 };
 
-// EXPENSES
-export type Expense = {
+// TRANSACTION
+export type NotSpecificTransaction = {
+  [T in TransactionType]: Transaction<T>;
+}[TransactionType];
+
+export type Transaction<T extends TransactionType> = {
   id: string;
   name: string;
-  groupCategory: string | ExpenseGroupCategory;
-  category: ExpenseCategory;
-  amount: Amount;
   date: Date;
-  ownership: Ownership;
+  amount: Amount;
   comment?: string;
+  ownership: { ownerId: string; familyId: string };
+} & TransactionDetails<T>;
 
-  // cyclic: boolean; // TODO: add cyclic expenses
-  // rangeDate?: RangeDate; // TODO: add cyclic expenses
+export type TransactionDetails<T extends TransactionType> = {
+  EXPENSE: ExpenseDetails;
+  INCOME: IncomeDetails;
+}[T];
+
+export type ExpenseDetails = {
+  groupCategory: ExpenseGroupCategory;
+  category: ExpenseCategory;
+  type: "EXPENSE";
 };
 
+export type IncomeDetails = {
+  groupCategory: IncomeGroupCategory;
+  category: IncomeCategory;
+  type: "INCOME";
+};
+
+export type TransactionType = "EXPENSE" | "INCOME";
+
+// EXPENSES
 export type ExpenseGroupCategory =
   | "FOOD"
   | "OTHER"
@@ -72,25 +91,14 @@ export type IncomeCategory =
   | "DIVIDENDS"
   | "OTHER";
 
-export type Income = {
-  id: string;
-  cyclic: boolean;
-  groupCategory: ExpenseGroupCategory;
-  category: string | IncomeCategory;
-  name: string;
-  amount: Amount;
-  ownership: Ownership;
-  rangeDate?: RangeDate;
-};
-
 // BUDGET
 export type Budget = {
   id: string;
   month: number;
-  plannedExpenses: Expense[];
-  plannedIncomes: Income[];
-  actualExpenses: Expense[];
-  actualIncomes: Income[];
+  plannedExpenses: Transaction<"EXPENSE">[];
+  plannedIncomes: Transaction<"INCOME">[];
+  actualExpenses: Transaction<"EXPENSE">[];
+  actualIncomes: Transaction<"INCOME">[];
 };
 
 // USERS

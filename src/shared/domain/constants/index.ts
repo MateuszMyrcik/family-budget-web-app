@@ -1,1 +1,6 @@
-export { EXPENSE_CATEGORIES, EXPENSE_CATEGORY } from "./expense";
+export {
+  EXPENSE_CATEGORIES,
+  EXPENSE_CATEGORY,
+  INCOME_CATEGORIES,
+  INCOME_CATEGORY,
+} from "./transaction";

@@ -3,7 +3,6 @@ import { Controller, useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useExpenseAction } from "@/entities/expenses";
 import { useRouter } from "next/router";
 import * as uuid from "uuid";
 import { Button, DatePicker, Field, Select, TextField } from "@/shared/ui-kit";
@@ -11,6 +10,7 @@ import { getExpenseCategoriesItems } from "./lib";
 import { FormGroup } from "@mui/material";
 import { ExpenseCategory } from "@/shared/domain";
 import Link from "next/link";
+import { useTransactionAction } from "@/entities";
 
 type FormValues = {
   comment: string;
@@ -29,7 +29,7 @@ const expenseSchema = yup.object().shape({
 });
 
 export const TransactionView = () => {
-  const { addExpense } = useExpenseAction();
+  const { addTransaction } = useTransactionAction();
   const { push } = useRouter();
   const { control, handleSubmit } = useForm<Partial<FormValues>>({
     resolver: yupResolver(expenseSchema),
@@ -43,7 +43,7 @@ export const TransactionView = () => {
       const mockedFamilyId = "1";
       const mockedOwnerId = "1";
 
-      addExpense({
+      addTransaction({
         ...data,
         ownership: {
           familyId: mockedFamilyId,
@@ -55,9 +55,10 @@ export const TransactionView = () => {
         },
         category: data.category,
         id: uuid.v4(),
-        groupCategory: "OTHER",
+        type: "EXPENSE",
+        groupCategory: "ENTERTAINMENT",
       });
-      push("/expenses");
+      push("/finance");
     }
   };
 

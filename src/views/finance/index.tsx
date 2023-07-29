@@ -1,5 +1,7 @@
 import { PrimaryTemplate } from "@/app/layout";
 import { RootState, store } from "@/app/store";
+import { NotSpecificTransaction } from "@/shared/domain";
+
 import { MovingOutlined } from "@mui/icons-material";
 
 import { Box, Button, Typography } from "@mui/material";
@@ -7,11 +9,24 @@ import clsx from "clsx";
 
 import { useRouter } from "next/router";
 import { Provider, useSelector } from "react-redux";
-import { formatDate, getTotalAmount, isValuePositive } from "./lib";
+import {
+  formatDate,
+  getTransactionsBalance,
+  getTotalExpenseAmount,
+  getTotalIncomeAmount,
+  isValuePositive,
+} from "./lib";
 
 export const FinanceView = () => {
-  const { expenses } = useSelector((state: RootState) => state.expensesSlice);
+  const { transactions } = useSelector(
+    (state: RootState) => state.transactionSlice
+  );
+
   const { push } = useRouter();
+
+  const incomeTotal = getTotalIncomeAmount(transactions);
+  const expenseTotal = getTotalExpenseAmount(transactions);
+  const balance = getTransactionsBalance(transactions);
 
   return (
     <>
@@ -27,17 +42,20 @@ export const FinanceView = () => {
                 }}
                 pb={2}
               >
-                <Typography
-                  variant="body1"
-                  color={
-                    isValuePositive(getTotalAmount(expenses))
-                      ? "success.main"
-                      : "error.main"
-                  }
-                >
-                  {getTotalAmount(expenses)}
-                  <MovingOutlined />
-                </Typography>
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  <Typography variant="body1">
+                    Przychody: {incomeTotal}
+                  </Typography>
+                  <Typography variant="body1">
+                    Koszty: {expenseTotal}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    // color={balance > -1 ? "success.main" : "error.main"}
+                  >
+                    Bilans: {balance}
+                  </Typography>
+                </Box>
                 <Button
                   onClick={() => {
                     push("/transaction");
@@ -49,30 +67,32 @@ export const FinanceView = () => {
               </Box>
 
               <div className="flex flex-col gap-2 text-sm">
-                {expenses.map(({ amount, date, name, category }, index) => (
-                  <div
-                    key={index}
-                    className="grid grid-cols-[40px_300px_100px_100px] items-center p-2 border-[1px] rounded-lg gap-2 hover:bg-gray-100 cursor-pointer justify-between"
-                  >
-                    <div className=" text-gray-500 text-sm">
-                      {formatDate(date)}
-                    </div>
-                    <div className="basis-40 flex-grow-0">{name}</div>
-                    <div className="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700">
-                      {category}
-                    </div>
+                {transactions.map(
+                  ({ amount, date, name, category, type }, index) => (
                     <div
-                      className={clsx(
-                        "text-base",
-                        isValuePositive(amount.value)
-                          ? "text-success-main"
-                          : "text-error-main"
-                      )}
+                      key={index}
+                      className="grid grid-cols-[40px_300px_100px_100px] items-center p-2 border-[1px] rounded-lg gap-2 hover:bg-gray-100 cursor-pointer justify-between"
                     >
-                      {amount.value}
+                      <div className=" text-gray-500 text-sm">
+                        {formatDate(date)}
+                      </div>
+                      <div className="basis-40 flex-grow-0">{name}</div>
+                      <div className="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700">
+                        {category}
+                      </div>
+                      <div
+                        className={clsx(
+                          "text-base",
+                          type === "INCOME"
+                            ? "text-success-main"
+                            : "text-error-main"
+                        )}
+                      >
+                        {amount.value}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                )}
               </div>
             </>
           </PrimaryTemplate.Content>

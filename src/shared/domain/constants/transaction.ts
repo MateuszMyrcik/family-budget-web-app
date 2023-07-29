@@ -1,5 +1,6 @@
 import { createLookup } from "@/shared/utils";
 import { ExpenseCategory } from "../types/expense";
+import { IncomeCategory, IncomeGroupCategory } from "../types/shared";
 
 export const EXPENSE_CATEGORIES: ExpenseCategory[] = [
   "FOOD",
@@ -36,5 +37,32 @@ export const EXPENSE_GROUP_CATEGORIES = [
   "TRANSPORT",
   "HEALTHCARE",
   "ENTERTAINMENT",
+  "OTHER",
+];
+
+export const INCOME_CATEGORIES: IncomeCategory[] = [
+  "DIVIDENDS",
+  "FULL_TIME",
+  "FREELANCE",
+  "INTEREST",
+  "OTHER",
+  "PART_TIME",
+  "RENTAL_INCOME",
+];
+
+export const INCOME_CATEGORY = createLookup(INCOME_CATEGORIES);
+
+export const INCOME_CATEGORIES_BY_GROUP_CATEGORY: Record<
+  IncomeGroupCategory,
+  IncomeCategory[]
+> = {
+  SALARY: ["FULL_TIME", "PART_TIME"],
+  INVESTMENTS: ["DIVIDENDS", "INTEREST"],
+  OTHER: ["OTHER", "RENTAL_INCOME"],
+};
+
+export const INCOME_GROUP_CATEGORIES: IncomeGroupCategory[] = [
+  "SALARY",
+  "INVESTMENTS",
   "OTHER",
 ];

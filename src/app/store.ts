@@ -1,8 +1,8 @@
+import { TransactionReducer } from "@/entities";
 import { configureStore } from "@reduxjs/toolkit";
-import { ExpensesReducer } from "@/entities/expenses";
 
 export const store = configureStore({
-  reducer: { expensesSlice: ExpensesReducer },
+  reducer: { transactionSlice: TransactionReducer },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
