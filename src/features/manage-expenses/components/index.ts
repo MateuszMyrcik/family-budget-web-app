@@ -1,1 +1,0 @@
-export { ExpensesManger } from "./ExpensesManager";

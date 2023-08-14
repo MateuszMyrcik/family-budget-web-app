@@ -1,1 +1,2 @@
-export type { ExpenseCategory } from "./expense";
+export * from "./expense";
+export * from "./shared";

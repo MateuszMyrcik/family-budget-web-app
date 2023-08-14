@@ -1,71 +1,49 @@
 import { getRoutePath, PrimaryTemplate } from "@/app/layout";
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useExpenseAction } from "@/entities/expenses";
-import { useRouter } from "next/router";
-import * as uuid from "uuid";
-import { Button, DatePicker, Field, Select, TextField } from "@/shared/ui-kit";
-import { getExpenseCategoriesItems } from "./lib";
-import { FormGroup } from "@mui/material";
-import { ExpenseCategory } from "@/shared/domain";
+import { Button, DatePicker, Select, TextField } from "@/shared/ui-kit";
+import { FormControlLabel, FormGroup, Radio, RadioGroup } from "@mui/material";
+import { TRANSACTION_TYPE } from "@/shared/domain";
 import Link from "next/link";
 
-type FormValues = {
-  comment: string;
-  name: string;
-  category: ExpenseCategory;
-  amountValue: number;
-  date: Date;
-};
+import { useRecordsForm } from "./useRecordsForm";
+import { getSelectItems } from "./lib";
 
-const expenseSchema = yup.object().shape({
-  comments: yup.string(),
-  name: yup.string().required(),
-  amountValue: yup.number().required(),
-  category: yup.string().required(),
-  date: yup.date().required(),
-});
-
-export const ExpenseView = () => {
-  const { addExpense } = useExpenseAction();
-  const { push } = useRouter();
-  const { control, handleSubmit } = useForm<Partial<FormValues>>({
-    resolver: yupResolver(expenseSchema),
-    defaultValues: { date: new Date() },
-  });
-
-  const onSubmit = (data: Partial<FormValues>) => {
-    const isValid = expenseSchema.isValidSync(data);
-
-    if (isValid) {
-      const mockedFamilyId = "1";
-      const mockedOwnerId = "1";
-
-      addExpense({
-        ...data,
-        ownership: {
-          familyId: mockedFamilyId,
-          ownerId: mockedOwnerId,
-        },
-        amount: {
-          currency: "PLN",
-          value: data.amountValue,
-        },
-        category: data.category,
-        id: uuid.v4(),
-        groupCategory: "OTHER",
-      });
-      push("/expenses");
-    }
-  };
+export const TransactionView = () => {
+  const { control, watchType, onSubmit, handleSubmit } = useRecordsForm();
 
   return (
     <>
       <PrimaryTemplate>
-        <PrimaryTemplate.Content title="Dodaj wydatek">
+        <PrimaryTemplate.Content title="Dodaj transakcję">
           <form onSubmit={handleSubmit(onSubmit)}>
+            <FormGroup>
+              <Controller
+                name="type"
+                control={control}
+                defaultValue={TRANSACTION_TYPE.EXPENSE}
+                render={({ field }) => (
+                  <RadioGroup
+                    sx={{ display: "flex", flexDirection: "row" }}
+                    value={field.value}
+                    onChange={field.onChange}
+                  >
+                    <FormControlLabel
+                      name="type"
+                      value={TRANSACTION_TYPE.EXPENSE}
+                      control={<Radio />}
+                      label="Wydatek"
+                    />
+                    <FormControlLabel
+                      name="type"
+                      value={TRANSACTION_TYPE.INCOME}
+                      control={<Radio />}
+                      label="Przychód"
+                    />
+                  </RadioGroup>
+                )}
+              />
+            </FormGroup>
             <FormGroup row>
               <Controller
                 name="name"
@@ -88,8 +66,8 @@ export const ExpenseView = () => {
                   <Select
                     {...field}
                     error={error}
-                    label={"Wybierz kategorię wydatku"}
-                    items={getExpenseCategoriesItems()}
+                    label={"Wybierz kategorię"}
+                    items={getSelectItems(watchType)}
                   />
                 )}
               />
@@ -151,7 +129,7 @@ export const ExpenseView = () => {
 
             <div className="flex place-content-between">
               <Button variant="outlined">
-                <Link href={getRoutePath("/expenses")}>Wróć</Link>
+                <Link href={getRoutePath("/finance")}>Wróć</Link>
               </Button>
               <Button
                 color="primary"

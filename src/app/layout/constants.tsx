@@ -2,10 +2,9 @@ import {
   AttachMoneyOutlined,
   BarChartOutlined,
   DashboardOutlined,
-  ShoppingCartOutlined,
 } from "@mui/icons-material";
 
-export type PathName = "/" | "/expenses" | "/incomes" | "/stats";
+export type PathName = "/" | "/stats" | "/finance";
 
 type NavItem = {
   path: PathName;
@@ -20,13 +19,8 @@ export const NAV_ITEMS: NavItem[] = [
     suffix: <DashboardOutlined />, // TODO: research for better icon
   },
   {
-    path: "/expenses",
-    label: "Wydatki",
-    suffix: <ShoppingCartOutlined />,
-  },
-  {
-    path: "/incomes",
-    label: "Dochody",
+    path: "/finance",
+    label: "Finanse",
     suffix: <AttachMoneyOutlined />,
   },
   {

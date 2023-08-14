@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -11,9 +10,15 @@ import {
 import { useState } from "react";
 import { ErrorOption as ReactHookFormError } from "react-hook-form";
 
+type SelectItem = {
+  value: string;
+  label: string;
+  isPlaceholder?: boolean;
+};
+
 type SelectProps = {
   label: string;
-  items: { value: string; label: string }[];
+  items: SelectItem[];
   error?: ReactHookFormError;
   onChange: (...event: any[]) => void;
 } & Omit<MuiSelectProps, "onChange" | "error">;
@@ -38,7 +43,11 @@ export const Select = ({ label, items, error, onChange }: SelectProps) => {
         onChange={handleChange}
       >
         {items.map((item) => (
-          <MenuItem key={item.value} value={item.value}>
+          <MenuItem
+            key={item.value}
+            value={item.value}
+            disabled={item.isPlaceholder}
+          >
             {item.label}
           </MenuItem>
         ))}
