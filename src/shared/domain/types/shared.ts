@@ -35,7 +35,7 @@ export type NotSpecificTransaction = {
   [T in TransactionType]: Transaction<T>;
 }[TransactionType];
 
-export type Transaction<T extends TransactionType> = {
+export type Transaction<T extends TransactionType = TransactionType> = {
   id: string;
   name: string;
   date: Date;
@@ -65,19 +65,12 @@ export type TransactionType = "EXPENSE" | "INCOME";
 
 // EXPENSES
 export type ExpenseGroupCategory =
-  | "FOOD"
+  | "SHOPPING"
   | "OTHER"
-  | "HYGIENE"
   | "HOUSING"
-  | "SAVINGS"
-  | "CHILDREN"
-  | "CLOTHING"
   | "TRANSPORT"
   | "HEALTHCARE"
-  | "ENTERTAINMENT"
-  | "OTHER_EXPENSES"
-  | "DEBT_REPAYMENT"
-  | "TELECOMMUNICATIONS";
+  | "ENTERTAINMENT";
 
 // INCOME
 export type IncomeGroupCategory = "SALARY" | "INVESTMENTS" | "OTHER";

@@ -1,4 +1,4 @@
-import { TransactionReducer } from "@/entities";
+import { TransactionReducer } from "@/entities/transaction";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({

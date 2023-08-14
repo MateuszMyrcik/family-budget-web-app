@@ -1,4 +1,9 @@
-import { NotSpecificTransaction } from "./../../shared/domain/types/shared";
+import {
+  isExpenseTransaction,
+  isIncomeTransaction,
+} from "@/entities/transaction";
+import { NotSpecificTransaction, Transaction } from "@/shared/domain";
+
 // TODO: move to shared lib
 export const formatDate = (date: Date) => {
   const day = date.getDate();
@@ -21,14 +26,9 @@ export const getTransactionsBalance = (
   return totalIncome - totalExpense;
 };
 
-export const isExpenseTransaction = (type: string) => type === "EXPENSE";
-export const isIncomeTransaction = (type: string) => type === "INCOME";
-
-export const getTotalExpenseAmount = (
-  transactions: NotSpecificTransaction[]
-) => {
+export const getTotalExpenseAmount = (transactions: Transaction[]) => {
   return transactions
-    .filter(({ type }) => isExpenseTransaction(type))
+    .filter((transaction) => isExpenseTransaction(transaction))
     .reduce((acc, { amount }) => acc + amount.value, 0);
 };
 
@@ -36,6 +36,6 @@ export const getTotalIncomeAmount = (
   transactions: NotSpecificTransaction[]
 ) => {
   return transactions
-    .filter(({ type }) => isIncomeTransaction(type))
+    .filter((transaction) => isIncomeTransaction(transaction))
     .reduce((acc, { amount }) => acc + amount.value, 0);
 };

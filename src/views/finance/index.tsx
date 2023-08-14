@@ -1,8 +1,5 @@
 import { PrimaryTemplate } from "@/app/layout";
 import { RootState, store } from "@/app/store";
-import { NotSpecificTransaction } from "@/shared/domain";
-
-import { MovingOutlined } from "@mui/icons-material";
 
 import { Box, Button, Typography } from "@mui/material";
 import clsx from "clsx";
@@ -14,7 +11,6 @@ import {
   getTransactionsBalance,
   getTotalExpenseAmount,
   getTotalIncomeAmount,
-  isValuePositive,
 } from "./lib";
 
 export const FinanceView = () => {

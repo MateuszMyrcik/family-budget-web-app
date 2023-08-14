@@ -1,5 +1,5 @@
 export type ExpenseCategory =
-  // FOOD
+  // SHOPPING
   | "FOOD"
   | "TAKEAWAY"
   | "ALCOHOL"
