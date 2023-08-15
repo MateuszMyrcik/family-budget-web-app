@@ -4,7 +4,6 @@ import {
   getIncomeCategories,
   getIncomeGroupCategory,
   isExpense,
-  isExpenseTransaction,
 } from "@/entities/transaction";
 import {
   EXPENSE_CATEGORY,

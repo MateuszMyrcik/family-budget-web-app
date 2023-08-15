@@ -1,0 +1,24 @@
+import { THEME_TYPOGRAPHY } from "./typography";
+import { THEME_COMPONENTS } from "./components";
+import { THEME_PALETTE } from "./palette";
+import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material";
+
+export const getTheme = () => {
+  const themeOptions = {
+    palette: THEME_PALETTE,
+    typography: THEME_TYPOGRAPHY,
+    components: THEME_COMPONENTS,
+  };
+
+  return createTheme(themeOptions);
+};
+
+type ProviderProps = {
+  children: React.ReactNode;
+};
+
+export const ThemeProvider = ({ children }: ProviderProps) => {
+  const appTheme = getTheme();
+
+  return <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>;
+};
