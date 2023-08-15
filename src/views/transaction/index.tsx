@@ -74,7 +74,7 @@ export const TransactionView = () => {
             </FormGroup>
             <FormGroup>
               <Controller
-                name="amountValue"
+                name="amount.value"
                 control={control}
                 render={({
                   field,

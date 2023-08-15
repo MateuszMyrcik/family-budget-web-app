@@ -14,6 +14,14 @@ module.exports = {
         'secondary-light': '#ede7f6',
         'secondary-main': '#673ab7',
         'secondary-dark': '#5e35b1',
+        'grey-50': '#F8FAFC',
+        'grey-100': '#EEF2F6',
+        'grey-200': '#E3E8EF',
+        'grey-300': '#CDD5DF',
+        'grey-500': '#697586',
+        'grey-600': '#4B5565',
+        'grey-700': '#364152',
+        'grey-900': '#121926',
         
       },
       textColor: {
@@ -26,7 +34,6 @@ module.exports = {
         'secondary-light': '#ede7f6',
         'secondary-main': '#673ab7',
         'secondary-dark': '#5e35b1',
-        
         'success-light': '#b9f6ca',
         'success-main': '#00e676',
         'success-dark': '#00c853',
@@ -36,7 +43,14 @@ module.exports = {
         'warning-light': '#fff8e1',
         'warning-main': '#ffe57f',
         'warning-dark': '#ffc107',
-
+        'grey-50': '#F8FAFC',
+        'grey-100': '#EEF2F6',
+        'grey-200': '#E3E8EF',
+        'grey-300': '#CDD5DF',
+        'grey-500': '#697586',
+        'grey-600': '#4B5565',
+        'grey-700': '#364152',
+        'grey-900': '#121926',
       },
       borderColor: {
         'primary-light': '#eef2f6',
