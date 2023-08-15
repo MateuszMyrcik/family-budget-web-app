@@ -2,18 +2,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { schema } from "./schema";
 
-type UserCredentials = {
+type UserDetails = {
   email: string;
   password: string;
+  lastName: string;
+  firstName: string;
 };
 
-type FormValues = UserCredentials;
+type FormValues = UserDetails;
 
 export const useRecordsForm = () => {
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
       email: "",
       password: "",
+      lastName: "",
+      firstName: "",
     },
     resolver: yupResolver(schema),
   });

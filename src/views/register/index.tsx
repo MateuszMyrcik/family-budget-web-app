@@ -16,7 +16,7 @@ import { Controller } from "react-hook-form";
 import { Provider } from "react-redux";
 import { useRecordsForm } from "./useRecordsForm";
 
-export const LoginView = () => {
+export const RegisterView = () => {
   const { palette } = useTheme();
   const { control, onSubmit, handleSubmit } = useRecordsForm();
 
@@ -33,7 +33,7 @@ export const LoginView = () => {
                   color={palette.secondary.main}
                   fontWeight={700}
                 >
-                  Witaj z powrotem
+                  Rejestracja
                 </Typography>
                 <Image
                   src="/images/logo.svg"
@@ -48,7 +48,7 @@ export const LoginView = () => {
                 font-size={16}
                 color={palette.grey["500"]}
               >
-                Zaloguj się do swojego konta
+                Wprowadź dane, aby kontynuować
               </Typography>
             </div>
             <div className="bg-grey-50 font-medium text-grey-600 p-2 text-center items-center h-10 cursor-not-allowed">
@@ -65,10 +65,40 @@ export const LoginView = () => {
             </Divider>
 
             <div className="text-gray-600 text-sm text-center">
-              Zaloguj się za pomocą adresu e-mail
+              Zarejestruj się za pomocą adresu e-mail
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
+              <FormGroup row>
+                <Controller
+                  control={control}
+                  name="firstName"
+                  render={({ field, fieldState: { error } }) => (
+                    <TextField
+                      label="Imię"
+                      error={!!error}
+                      variant="outlined"
+                      className="w-full sm:flex-1"
+                      helperText={error?.message || null}
+                      {...field}
+                    />
+                  )}
+                />
+                <Controller
+                  control={control}
+                  name="lastName"
+                  render={({ field, fieldState: { error } }) => (
+                    <TextField
+                      error={!!error}
+                      label="Nazwisko"
+                      variant="outlined"
+                      className="w-full sm:flex-1"
+                      helperText={error?.message || null}
+                      {...field}
+                    />
+                  )}
+                />
+              </FormGroup>
               <FormGroup className="flex flex-col gap-6">
                 <Controller
                   control={control}
@@ -110,14 +140,14 @@ export const LoginView = () => {
                     color="secondary"
                     variant="contained"
                   >
-                    Zaloguj się
+                    Zarejestruj się
                   </Button>
                 </Box>
               </FormGroup>
             </form>
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Link href={"/register"}>
-                <Typography variant="subtitle2"> Nie masz konta?</Typography>
+              <Link href={"/login"}>
+                <Typography variant="subtitle2"> Masz juz konto?</Typography>
               </Link>
             </Box>
           </div>
