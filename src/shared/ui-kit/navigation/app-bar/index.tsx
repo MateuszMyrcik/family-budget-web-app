@@ -12,6 +12,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { NavLink } from "../types";
 import { SettingsOutlined } from "@mui/icons-material";
 import Image from "next/image";
+import Link from "next/link";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -53,17 +54,18 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
           <Image src="/images/logo.svg" alt="Logo" width={80} height={80} />
         </div>
 
-        <div className="flex items-center cursor-pointer mr-0 ml-auto h-12 p-2 gap-4 rounded-full bg-primary-light hover:bg-primary-main text-primary-main hover:text-primary-light">
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar
-              className="h-9 w-9"
-              alt="Remy Sharp"
-              src="/images/thor-avatar.jpeg"
-            />
-          </IconButton>
-          <SettingsOutlined fontSize="small" className="" />
+        <Link href="/account">
+          <div className="flex items-center cursor-pointer mr-0 ml-auto h-12 p-2 gap-4 rounded-full bg-primary-light hover:bg-primary-main text-primary-main hover:text-primary-light">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar
+                className="h-9 w-9"
+                alt="Remy Sharp"
+                src="/images/thor-avatar.jpeg"
+              />
+            </IconButton>
+            <SettingsOutlined fontSize="small" className="" />
 
-          {/* <Menu
+            {/* <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -85,7 +87,8 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
                 </MenuItem>
               ))}
             </Menu> */}
-        </div>
+          </div>
+        </Link>
       </div>
     </MuiAppBar>
   );

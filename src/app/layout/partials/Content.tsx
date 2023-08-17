@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { ReactNode } from "react";
 
 type ContentProps = {
-  title: string;
+  title: ReactNode;
   children: ReactNode;
   className?: string;
   contentInnerClassName?: string;
@@ -29,9 +29,13 @@ export const Content = ({
 
   return (
     <div className={containerClasses}>
-      <div className={defaultClasses.header}>
-        <h1 className={defaultClasses.title}>{title}</h1>
-      </div>
+      {typeof title === "string" ? (
+        <div className={defaultClasses.header}>
+          <h1 className={defaultClasses.title}>{title}</h1>
+        </div>
+      ) : (
+        title
+      )}
 
       <div className={contentInnerClasses}>{children}</div>
     </div>
