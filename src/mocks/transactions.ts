@@ -1,9 +1,9 @@
-import { NotSpecificTransaction } from "@/shared/domain/types/shared";
+import { Transaction } from "@/shared/domain/types/shared";
 
-export const MOCKED_TRANSACTIONS: NotSpecificTransaction[] = [
+export const MOCKED_TRANSACTIONS: Transaction[] = [
   {
     id: "1",
-    groupCategory: "FOOD",
+    groupCategory: "SHOPPING",
     category: "ALCOHOL",
     name: "Salary",
     type: "EXPENSE",
@@ -13,7 +13,7 @@ export const MOCKED_TRANSACTIONS: NotSpecificTransaction[] = [
   },
   {
     id: "2",
-    groupCategory: "FOOD",
+    groupCategory: "SHOPPING",
     category: "ALCOHOL",
     name: "Salary",
     type: "EXPENSE",
@@ -23,7 +23,7 @@ export const MOCKED_TRANSACTIONS: NotSpecificTransaction[] = [
   },
   {
     id: "3",
-    groupCategory: "FOOD",
+    groupCategory: "SHOPPING",
     category: "ALCOHOL",
     name: "Salary",
     type: "EXPENSE",
@@ -33,7 +33,7 @@ export const MOCKED_TRANSACTIONS: NotSpecificTransaction[] = [
   },
   {
     id: "4",
-    groupCategory: "FOOD",
+    groupCategory: "SHOPPING",
     category: "ALCOHOL",
     name: "Salary",
     type: "EXPENSE",
@@ -43,7 +43,7 @@ export const MOCKED_TRANSACTIONS: NotSpecificTransaction[] = [
   },
   {
     id: "5",
-    groupCategory: "FOOD",
+    groupCategory: "SHOPPING",
     category: "ALCOHOL",
     name: "Salary",
     type: "EXPENSE",
