@@ -1,26 +1,19 @@
 import * as React from "react";
 import { AppBar as MuiAppBar } from "@mui/material";
 
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import AdbIcon from "@mui/icons-material/Adb";
 
-import { NavLink } from "../types";
 import { SettingsOutlined } from "@mui/icons-material";
 import Image from "next/image";
-
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import Link from "next/link";
 
 export type AppBarProps = {
-  links: NavLink[];
   onMenuIconClick?: () => void;
 };
 
-export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
+export const AppBar = ({ onMenuIconClick }: AppBarProps) => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -53,39 +46,18 @@ export const AppBar = ({ links, onMenuIconClick }: AppBarProps) => {
           <Image src="/images/logo.svg" alt="Logo" width={80} height={80} />
         </div>
 
-        <div className="flex items-center cursor-pointer mr-0 ml-auto h-12 p-2 gap-4 rounded-full bg-primary-light hover:bg-primary-main text-primary-main hover:text-primary-light">
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar
-              className="h-9 w-9"
-              alt="Remy Sharp"
-              src="/images/thor-avatar.jpeg"
-            />
-          </IconButton>
-          <SettingsOutlined fontSize="small" className="" />
-
-          {/* <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
-        </div>
+        <Link href="/account">
+          <div className="flex items-center cursor-pointer mr-0 ml-auto h-12 p-2 gap-4 rounded-full bg-primary-light hover:bg-primary-main text-primary-main hover:text-primary-light">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar
+                className="h-9 w-9"
+                alt="Remy Sharp"
+                src="/images/thor-avatar.jpeg"
+              />
+            </IconButton>
+            <SettingsOutlined fontSize="small" className="" />
+          </div>
+        </Link>
       </div>
     </MuiAppBar>
   );

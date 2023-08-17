@@ -8,19 +8,18 @@ import {
 import {
   EXPENSE_CATEGORY,
   EXPENSE_GROUP_CATEGORIES,
-  EXPENSE_GROUP_CATEGORY_LABEL,
   INCOME_GROUP_CATEGORIES,
-  INCOME_GROUP_CATEGORY_LABEL,
   Transaction,
   TransactionType,
   TRANSACTION_TYPE,
 } from "@/shared/domain";
+import { translate } from "@/shared/utils";
 import { expenseSchema } from "./schema";
 
 export const getExpenseSelectItems = () => {
   const expenseGroups = EXPENSE_GROUP_CATEGORIES.map((group) => {
     const groupItem = {
-      label: EXPENSE_GROUP_CATEGORY_LABEL[group],
+      label: translate(`transaction.expenseGroup.${group}`),
       value: group,
       isPlaceholder: true,
     };
@@ -37,7 +36,7 @@ export const getExpenseSelectItems = () => {
 export const getIncomeSelectItems = () => {
   const incomeGroups = INCOME_GROUP_CATEGORIES.map((group) => {
     const groupPlaceholder = {
-      label: INCOME_GROUP_CATEGORY_LABEL[group],
+      label: translate(`transaction.incomeGroup.${group}`),
       value: group,
       isPlaceholder: true,
     };

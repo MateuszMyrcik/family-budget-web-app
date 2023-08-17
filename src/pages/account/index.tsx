@@ -1,4 +1,4 @@
-import { LoginView } from "@/views/login";
+import { AccountView } from "@/views/account";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -10,7 +10,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
   },
 });
 
-function LoginPage() {
-  return <LoginView />;
+function AccountPage() {
+  return <AccountView />;
 }
-export default LoginPage;
+
+export default AccountPage;

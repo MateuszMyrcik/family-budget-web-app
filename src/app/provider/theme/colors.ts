@@ -2,7 +2,7 @@
 const PAPER = "#ffffff";
 
 // primary
-const PRIMARY_LIGHT = "#eef2f6";
+const PRIMARY_LIGHT = "#E3F2FD";
 const PRIMARY_MAIN = "#2196f3";
 const PRIMARY_DARK = "#1e88e5";
 const PRIMARY_200 = "#90caf9";
@@ -44,7 +44,14 @@ const GREY_300 = "#CDD5DF";
 const GREY_500 = "#697586";
 const GREY_600 = "#4B5565";
 const GREY_700 = "#364152";
-const GREY_900 = "#121926";
+const GREY_900 = "#212121";
+
+// blue
+const BLUE_50 = "##E3F2FD";
+const BLUE_200 = "#90CAF9";
+const BLUE_500 = "#2196F3";
+const BLUE_600 = "#1E88E5";
+const BLUE_800 = "#1565C0";
 
 // paper & background
 const DARK_BACKGROUND = "#1a223f"; // level 3
@@ -123,4 +130,9 @@ export const COLOR = {
   DARK_TEXT_TITLE,
   DARK_TEXT_PRIMARY,
   DARK_TEXT_SECONDARY,
+  BLUE_50,
+  BLUE_200,
+  BLUE_500,
+  BLUE_600,
+  BLUE_800,
 } as const;

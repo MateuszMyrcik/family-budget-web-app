@@ -1,8 +1,9 @@
 import { TransactionReducer } from "@/entities/transaction";
+import { UserReducer } from "@/entities/user";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
-  reducer: { transactionSlice: TransactionReducer },
+  reducer: { transactionSlice: TransactionReducer, userSlice: UserReducer },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

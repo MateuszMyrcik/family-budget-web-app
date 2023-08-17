@@ -10,6 +10,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { Controller } from "react-hook-form";
@@ -19,6 +20,7 @@ import { useRecordsForm } from "./useRecordsForm";
 export const LoginView = () => {
   const { palette } = useTheme();
   const { control, onSubmit, handleSubmit } = useRecordsForm();
+  const { t } = useTranslation("common");
 
   return (
     <>
@@ -33,7 +35,7 @@ export const LoginView = () => {
                   color={palette.secondary.main}
                   fontWeight={700}
                 >
-                  Witaj z powrotem
+                  {t("login.formHeader")}
                 </Typography>
                 <Image
                   src="/images/logo.svg"
@@ -48,24 +50,24 @@ export const LoginView = () => {
                 font-size={16}
                 color={palette.grey["500"]}
               >
-                Zaloguj się do swojego konta
+                {t("login.formSubheader")}
               </Typography>
             </div>
             <div className="bg-grey-50 font-medium text-grey-600 p-2 text-center items-center h-10 cursor-not-allowed">
               <Google className="mr-2" />
-              Kontynuuj z google
+              {t("login.googleButton")}
             </div>
 
             <Divider>
               <Chip
                 variant="outlined"
-                label="Albo"
+                label={t("login.formSeparator")}
                 className="font-medium uppercase w-24"
               />
             </Divider>
 
             <div className="text-gray-600 text-sm text-center">
-              Zaloguj się za pomocą adresu e-mail
+              {t("login.formOrLabel")}
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,7 +77,7 @@ export const LoginView = () => {
                   name="email"
                   render={({ field, fieldState: { error } }) => (
                     <TextField
-                      label="Adres e-mail"
+                      label={t("login.emailLabel")}
                       variant="outlined"
                       error={!!error}
                       helperText={error?.message || null}
@@ -88,7 +90,7 @@ export const LoginView = () => {
                   name="password"
                   render={({ field, fieldState: { error } }) => (
                     <TextField
-                      label="Hasło"
+                      label={t("login.passwordLabel")}
                       variant="outlined"
                       type="password"
                       error={!!error}
@@ -110,14 +112,16 @@ export const LoginView = () => {
                     color="secondary"
                     variant="contained"
                   >
-                    Zaloguj się
+                    {t("login.loginButton")}
                   </Button>
                 </Box>
               </FormGroup>
             </form>
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Link href={"/register"}>
-                <Typography variant="subtitle2"> Nie masz konta?</Typography>
+                <Typography variant="subtitle2">
+                  {t("login.registerLink")}
+                </Typography>
               </Link>
             </Box>
           </div>

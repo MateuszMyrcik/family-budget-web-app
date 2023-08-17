@@ -20,7 +20,7 @@ const PrimaryTemplate = ({ children }: PrimaryTemplateProps) => {
 
   return (
     <BaseTemplate
-      header={<AppBar links={NAV_ITEMS} onMenuIconClick={toggleSidebar} />}
+      header={<AppBar onMenuIconClick={toggleSidebar} />}
       sidebar={sidebar}
     >
       <Sidebar
