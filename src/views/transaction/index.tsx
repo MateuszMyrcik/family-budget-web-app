@@ -8,14 +8,16 @@ import Link from "next/link";
 
 import { useRecordsForm } from "./useRecordsForm";
 import { getSelectItems } from "./lib";
+import { useTranslation } from "next-i18next";
 
 export const TransactionView = () => {
   const { control, watchType, onSubmit, handleSubmit } = useRecordsForm();
+  const { t } = useTranslation("common");
 
   return (
     <>
       <PrimaryTemplate>
-        <PrimaryTemplate.Content title="Dodaj transakcję">
+        <PrimaryTemplate.Content title={t("transaction.pageTitle")}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup>
               <Controller
@@ -32,13 +34,13 @@ export const TransactionView = () => {
                       name="type"
                       value={TRANSACTION_TYPE.EXPENSE}
                       control={<Radio />}
-                      label="Wydatek"
+                      label={t("transaction.expenseLabel")}
                     />
                     <FormControlLabel
                       name="type"
                       value={TRANSACTION_TYPE.INCOME}
                       control={<Radio />}
-                      label="Przychód"
+                      label={t("transaction.incomeLabel")}
                     />
                   </RadioGroup>
                 )}
@@ -50,8 +52,8 @@ export const TransactionView = () => {
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    label="Nazwa"
-                    placeholder="Np. Zakupy w sklepie"
+                    label={t("transaction.nameLabel")}
+                    placeholder={t("transaction.namePlaceholder")}
                     error={!!error}
                     helperText={error?.message || null}
                     {...field}
@@ -66,7 +68,7 @@ export const TransactionView = () => {
                   <Select
                     {...field}
                     error={error}
-                    label={"Wybierz kategorię"}
+                    label={t("transaction.categoryLabel")}
                     items={getSelectItems(watchType)}
                   />
                 )}
@@ -76,15 +78,11 @@ export const TransactionView = () => {
               <Controller
                 name="amount.value"
                 control={control}
-                render={({
-                  field,
-                  fieldState: { error },
-                  formState: { defaultValues },
-                }) => (
+                render={({ field, fieldState: { error } }) => (
                   <TextField
                     {...field}
-                    label="Kwota"
-                    placeholder="Wpisz kwotę wydatku"
+                    label={t("transaction.amountLabel")}
+                    placeholder={t("transaction.amountPlaceholder")}
                     error={!!error}
                     helperText={error?.message || null}
                     type="number"
@@ -104,7 +102,7 @@ export const TransactionView = () => {
                   <DatePicker
                     {...field}
                     defaultValue={defaultValues?.date}
-                    label="Wybierz datę"
+                    label={t("transaction.dateLabel")}
                     disableFuture
                     error={!!error}
                     helperText={error?.message || null}
@@ -117,8 +115,8 @@ export const TransactionView = () => {
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    label="Uwagi"
-                    placeholder="Wpisz uwage do wydatku"
+                    label={t("transaction.commentLabel")}
+                    placeholder={t("transaction.commentPlaceholder")}
                     error={!!error}
                     helperText={error?.message || null}
                     {...field}
@@ -129,7 +127,9 @@ export const TransactionView = () => {
 
             <div className="flex place-content-between">
               <Button variant="outlined">
-                <Link href={getRoutePath("/finance")}>Wróć</Link>
+                <Link href={getRoutePath("/finance")}>
+                  {t("transaction.backButton")}
+                </Link>
               </Button>
               <Button
                 color="primary"
@@ -137,7 +137,7 @@ export const TransactionView = () => {
                 variant="contained"
                 className="min-w-24"
               >
-                Dodaj
+                {t("transaction.addButton")}
               </Button>
             </div>
           </form>

@@ -10,6 +10,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { Controller } from "react-hook-form";
@@ -19,6 +20,7 @@ import { useRecordsForm } from "./useRecordsForm";
 export const RegisterView = () => {
   const { palette } = useTheme();
   const { control, onSubmit, handleSubmit } = useRecordsForm();
+  const { t } = useTranslation("common");
 
   return (
     <>
@@ -33,7 +35,7 @@ export const RegisterView = () => {
                   color={palette.secondary.main}
                   fontWeight={700}
                 >
-                  Rejestracja
+                  {t("register.formHeader")}
                 </Typography>
                 <Image
                   src="/images/logo.svg"
@@ -48,24 +50,24 @@ export const RegisterView = () => {
                 font-size={16}
                 color={palette.grey["500"]}
               >
-                Wprowadź dane, aby kontynuować
+                {t("register.formSubheader")}
               </Typography>
             </div>
             <div className="bg-grey-50 font-medium text-grey-600 p-2 text-center items-center h-10 cursor-not-allowed">
               <Google className="mr-2" />
-              Kontynuuj z google
+              {t("register.googleButton")}
             </div>
 
             <Divider>
               <Chip
                 variant="outlined"
-                label="Albo"
+                label={t("register.formSeparator")}
                 className="font-medium uppercase w-24"
               />
             </Divider>
 
             <div className="text-gray-600 text-sm text-center">
-              Zarejestruj się za pomocą adresu e-mail
+              {t("register.formOrLabel")}
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,7 +77,7 @@ export const RegisterView = () => {
                   name="firstName"
                   render={({ field, fieldState: { error } }) => (
                     <TextField
-                      label="Imię"
+                      label={t("register.nameLabel")}
                       error={!!error}
                       variant="outlined"
                       className="w-full sm:flex-1"
@@ -90,7 +92,7 @@ export const RegisterView = () => {
                   render={({ field, fieldState: { error } }) => (
                     <TextField
                       error={!!error}
-                      label="Nazwisko"
+                      label={t("register.surnameLabel")}
                       variant="outlined"
                       className="w-full sm:flex-1"
                       helperText={error?.message || null}
@@ -105,7 +107,7 @@ export const RegisterView = () => {
                   name="email"
                   render={({ field, fieldState: { error } }) => (
                     <TextField
-                      label="Adres e-mail"
+                      label={t("register.emailLabel")}
                       variant="outlined"
                       error={!!error}
                       helperText={error?.message || null}
@@ -118,7 +120,7 @@ export const RegisterView = () => {
                   name="password"
                   render={({ field, fieldState: { error } }) => (
                     <TextField
-                      label="Hasło"
+                      label={t("register.passwordLabel")}
                       variant="outlined"
                       type="password"
                       error={!!error}
@@ -140,14 +142,16 @@ export const RegisterView = () => {
                     color="secondary"
                     variant="contained"
                   >
-                    Zarejestruj się
+                    {t("register.registerButton")}
                   </Button>
                 </Box>
               </FormGroup>
             </form>
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Link href={"/login"}>
-                <Typography variant="subtitle2"> Masz juz konto?</Typography>
+                <Typography variant="subtitle2">
+                  {t("register.haveAccountLink")}
+                </Typography>
               </Link>
             </Box>
           </div>

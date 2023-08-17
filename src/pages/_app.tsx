@@ -12,13 +12,14 @@ import clsx from "clsx";
 
 import { LayoutProvider } from "@/app/layout";
 import { ThemeProvider } from "@/app";
+import { appWithTranslation } from "next-i18next";
 
 const roboto = Roboto({
   subsets: ["latin", "latin-ext"],
   weight: ["100", "400", "500", "700"],
 });
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const containerClasses = clsx(roboto.className);
 
   return (
@@ -35,4 +36,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </ThemeProvider>
     </LocalizationProvider>
   );
-}
+};
+
+export default appWithTranslation(MyApp);

@@ -3,6 +3,7 @@ import { RootState, store } from "@/app/store";
 
 import { Box, Button, Typography } from "@mui/material";
 import clsx from "clsx";
+import { useTranslation } from "next-i18next";
 
 import { useRouter } from "next/router";
 import { Provider, useSelector } from "react-redux";
@@ -17,18 +18,19 @@ export const FinanceView = () => {
   const { transactions } = useSelector(
     (state: RootState) => state.transactionSlice
   );
-
   const { push } = useRouter();
+  const { t } = useTranslation("common");
 
   const incomeTotal = getTotalIncomeAmount(transactions);
   const expenseTotal = getTotalExpenseAmount(transactions);
   const balance = getTransactionsBalance(transactions);
 
+  // add translations for this view
   return (
     <>
       <Provider store={store}>
         <PrimaryTemplate>
-          <PrimaryTemplate.Content title="Zarządzaj finansami">
+          <PrimaryTemplate.Content title={t("finance.pageTitle")}>
             <>
               <Box
                 sx={{
@@ -40,16 +42,16 @@ export const FinanceView = () => {
               >
                 <Box sx={{ display: "flex", gap: 1 }}>
                   <Typography variant="body1">
-                    Przychody: {incomeTotal}
+                    {t("finance.incomeTotal")} {incomeTotal}
                   </Typography>
                   <Typography variant="body1">
-                    Koszty: {expenseTotal}
+                    {t("finance.expenseTotal")} {expenseTotal}
                   </Typography>
                   <Typography
                     variant="body1"
                     // color={balance > -1 ? "success.main" : "error.main"}
                   >
-                    Bilans: {balance}
+                    {t("finance.balance")} {balance}
                   </Typography>
                 </Box>
                 <Button
@@ -58,7 +60,7 @@ export const FinanceView = () => {
                   }}
                   variant="contained"
                 >
-                  Dodaj nową transakcję
+                  {t("finance.addTransaction")}
                 </Button>
               </Box>
 

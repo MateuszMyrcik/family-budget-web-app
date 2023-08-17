@@ -1,4 +1,5 @@
-import { createLookup } from "@/shared/utils";
+import { createLookup, translate } from "@/shared/utils";
+import { t } from "i18next";
 import { ExpenseCategory } from "../types/expense";
 import {
   ExpenseGroupCategory,
@@ -60,36 +61,6 @@ export const EXPENSE_GROUP_CATEGORY_BY_CATEGORY: Record<
   OTHER: EXPENSE_GROUP_CATEGORY.OTHER,
 };
 
-export const EXPENSE_CATEGORY_LABEL: Record<ExpenseCategory, string> = {
-  [EXPENSE_CATEGORY.ALCOHOL]: "Alkohol",
-  [EXPENSE_CATEGORY.BOOKS]: "Książki",
-  [EXPENSE_CATEGORY.CAR]: "Samochód",
-  [EXPENSE_CATEGORY.CINEMA]: "Kino",
-  [EXPENSE_CATEGORY.DOCTOR]: "Lekarz",
-  [EXPENSE_CATEGORY.FOOD]: "Jedzenie",
-  [EXPENSE_CATEGORY.FUEL]: "Paliwo",
-  [EXPENSE_CATEGORY.GYM]: "Siłownia",
-  [EXPENSE_CATEGORY.MAINTENANCE]: "Naprawy",
-  [EXPENSE_CATEGORY.OTHER]: "Inne",
-  [EXPENSE_CATEGORY.PHARMACY]: "Leki",
-  [EXPENSE_CATEGORY.PUBLIC_TRANSPORT]: "Komunikacja miejska",
-  [EXPENSE_CATEGORY.RENT]: "Czynsz",
-  [EXPENSE_CATEGORY.TAKEAWAY]: "Na wynos",
-  [EXPENSE_CATEGORY.UTILITIES]: "Media",
-};
-
-export const EXPENSE_GROUP_CATEGORY_LABEL: Record<
-  ExpenseGroupCategory,
-  string
-> = {
-  [EXPENSE_GROUP_CATEGORY.ENTERTAINMENT]: "Rozrywka",
-  [EXPENSE_GROUP_CATEGORY.HEALTHCARE]: "Opieka zdrowotna",
-  [EXPENSE_GROUP_CATEGORY.HOUSING]: "Mieszkanie",
-  [EXPENSE_GROUP_CATEGORY.OTHER]: "Inne",
-  [EXPENSE_GROUP_CATEGORY.SHOPPING]: "Zakupy",
-  [EXPENSE_GROUP_CATEGORY.TRANSPORT]: "Transport",
-};
-
 export const INCOME_CATEGORIES: IncomeCategory[] = [
   "DIVIDENDS",
   "FULL_TIME",
@@ -126,20 +97,3 @@ export const INCOME_GROUP_CATEGORY_BY_CATEGORY: Record<
 export const TRANSACTION_TYPES = ["EXPENSE", "INCOME"] as const;
 
 export const TRANSACTION_TYPE = createLookup([...TRANSACTION_TYPES]);
-
-export const INCOME_GROUP_CATEGORY_LABEL: Record<IncomeGroupCategory, string> =
-  {
-    [INCOME_GROUP_CATEGORY.INVESTMENTS]: "Inwestycje",
-    [INCOME_GROUP_CATEGORY.OTHER]: "Inne",
-    [INCOME_GROUP_CATEGORY.SALARY]: "Wynagrodzenie",
-  };
-
-export const INCOME_CATEGORY_LABEL: Record<IncomeCategory, string> = {
-  [INCOME_CATEGORY.DIVIDENDS]: "Dywidendy",
-  [INCOME_CATEGORY.FULL_TIME]: "Praca etatowa",
-  [INCOME_CATEGORY.FREELANCE]: "Praca na zlecenie",
-  [INCOME_CATEGORY.INTEREST]: "Odsetki",
-  [INCOME_CATEGORY.OTHER]: "Inne",
-  [INCOME_CATEGORY.PART_TIME]: "Praca dorywcza",
-  [INCOME_CATEGORY.RENTAL_INCOME]: "Wynajem",
-};

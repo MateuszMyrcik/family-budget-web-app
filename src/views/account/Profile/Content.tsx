@@ -8,6 +8,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useTranslation } from "next-i18next";
 import { Controller } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useRecordsForm } from "./useRecordsForm";
@@ -16,6 +17,7 @@ export const ProfileContent = () => {
   const { user } = useSelector((state: RootState) => state.userSlice);
   const { palette } = useTheme();
   const { control, onSubmit, handleSubmit } = useRecordsForm();
+  const { t } = useTranslation("common");
 
   return (
     <Box
@@ -30,7 +32,7 @@ export const ProfileContent = () => {
           padding: "16px",
         }}
       >
-        <Typography variant="h5">Dane osobowe</Typography>
+        <Typography variant="h5">{t("account.profileTabHeader")}</Typography>
       </Box>
 
       <Box
@@ -62,7 +64,7 @@ export const ProfileContent = () => {
                 defaultValue={user.name}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    label="Imię"
+                    label={t("account.name")}
                     {...field}
                     error={!!error}
                     helperText={error?.message || null}
@@ -75,7 +77,7 @@ export const ProfileContent = () => {
                 defaultValue={user.surname}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    label="Nazwisko"
+                    label={t("account.surname")}
                     {...field}
                     error={!!error}
                     helperText={error?.message || null}
@@ -88,7 +90,7 @@ export const ProfileContent = () => {
                 defaultValue={user.email}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    label="Email"
+                    label={t("account.email")}
                     {...field}
                     error={!!error}
                     helperText={error?.message || null}
@@ -112,7 +114,7 @@ export const ProfileContent = () => {
             form="personal-details"
             disabled
           >
-            Zaktualizuj profil
+            {t("account.updateProfile")}
           </Button>
         </Box>
       </Box>

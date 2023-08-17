@@ -1,0 +1,106 @@
+{
+  "login": {
+    "formHeader": "Logowanie",
+    "formSubheader": "Zaloguj się, aby kontynuować",
+    "emailLabel": "Email",
+    "formOrLabel": "Zaloguj się za pomocą adresu e-mail",
+    "loginButton": "Zaloguj się",
+    "googleButton": "Kontynuuj z Google",
+    "registerLink": "Nie masz konta? Zarejestruj się",
+    "formSeparator": "lub",
+    "passwordLabel": "Hasło"
+  },
+  "account": {
+    "name": "Imię",
+    "email": "Email",
+    "surname": "Nazwisko",
+    "profileTab": "Profil",
+    "newPassword": "Nowe hasło",
+    "updateProfile": "Zaktualizuj profil",
+    "familyGroupTab": "Grupa rodzinna",
+    "updatePassword": "Zaktualizuj hasło",
+    "currentPassword": "Obecne hasło",
+    "profileTabHeader": "Profil użytkownika",
+    "repeatNewPassword": "Powtórz nowe hasło",
+    "changePasswordTab": "Zmień hasło",
+    "changePasswordHeader": "Zmień hasło"
+  },
+  "navItem": {
+    "home": "Strona główna",
+    "stats": "Statystyki",
+    "finance": "Finanse"
+  },
+  "finance": {
+    "balance": "Saldo:",
+    "pageTitle": "Zarządzaj finansami",
+    "incomeTotal": "Przychody:",
+    "expenseTotal": "Wydatki:",
+    "addTransaction": "Dodaj transakcję"
+  },
+  "register": {
+    "nameLabel": "Imię",
+    "formHeader": "Rejestracja",
+    "emailLabel": "Email",
+    "formOrLabel": "Zarejestruj się za pomocą adresu e-mail",
+    "googleButton": "Zarejestruj się z Google",
+    "surnameLabel": "Nazwisko",
+    "formSubheader": "Wprowadz swoje dane, aby utworzyć konto",
+    "formSeparator": "lub",
+    "passwordLabel": "Hasło",
+    "haveAccountLink": "Masz już konto? Zaloguj się"
+  },
+  "transaction": {
+    "income": {
+      "OTHER": "Inne",
+      "INTEREST": "Odsetki",
+      "DIVIDENDS": "Dywidendy",
+      "FULL_TIME": "Praca etatowa",
+      "FREELANCE": "Praca na zlecenie",
+      "PART_TIME": "Praca dorywcza",
+      "RENTAL_INCOME": "Wynajem"
+    },
+    "expense": {
+      "CAR": "Samochód",
+      "GYM": "Siłownia",
+      "FOOD": "Jedzenie",
+      "FUEL": "Paliwo",
+      "RENT": "Czynsz",
+      "BOOKS": "Książki",
+      "OTHER": "Inne",
+      "CINEMA": "Kino",
+      "DOCTOR": "Lekarz",
+      "ALCOHOL": "Alkohol",
+      "PHARMACY": "Leki",
+      "TAKEAWAY": "Na wynos",
+      "UTILITIES": "Media",
+      "MAINTENANCE": "Naprawy",
+      "PUBLIC_TRANSPORT": "Komunikacja miejska"
+    },
+    "pageTitle": "Transakcje",
+    "nameLabel": "Nazwa",
+    "dateLabel": "Wybierz datę",
+    "addButton": "Dodaj",
+    "backButton": "Wróć",
+    "incomeLabel": "Przychód",
+    "amountLabel": "Kwota",
+    "incomeGroup": {
+      "OTHER": "Inne",
+      "SALARY": "Wynagrodzenie",
+      "INVESTMENTS": "Inwestycje"
+    },
+    "expenseLabel": "Wydatek",
+    "commentLabel": "Komentarz",
+    "expenseGroup": {
+      "OTHER": "Inne",
+      "HOUSING": "Mieszkanie",
+      "SHOPPING": "Zakupy",
+      "TRANSPORT": "Transport",
+      "HEALTHCARE": "Opieka zdrowotna",
+      "ENTERTAINMENT": "Rozrywka"
+    },
+    "categoryLabel": "Kategoria",
+    "namePlaceholder": "Np. Zakupy w supermarkecie",
+    "amountPlaceholder": "Wpisz kwotę",
+    "commentPlaceholder": "Wpisz komentarz dt. transakcji"
+  }
+}

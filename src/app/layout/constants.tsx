@@ -6,26 +6,26 @@ import {
 
 export type PathName = "/" | "/stats" | "/finance";
 
-type NavItem = {
+export type NavItem = {
   path: PathName;
-  label: string;
+  labelKey: string;
   suffix?: JSX.Element;
 };
 
 export const NAV_ITEMS: NavItem[] = [
   {
     path: "/",
-    label: "Podsumowanie",
+    labelKey: "navItem.home",
     suffix: <DashboardOutlined />, // TODO: research for better icon
   },
   {
     path: "/finance",
-    label: "Finanse",
+    labelKey: "navItem.finance",
     suffix: <AttachMoneyOutlined />,
   },
   {
     path: "/stats",
-    label: "Statystki",
+    labelKey: "navItem.stats",
     suffix: <BarChartOutlined />,
   },
 ];

@@ -10,12 +10,11 @@ import { Provider } from "react-redux";
 import { FamilyContent } from "./Family/Content";
 import { PasswordContent } from "./Password/Content";
 import { ProfileContent } from "./Profile/Content";
-import useTranslation from "next-translate/useTranslation";
+import { useTranslation } from "next-i18next";
 
 export const AccountView = () => {
   const [value, setValue] = useState("1");
   const { t } = useTranslation("common");
-  console.log(t("*"));
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -37,7 +36,7 @@ export const AccountView = () => {
                       label={
                         <div>
                           <AccountCircle sx={{ marginRight: "12px" }} />
-                          Profil
+                          {t("account.profileTab")}
                         </div>
                       }
                       value="1"
@@ -46,7 +45,7 @@ export const AccountView = () => {
                       label={
                         <div>
                           <Lock sx={{ marginRight: "12px" }} />
-                          Zmień hasło
+                          {t("account.changePasswordTab")}
                         </div>
                       }
                       value="2"
@@ -55,7 +54,7 @@ export const AccountView = () => {
                       label={
                         <div>
                           <FamilyRestroom sx={{ marginRight: "12px" }} />
-                          Konto rodzinne
+                          {t("account.familyGroupTab")}
                         </div>
                       }
                       value="3"

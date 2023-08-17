@@ -6,12 +6,14 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useTranslation } from "next-i18next";
 import { Controller } from "react-hook-form";
 import { useRecordsForm } from "./useRecordsForm";
 
 export const PasswordContent = () => {
   const { palette } = useTheme();
   const { control, onSubmit, handleSubmit } = useRecordsForm();
+  const { t } = useTranslation("common");
 
   return (
     <Box
@@ -26,7 +28,9 @@ export const PasswordContent = () => {
           padding: "16px",
         }}
       >
-        <Typography variant="h5">Zmień hasło</Typography>
+        <Typography variant="h5">
+          {t("account.changePasswordHeader")}
+        </Typography>
       </Box>
 
       <Box
@@ -52,7 +56,7 @@ export const PasswordContent = () => {
                 render={({ field, fieldState: { error } }) => (
                   <TextField
                     {...field}
-                    label="Aktualne hasło"
+                    label={t("account.currentPassword")}
                     variant="outlined"
                     type="password"
                     error={!!error}
@@ -68,7 +72,7 @@ export const PasswordContent = () => {
                 render={({ field, fieldState: { error } }) => (
                   <TextField
                     {...field}
-                    label="Nowe hasło"
+                    label={t("account.newPassword")}
                     variant="outlined"
                     type="password"
                     error={!!error}
@@ -83,7 +87,7 @@ export const PasswordContent = () => {
                   <TextField
                     {...field}
                     type="password"
-                    label="Nowe hasło"
+                    label={t("account.repeatNewPassword")}
                     variant="outlined"
                     error={!!error}
                     helperText={error?.message || null}
@@ -102,7 +106,7 @@ export const PasswordContent = () => {
           }}
         >
           <Button type="submit" variant="contained" form="change-password">
-            Zmień hasło
+            {t("account.updatePassword")}
           </Button>
         </Box>
       </Box>

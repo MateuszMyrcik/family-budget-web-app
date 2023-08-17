@@ -1,0 +1,106 @@
+{
+  "login": {
+    "formHeader": "Sign in",
+    "emailLabel": "Email",
+    "formOrLabel": "Log in with an email address",
+    "loginButton": "Log in",
+    "googleButton": "Continue with Google",
+    "registerLink": "Don't have an account? Register",
+    "formSubheader": "Log in to continue",
+    "formSeparator": "or",
+    "passwordLabel": "Password"
+  },
+  "account": {
+    "name": "First Name",
+    "email": "Email",
+    "surname": "Surname",
+    "profileTab": "Profile",
+    "newPassword": "New Password",
+    "updateProfile": "Update Profile",
+    "familyGroupTab": "Family Group",
+    "updatePassword": "Update Password",
+    "currentPassword": "Current Password",
+    "profileTabHeader": "User Profile",
+    "repeatNewPassword": "Repeat New Password",
+    "changePasswordTab": "Change Password",
+    "changePasswordHeader": "Change Password"
+  },
+  "navItem": {
+    "home": "Home",
+    "stats": "Statistics",
+    "finance": "Finance"
+  },
+  "finance": {
+    "balance": "Balance:",
+    "pageTitle": "Manage Finances",
+    "incomeTotal": "Income:",
+    "expenseTotal": "Expenses:",
+    "addTransaction": "Add Transaction"
+  },
+  "register": {
+    "nameLabel": "First Name",
+    "formHeader": "Registration",
+    "emailLabel": "Email",
+    "formOrLabel": "Register with an email address",
+    "googleButton": "Register with Google",
+    "surnameLabel": "Surname",
+    "formSubheader": "Enter your details to create an account",
+    "formSeparator": "or",
+    "passwordLabel": "Password",
+    "haveAccountLink": "Already have an account? Log in"
+  },
+  "transaction": {
+    "income": {
+      "OTHER": "Other",
+      "INTEREST": "Interest",
+      "DIVIDENDS": "Dividends",
+      "FULL_TIME": "Full-time Job",
+      "FREELANCE": "Freelance",
+      "PART_TIME": "Part-time Job",
+      "RENTAL_INCOME": "Rental Income"
+    },
+    "expense": {
+      "CAR": "Car",
+      "GYM": "Gym",
+      "FOOD": "Food",
+      "FUEL": "Fuel",
+      "RENT": "Rent",
+      "BOOKS": "Books",
+      "OTHER": "Other",
+      "CINEMA": "Cinema",
+      "DOCTOR": "Doctor",
+      "ALCOHOL": "Alcohol",
+      "PHARMACY": "Medicine",
+      "TAKEAWAY": "Takeaway",
+      "UTILITIES": "Utilities",
+      "MAINTENANCE": "Repairs",
+      "PUBLIC_TRANSPORT": "Public Transport"
+    },
+    "pageTitle": "Transactions",
+    "nameLabel": "Name",
+    "dateLabel": "Select Date",
+    "addButton": "Add",
+    "backButton": "Back",
+    "incomeLabel": "Income",
+    "amountLabel": "Amount",
+    "incomeGroup": {
+      "OTHER": "Other",
+      "SALARY": "Salary",
+      "INVESTMENTS": "Investments"
+    },
+    "expenseLabel": "Expense",
+    "commentLabel": "Comment",
+    "expenseGroup": {
+      "OTHER": "Other",
+      "HOUSING": "Housing",
+      "SHOPPING": "Shopping",
+      "TRANSPORT": "Transport",
+      "HEALTHCARE": "Healthcare",
+      "ENTERTAINMENT": "Entertainment"
+    },
+    "categoryLabel": "Category",
+    "namePlaceholder": "E.g. Shopping at the supermarket",
+    "amountPlaceholder": "Enter the amount",
+    "commentPlaceholder": "Enter a comment regarding the transaction"
+  }
+}
