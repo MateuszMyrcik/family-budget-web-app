@@ -10,10 +10,23 @@
     "formSeparator": "or",
     "passwordLabel": "Password"
   },
+  "global": {
+    "navItem": {
+      "home": "Home",
+      "stats": "Statistics",
+      "budget": "Budget",
+      "finance": "Finance"
+    }
+  },
+  "budget": {
+    "pageTitle": "Budget",
+    "saveButton": "Save"
+  },
   "account": {
     "name": "First Name",
     "email": "Email",
     "surname": "Surname",
+    "categories": "Categories",
     "profileTab": "Profile",
     "newPassword": "New Password",
     "updateProfile": "Update Profile",
@@ -23,7 +36,8 @@
     "profileTabHeader": "User Profile",
     "repeatNewPassword": "Repeat New Password",
     "changePasswordTab": "Change Password",
-    "changePasswordHeader": "Change Password"
+    "changePasswordHeader": "Change Password",
+    "transactionCategoryTab": "Transaction Categories"
   },
   "navItem": {
     "home": "Home",
@@ -88,6 +102,7 @@
       "SALARY": "Salary",
       "INVESTMENTS": "Investments"
     },
+    "addCategory": "Add Category",
     "expenseLabel": "Expense",
     "commentLabel": "Comment",
     "expenseGroup": {

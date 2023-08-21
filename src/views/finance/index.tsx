@@ -25,7 +25,6 @@ export const FinanceView = () => {
   const expenseTotal = getTotalExpenseAmount(transactions);
   const balance = getTransactionsBalance(transactions);
 
-  // add translations for this view
   return (
     <>
       <Provider store={store}>
@@ -47,10 +46,7 @@ export const FinanceView = () => {
                   <Typography variant="body1">
                     {t("finance.expenseTotal")} {expenseTotal}
                   </Typography>
-                  <Typography
-                    variant="body1"
-                    // color={balance > -1 ? "success.main" : "error.main"}
-                  >
+                  <Typography variant="body1">
                     {t("finance.balance")} {balance}
                   </Typography>
                 </Box>
@@ -66,7 +62,7 @@ export const FinanceView = () => {
 
               <div className="flex flex-col gap-2 text-sm">
                 {transactions.map(
-                  ({ amount, date, name, category, type }, index) => (
+                  ({ amount, date, name, type, groupCategoryLabel }, index) => (
                     <div
                       key={index}
                       className="grid grid-cols-[40px_300px_100px_100px] items-center p-2 border-[1px] rounded-lg gap-2 hover:bg-gray-100 cursor-pointer justify-between"
@@ -76,7 +72,7 @@ export const FinanceView = () => {
                       </div>
                       <div className="basis-40 flex-grow-0">{name}</div>
                       <div className="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700">
-                        {category}
+                        {groupCategoryLabel}
                       </div>
                       <div
                         className={clsx(

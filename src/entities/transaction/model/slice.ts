@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { NotSpecificTransaction } from "@/shared/domain/types/shared";
+import {
+  NotSpecificTransaction,
+  TransactionCategory,
+  TransactionDetails,
+} from "@/shared/domain/types/shared";
 import { MOCKED_TRANSACTIONS } from "@/mocks/transactions";
+import { MOCKED_TRANSACTION_CATEGORIES } from "@/mocks/transactionCategories";
 
 const initialState = {
   transactions: MOCKED_TRANSACTIONS,
+  categories: MOCKED_TRANSACTION_CATEGORIES,
 };
 
 export const transactionSlice = createSlice({
@@ -22,10 +28,24 @@ export const transactionSlice = createSlice({
       // console.log("action.payload", action.payload);
       state.transactions.push(action.payload);
     },
+    addCategory: (state, action: PayloadAction<TransactionDetails>) => {
+      const id = String(state.categories.length + 1); // TODO: replace with id from backend
+      state.categories.push({ ...action.payload, id });
+    },
+    removeCategory: (
+      state,
+      action: PayloadAction<TransactionCategory["id"]>
+    ) => {
+      // console.log("action.payload", action.payload);
+      state.categories = state.categories.filter(
+        (category) => category.id !== action.payload
+      );
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addTransaction, getTransaction } = transactionSlice.actions;
+export const { addTransaction, getTransaction, addCategory, removeCategory } =
+  transactionSlice.actions;
 
 export const TransactionReducer = transactionSlice.reducer;

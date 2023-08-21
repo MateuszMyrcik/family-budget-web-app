@@ -9,10 +9,10 @@ import { Provider } from "react-redux";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import clsx from "clsx";
-
 import { LayoutProvider } from "@/app/layout";
 import { ThemeProvider } from "@/app";
 import { appWithTranslation } from "next-i18next";
+import pl from "date-fns/locale/pl";
 
 const roboto = Roboto({
   subsets: ["latin", "latin-ext"],
@@ -23,7 +23,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const containerClasses = clsx(roboto.className);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={pl}>
       <ThemeProvider>
         <LayoutProvider>
           <div className={containerClasses}>

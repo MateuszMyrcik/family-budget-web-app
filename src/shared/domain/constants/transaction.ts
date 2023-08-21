@@ -1,5 +1,4 @@
-import { createLookup, translate } from "@/shared/utils";
-import { t } from "i18next";
+import { createLookup } from "@/shared/utils";
 import { ExpenseCategory } from "../types/expense";
 import {
   ExpenseGroupCategory,
@@ -8,6 +7,7 @@ import {
 } from "../types/shared";
 
 export const EXPENSE_CATEGORIES: ExpenseCategory[] = [
+  // TODO: after move to BE remove
   "FOOD",
   "TAKEAWAY",
   "ALCOHOL",
@@ -25,9 +25,10 @@ export const EXPENSE_CATEGORIES: ExpenseCategory[] = [
   "OTHER",
 ];
 
-export const EXPENSE_CATEGORY = createLookup(EXPENSE_CATEGORIES);
+export const EXPENSE_CATEGORY = createLookup(EXPENSE_CATEGORIES); // TODO: after move to BE remove
 
 export const EXPENSE_GROUP_CATEGORIES = [
+  // TODO: after move to BE remove
   "SHOPPING",
   "HOUSING",
   "TRANSPORT",
@@ -37,10 +38,12 @@ export const EXPENSE_GROUP_CATEGORIES = [
 ] as const;
 
 export const EXPENSE_GROUP_CATEGORY = createLookup([
+  // TODO: after move to BE remove
   ...EXPENSE_GROUP_CATEGORIES,
 ]);
 
 export const EXPENSE_GROUP_CATEGORY_BY_CATEGORY: Record<
+  // TODO: after move to BE remove
   ExpenseCategory,
   ExpenseGroupCategory
 > = {
@@ -62,6 +65,7 @@ export const EXPENSE_GROUP_CATEGORY_BY_CATEGORY: Record<
 };
 
 export const INCOME_CATEGORIES: IncomeCategory[] = [
+  // TODO: after move to BE remove
   "DIVIDENDS",
   "FULL_TIME",
   "FREELANCE",
@@ -71,17 +75,19 @@ export const INCOME_CATEGORIES: IncomeCategory[] = [
   "RENTAL_INCOME",
 ];
 
-export const INCOME_CATEGORY = createLookup(INCOME_CATEGORIES);
+export const INCOME_CATEGORY = createLookup(INCOME_CATEGORIES); // TODO: after move to BE remove
 
 export const INCOME_GROUP_CATEGORIES = [
+  // TODO: after move to BE remove
   "SALARY",
   "INVESTMENTS",
   "OTHER",
 ] as const;
 
-export const INCOME_GROUP_CATEGORY = createLookup([...INCOME_GROUP_CATEGORIES]);
+export const INCOME_GROUP_CATEGORY = createLookup([...INCOME_GROUP_CATEGORIES]); // TODO: after move to BE remove
 
 export const INCOME_GROUP_CATEGORY_BY_CATEGORY: Record<
+  // TODO: after move to BE remove
   IncomeCategory,
   IncomeGroupCategory
 > = {

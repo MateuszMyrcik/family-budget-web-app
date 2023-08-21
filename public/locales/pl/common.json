@@ -1,20 +1,33 @@
 {
   "login": {
     "formHeader": "Logowanie",
-    "formSubheader": "Zaloguj się, aby kontynuować",
     "emailLabel": "Email",
     "formOrLabel": "Zaloguj się za pomocą adresu e-mail",
     "loginButton": "Zaloguj się",
     "googleButton": "Kontynuuj z Google",
     "registerLink": "Nie masz konta? Zarejestruj się",
+    "formSubheader": "Zaloguj się, aby kontynuować",
     "formSeparator": "lub",
     "passwordLabel": "Hasło"
+  },
+  "global": {
+    "navItem": {
+      "home": "Strona główna",
+      "stats": "Statystyki",
+      "budget": "Budżet",
+      "finance": "Finanse"
+    }
+  },
+  "budget": {
+    "pageTitle": "Budżet",
+    "saveButton": "Zapisz"
   },
   "account": {
     "name": "Imię",
     "email": "Email",
     "surname": "Nazwisko",
     "profileTab": "Profil",
+    "categories": "Kategorie",
     "newPassword": "Nowe hasło",
     "updateProfile": "Zaktualizuj profil",
     "familyGroupTab": "Grupa rodzinna",
@@ -23,7 +36,8 @@
     "profileTabHeader": "Profil użytkownika",
     "repeatNewPassword": "Powtórz nowe hasło",
     "changePasswordTab": "Zmień hasło",
-    "changePasswordHeader": "Zmień hasło"
+    "changePasswordHeader": "Zmień hasło",
+    "transactionCategoryTab": "Kategorie transakcji"
   },
   "navItem": {
     "home": "Strona główna",
@@ -80,6 +94,7 @@
     "nameLabel": "Nazwa",
     "dateLabel": "Wybierz datę",
     "addButton": "Dodaj",
+    "addCategory": "Dodaj kategorię",
     "backButton": "Wróć",
     "incomeLabel": "Przychód",
     "amountLabel": "Kwota",

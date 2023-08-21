@@ -1,7 +1,7 @@
 import { AppBar, Sidebar } from "@/shared/ui-kit";
 import { BaseTemplate } from "./BaseTemplate";
-import { NAV_ITEMS } from "./constants";
 import { useLayout } from "./Context";
+import { getNavItems } from "./lib";
 import { Content } from "./partials";
 import { SidebarContent } from "./partials/SidebarContent";
 
@@ -11,10 +11,11 @@ type PrimaryTemplateProps = {
 
 const PrimaryTemplate = ({ children }: PrimaryTemplateProps) => {
   const { headerHeight, toggleSidebar, isMobileDrawerOpen } = useLayout();
+  const navItems = getNavItems();
 
   const sidebar = (
     <div className="p-4 text-sm">
-      <SidebarContent items={NAV_ITEMS} />
+      <SidebarContent items={navItems} />
     </div>
   );
 

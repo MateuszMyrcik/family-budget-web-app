@@ -1,9 +1,14 @@
+import { BudgetReducer } from "@/entities/budget";
 import { TransactionReducer } from "@/entities/transaction";
 import { UserReducer } from "@/entities/user";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
-  reducer: { transactionSlice: TransactionReducer, userSlice: UserReducer },
+  reducer: {
+    transactionSlice: TransactionReducer,
+    userSlice: UserReducer,
+    budgetSlice: BudgetReducer,
+  },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

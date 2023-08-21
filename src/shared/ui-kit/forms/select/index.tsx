@@ -13,7 +13,7 @@ import { ErrorOption as ReactHookFormError } from "react-hook-form";
 type SelectItem = {
   value: string;
   label: string;
-  isPlaceholder?: boolean;
+  isGroupItem?: boolean;
 };
 
 type SelectProps = {
@@ -46,7 +46,7 @@ export const Select = ({ label, items, error, onChange }: SelectProps) => {
           <MenuItem
             key={item.value}
             value={item.value}
-            disabled={item.isPlaceholder}
+            disabled={item.isGroupItem}
           >
             {item.label}
           </MenuItem>
