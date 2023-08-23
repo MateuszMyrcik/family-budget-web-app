@@ -38,7 +38,9 @@ export const UpdateBudgetForm = () => {
     ? []
     : getGroupedBudget(budget as Budget).groupedRecords;
 
-  const { actual, planned } = getTotal(budget as Budget);
+  const { actual, planned } = isEmpty
+    ? { actual: 0, planned: 0 }
+    : getTotal(budget as Budget);
 
   const budgetRecordStatus = (record: BudgetCategoryRecord) => {
     const { isOver, isUnder } = getBudgetRecordStatus(record);
@@ -170,12 +172,12 @@ export const UpdateBudgetForm = () => {
                             name={`record.${record.category}`}
                             control={control}
                             render={({ field, fieldState: { error } }) => {
-                              console.log(field.value, field.name);
                               return (
                                 <TextField
                                   {...field}
                                   size="small"
                                   inputProps={{ min: 0 }}
+                                  inputMode="numeric"
                                   label={t("budget.plannedAmountLabel")}
                                   onBlur={handleSubmit((data) => {
                                     data.updatedCategory = record.category;
