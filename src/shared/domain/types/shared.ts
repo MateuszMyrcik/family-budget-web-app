@@ -103,8 +103,10 @@ export type Budget = {
 };
 
 export type BudgetCategoryRecord = {
-  category: ExpenseCategory;
-  groupCategory: ExpenseGroupCategory;
+  category: string;
+  groupCategory: string;
+  categoryLabel: string;
+  groupCategoryLabel: string;
   plannedTotal: number;
   actualTotal: number;
 };

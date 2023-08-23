@@ -20,7 +20,18 @@
   },
   "budget": {
     "pageTitle": "Budżet",
-    "saveButton": "Zapisz"
+    "saveButton": "Zapisz",
+    "statusLabel": "Status",
+    "noDataTitle": "Brak budżetów do wyświetlenia",
+    "addNewBudget": "Zaplanuj budżet",
+    "categoryLabel": "Kategoria",
+    "hideEmptyRecords": "Ukryj puste rekordy",
+    "actualTotalLabel": "Aktualne wydatki",
+    "actualAmountLabel": "Aktualna kwota",
+    "noDataDescription": "Dodaj budżet, aby zobaczyć go tutaj",
+    "plannedTotalLabel": "Zaplanowane wydatki",
+    "plannedAmountLabel": "Planowana kwota",
+    "differenceAmountLabel": "Różnica"
   },
   "account": {
     "name": "Imię",
@@ -61,6 +72,7 @@
     "formSubheader": "Wprowadz swoje dane, aby utworzyć konto",
     "formSeparator": "lub",
     "passwordLabel": "Hasło",
+    "registerButton": "Zarejestruj się",
     "haveAccountLink": "Masz już konto? Zaloguj się"
   },
   "transaction": {
@@ -94,8 +106,8 @@
     "nameLabel": "Nazwa",
     "dateLabel": "Wybierz datę",
     "addButton": "Dodaj",
-    "addCategory": "Dodaj kategorię",
     "backButton": "Wróć",
+    "addCategory": "Dodaj kategorię",
     "incomeLabel": "Przychód",
     "amountLabel": "Kwota",
     "incomeGroup": {

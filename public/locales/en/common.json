@@ -20,7 +20,18 @@
   },
   "budget": {
     "pageTitle": "Budget",
-    "saveButton": "Save"
+    "saveButton": "Save",
+    "statusLabel": "Status",
+    "noDataTitle": "No budgets to display",
+    "addNewBudget": "Plan a budget",
+    "categoryLabel": "Category",
+    "hideEmptyRecords": "Hide empty records",
+    "actualTotalLabel": "Actual Expenses",
+    "noDataDescription": "Add a budget to see it here",
+    "actualAmountLabel": "Actual Amount",
+    "plannedTotalLabel": "Planned Expenses",
+    "plannedAmountLabel": "Planned Amount",
+    "differenceAmountLabel": "Difference"
   },
   "account": {
     "name": "First Name",
@@ -61,6 +72,7 @@
     "formSubheader": "Enter your details to create an account",
     "formSeparator": "or",
     "passwordLabel": "Password",
+    "registerButton": "Register",
     "haveAccountLink": "Already have an account? Log in"
   },
   "transaction": {
