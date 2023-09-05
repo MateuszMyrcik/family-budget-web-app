@@ -7,11 +7,10 @@ import { TRANSACTION_TYPE } from "@/shared/domain";
 import Link from "next/link";
 
 import { useRecordsForm } from "./useRecordsForm";
-import { getSelectItems } from "./lib";
 import { useTranslation } from "next-i18next";
 
 export const TransactionView = () => {
-  const { control, watchType, onSubmit, handleSubmit } = useRecordsForm();
+  const { control, onSubmit, handleSubmit, selectItems } = useRecordsForm();
   const { t } = useTranslation("common");
 
   return (
@@ -69,7 +68,7 @@ export const TransactionView = () => {
                     {...field}
                     error={error}
                     label={t("transaction.categoryLabel")}
-                    items={getSelectItems(watchType)}
+                    items={selectItems}
                   />
                 )}
               />

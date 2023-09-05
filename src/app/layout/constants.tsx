@@ -1,31 +1,38 @@
 import {
+  AccountBalanceWalletOutlined,
   AttachMoneyOutlined,
   BarChartOutlined,
   DashboardOutlined,
+  HomeOutlined,
 } from "@mui/icons-material";
 
-export type PathName = "/" | "/stats" | "/finance";
+export type PathName = "/" | "/stats" | "/finance" | "/budget";
 
 export type NavItem = {
   path: PathName;
+  prefix?: JSX.Element;
   labelKey: string;
-  suffix?: JSX.Element;
 };
 
 export const NAV_ITEMS: NavItem[] = [
   {
     path: "/",
-    labelKey: "navItem.home",
-    suffix: <DashboardOutlined />, // TODO: research for better icon
+    labelKey: "global.navItem.home",
+    prefix: <HomeOutlined />,
   },
   {
     path: "/finance",
-    labelKey: "navItem.finance",
-    suffix: <AttachMoneyOutlined />,
+    labelKey: "global.navItem.finance",
+    prefix: <AttachMoneyOutlined />,
   },
   {
     path: "/stats",
-    labelKey: "navItem.stats",
-    suffix: <BarChartOutlined />,
+    labelKey: "global.navItem.stats",
+    prefix: <BarChartOutlined />,
+  },
+  {
+    path: "/budget",
+    labelKey: "global.navItem.budget",
+    prefix: <AccountBalanceWalletOutlined />,
   },
 ];

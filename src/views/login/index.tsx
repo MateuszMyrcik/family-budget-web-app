@@ -29,29 +29,31 @@ export const LoginView = () => {
           <div className="p-10 w-[508px] bg-white flex flex-col gap-5 rounded-md shadow-md">
             <div>
               <div className="flex place-content-between">
-                <Typography
-                  variant="h3"
-                  fontSize={24}
-                  color={palette.secondary.main}
-                  fontWeight={700}
-                >
-                  {t("login.formHeader")}
-                </Typography>
+                <Box>
+                  <Typography
+                    variant="h3"
+                    fontSize={24}
+                    color={palette.secondary.main}
+                    fontWeight={700}
+                  >
+                    {t("login.formHeader")}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    font-size={16}
+                    color={palette.grey["500"]}
+                    marginTop={1}
+                  >
+                    {t("login.formSubheader")}
+                  </Typography>
+                </Box>
                 <Image
                   src="/images/logo.svg"
                   alt="Logo"
-                  width={40}
-                  height={40}
+                  width={120}
+                  height={120}
                 />
               </div>
-
-              <Typography
-                variant="body1"
-                font-size={16}
-                color={palette.grey["500"]}
-              >
-                {t("login.formSubheader")}
-              </Typography>
             </div>
             <div className="bg-grey-50 font-medium text-grey-600 p-2 text-center items-center h-10 cursor-not-allowed">
               <Google className="mr-2" />

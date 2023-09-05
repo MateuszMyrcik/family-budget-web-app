@@ -6,5 +6,8 @@ export const expenseSchema = yup.object().shape({
   date: yup.date().required(),
   category: yup.string().required(),
   comments: yup.string(),
-  amountValue: yup.number().required(),
+  amount: yup.object().shape({
+    value: yup.number().required(),
+    currency: yup.string().optional(),
+  }),
 });

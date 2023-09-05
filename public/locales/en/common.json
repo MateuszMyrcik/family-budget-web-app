@@ -10,10 +10,34 @@
     "formSeparator": "or",
     "passwordLabel": "Password"
   },
+  "global": {
+    "navItem": {
+      "home": "Home",
+      "stats": "Statistics",
+      "budget": "Budget",
+      "finance": "Finance"
+    }
+  },
+  "budget": {
+    "pageTitle": "Budget",
+    "saveButton": "Save",
+    "statusLabel": "Status",
+    "noDataTitle": "No budgets to display",
+    "addNewBudget": "Plan a budget",
+    "categoryLabel": "Category",
+    "hideEmptyRecords": "Hide empty records",
+    "actualTotalLabel": "Actual Expenses",
+    "noDataDescription": "Add a budget to see it here",
+    "actualAmountLabel": "Actual Amount",
+    "plannedTotalLabel": "Planned Expenses",
+    "plannedAmountLabel": "Planned Amount",
+    "differenceAmountLabel": "Difference"
+  },
   "account": {
     "name": "First Name",
     "email": "Email",
     "surname": "Surname",
+    "categories": "Categories",
     "profileTab": "Profile",
     "newPassword": "New Password",
     "updateProfile": "Update Profile",
@@ -23,7 +47,8 @@
     "profileTabHeader": "User Profile",
     "repeatNewPassword": "Repeat New Password",
     "changePasswordTab": "Change Password",
-    "changePasswordHeader": "Change Password"
+    "changePasswordHeader": "Change Password",
+    "transactionCategoryTab": "Transaction Categories"
   },
   "navItem": {
     "home": "Home",
@@ -47,6 +72,7 @@
     "formSubheader": "Enter your details to create an account",
     "formSeparator": "or",
     "passwordLabel": "Password",
+    "registerButton": "Register",
     "haveAccountLink": "Already have an account? Log in"
   },
   "transaction": {
@@ -88,6 +114,7 @@
       "SALARY": "Salary",
       "INVESTMENTS": "Investments"
     },
+    "addCategory": "Add Category",
     "expenseLabel": "Expense",
     "commentLabel": "Comment",
     "expenseGroup": {

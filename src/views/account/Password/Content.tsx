@@ -16,12 +16,7 @@ export const PasswordContent = () => {
   const { t } = useTranslation("common");
 
   return (
-    <Box
-      sx={{
-        border: `1px solid ${palette.primary.light}`,
-        borderRadius: "12px",
-      }}
-    >
+    <Box>
       <Box
         sx={{
           borderBottom: `1px solid ${palette.primary.light}`,

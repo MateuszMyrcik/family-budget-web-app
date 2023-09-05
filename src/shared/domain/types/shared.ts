@@ -44,20 +44,30 @@ export type Transaction<T extends TransactionType = TransactionType> = {
   ownership: { ownerId: string; familyId: string };
 } & TransactionDetails<T>;
 
-export type TransactionDetails<T extends TransactionType> = {
+export type TransactionDetails<T extends TransactionType = TransactionType> = {
   EXPENSE: ExpenseDetails;
   INCOME: IncomeDetails;
 }[T];
 
+export type TransactionCategory = {
+  id: UniqueId;
+  // iconName?: string;
+  // groupColor?: string;
+} & TransactionDetails;
+
 export type ExpenseDetails = {
-  groupCategory: ExpenseGroupCategory;
-  category: ExpenseCategory;
+  groupCategory: ExpenseGroupCategory | string;
+  category: ExpenseCategory | string;
+  groupCategoryLabel: string;
+  categoryLabel: string;
   type: "EXPENSE";
 };
 
 export type IncomeDetails = {
-  groupCategory: IncomeGroupCategory;
-  category: IncomeCategory;
+  groupCategory: IncomeGroupCategory | string;
+  category: IncomeCategory | string;
+  groupCategoryLabel: string;
+  categoryLabel: string;
   type: "INCOME";
 };
 
@@ -87,11 +97,18 @@ export type IncomeCategory =
 // BUDGET
 export type Budget = {
   id: string;
+  year: number;
   month: number;
-  plannedExpenses: Transaction<"EXPENSE">[];
-  plannedIncomes: Transaction<"INCOME">[];
-  actualExpenses: Transaction<"EXPENSE">[];
-  actualIncomes: Transaction<"INCOME">[];
+  categoryRecords: BudgetCategoryRecord[];
+};
+
+export type BudgetCategoryRecord = {
+  category: string;
+  groupCategory: string;
+  categoryLabel: string;
+  groupCategoryLabel: string;
+  plannedTotal: number;
+  actualTotal: number;
 };
 
 // USERS

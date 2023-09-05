@@ -6,31 +6,37 @@ export const THEME_TYPOGRAPHY: ThemeOptions["typography"] = {
     fontWeight: 500,
     color: COMMON_THEME.HEADING,
     fontSize: "0.75rem",
+    lineHeight: 1,
   },
   h5: {
     fontSize: "0.875rem",
     color: COMMON_THEME.HEADING,
     fontWeight: 500,
+    lineHeight: 1,
   },
   h4: {
     fontSize: "1rem",
     color: COMMON_THEME.HEADING,
     fontWeight: 600,
+    lineHeight: 1,
   },
   h3: {
     fontSize: "1.25rem",
     color: COMMON_THEME.HEADING,
     fontWeight: 600,
+    lineHeight: 1,
   },
   h2: {
     fontSize: "1.5rem",
     color: COMMON_THEME.HEADING,
     fontWeight: 700,
+    lineHeight: 1,
   },
   h1: {
     fontSize: "2.125rem",
     color: COMMON_THEME.HEADING,
     fontWeight: 700,
+    lineHeight: 1,
   },
   subtitle1: {
     fontSize: "0.875rem",

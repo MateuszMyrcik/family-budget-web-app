@@ -1,6 +1,11 @@
 import { PrimaryTemplate } from "@/app/layout";
 import { store } from "@/app/store";
-import { AccountCircle, FamilyRestroom, Lock } from "@mui/icons-material";
+import {
+  AccountCircle,
+  Category,
+  FamilyRestroom,
+  Lock,
+} from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import { Box, Tab } from "@mui/material";
@@ -11,6 +16,7 @@ import { FamilyContent } from "./Family/Content";
 import { PasswordContent } from "./Password/Content";
 import { ProfileContent } from "./Profile/Content";
 import { useTranslation } from "next-i18next";
+import { TransactionCategoryContent } from "./TransactionCategory/Content";
 
 export const AccountView = () => {
   const [value, setValue] = useState("1");
@@ -29,6 +35,7 @@ export const AccountView = () => {
               <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <TabList
+                    variant="scrollable"
                     onChange={handleChange}
                     aria-label="lab API tabs example"
                   >
@@ -59,8 +66,18 @@ export const AccountView = () => {
                       }
                       value="3"
                     />
+                    <Tab
+                      label={
+                        <div>
+                          <Category sx={{ marginRight: "12px" }} />
+                          {t("account.transactionCategoryTab")}
+                        </div>
+                      }
+                      value="4"
+                    />
                   </TabList>
                 </Box>
+
                 <TabPanel value="1">
                   <ProfileContent />
                 </TabPanel>
@@ -69,6 +86,9 @@ export const AccountView = () => {
                 </TabPanel>
                 <TabPanel value="3">
                   <FamilyContent />
+                </TabPanel>
+                <TabPanel value="4">
+                  <TransactionCategoryContent />
                 </TabPanel>
               </TabContext>
             </Box>

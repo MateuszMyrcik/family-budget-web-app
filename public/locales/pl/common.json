@@ -1,20 +1,44 @@
 {
   "login": {
     "formHeader": "Logowanie",
-    "formSubheader": "Zaloguj się, aby kontynuować",
     "emailLabel": "Email",
     "formOrLabel": "Zaloguj się za pomocą adresu e-mail",
     "loginButton": "Zaloguj się",
     "googleButton": "Kontynuuj z Google",
     "registerLink": "Nie masz konta? Zarejestruj się",
+    "formSubheader": "Zaloguj się, aby kontynuować",
     "formSeparator": "lub",
     "passwordLabel": "Hasło"
+  },
+  "global": {
+    "navItem": {
+      "home": "Strona główna",
+      "stats": "Statystyki",
+      "budget": "Budżet",
+      "finance": "Finanse"
+    }
+  },
+  "budget": {
+    "pageTitle": "Budżet",
+    "saveButton": "Zapisz",
+    "statusLabel": "Status",
+    "noDataTitle": "Brak budżetów do wyświetlenia",
+    "addNewBudget": "Zaplanuj budżet",
+    "categoryLabel": "Kategoria",
+    "hideEmptyRecords": "Ukryj puste rekordy",
+    "actualTotalLabel": "Aktualne wydatki",
+    "actualAmountLabel": "Aktualna kwota",
+    "noDataDescription": "Dodaj budżet, aby zobaczyć go tutaj",
+    "plannedTotalLabel": "Zaplanowane wydatki",
+    "plannedAmountLabel": "Planowana kwota",
+    "differenceAmountLabel": "Różnica"
   },
   "account": {
     "name": "Imię",
     "email": "Email",
     "surname": "Nazwisko",
     "profileTab": "Profil",
+    "categories": "Kategorie",
     "newPassword": "Nowe hasło",
     "updateProfile": "Zaktualizuj profil",
     "familyGroupTab": "Grupa rodzinna",
@@ -23,7 +47,8 @@
     "profileTabHeader": "Profil użytkownika",
     "repeatNewPassword": "Powtórz nowe hasło",
     "changePasswordTab": "Zmień hasło",
-    "changePasswordHeader": "Zmień hasło"
+    "changePasswordHeader": "Zmień hasło",
+    "transactionCategoryTab": "Kategorie transakcji"
   },
   "navItem": {
     "home": "Strona główna",
@@ -47,6 +72,7 @@
     "formSubheader": "Wprowadz swoje dane, aby utworzyć konto",
     "formSeparator": "lub",
     "passwordLabel": "Hasło",
+    "registerButton": "Zarejestruj się",
     "haveAccountLink": "Masz już konto? Zaloguj się"
   },
   "transaction": {
@@ -81,6 +107,7 @@
     "dateLabel": "Wybierz datę",
     "addButton": "Dodaj",
     "backButton": "Wróć",
+    "addCategory": "Dodaj kategorię",
     "incomeLabel": "Przychód",
     "amountLabel": "Kwota",
     "incomeGroup": {
