@@ -1,5 +1,4 @@
-import { UniqueId } from "../common";
-import { ExpenseCategory } from "./expense";
+import { UniqueId } from "../../commonTypes";
 
 // SHARED DOMAIN TYPES
 export type Ownership = {
@@ -57,7 +56,7 @@ export type TransactionCategory = {
 
 export type ExpenseDetails = {
   groupCategory: ExpenseGroupCategory | string;
-  category: ExpenseCategory | string;
+  category: string;
   groupCategoryLabel: string;
   categoryLabel: string;
   type: "EXPENSE";
@@ -72,6 +71,11 @@ export type IncomeDetails = {
 };
 
 export type TransactionType = "EXPENSE" | "INCOME";
+
+export enum TransactionTypeEnum {
+  EXPENSE = "EXPENSE",
+  INCOME = "INCOME",
+}
 
 // EXPENSES
 export type ExpenseGroupCategory =
@@ -109,22 +113,4 @@ export type BudgetCategoryRecord = {
   groupCategoryLabel: string;
   plannedTotal: number;
   actualTotal: number;
-};
-
-// USERS
-export type UserRole = "ADMIN" | "REGULAR";
-
-export type User = {
-  id: string;
-  name: string;
-  surname: string;
-  avatar?: Image;
-  email: string;
-  role: UserRole;
-};
-
-export type Household = {
-  id: string;
-  primaryMember: User;
-  otherMembers?: User[];
 };

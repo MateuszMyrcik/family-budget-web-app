@@ -2,7 +2,6 @@ import { ThemeOptions } from "@mui/material";
 
 import type { LabComponents } from "@mui/lab/themeAugmentation";
 import { COLOR } from "./colors";
-import { THEME_TYPOGRAPHY } from "./typography";
 import { COMMON_THEME } from "./common";
 
 export const THEME_COMPONENTS: ThemeOptions["components"] & LabComponents = {
@@ -68,6 +67,13 @@ export const THEME_COMPONENTS: ThemeOptions["components"] & LabComponents = {
       colorInfo: {
         backgroundColor: COLOR.BLUE_500,
         color: COLOR.PAPER,
+      },
+    },
+  },
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        textTransform: "none",
       },
     },
   },

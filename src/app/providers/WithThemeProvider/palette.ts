@@ -25,11 +25,7 @@ export const THEME_PALETTE: ThemeOptions["palette"] = {
     main: COLOR.ERROR_MAIN,
     dark: COLOR.ERROR_DARK,
   },
-  // orange: {
-  //   light: COLOR.ORANGE_LIGHT,
-  //   main: COLOR.ORANGE_MAIN,
-  //   dark: COLOR.ORANGE_DARK,
-  // },
+
   warning: {
     light: COLOR.WARNING_LIGHT,
     main: COLOR.WARNING_MAIN,
@@ -49,18 +45,10 @@ export const THEME_PALETTE: ThemeOptions["palette"] = {
     700: COMMON_THEME.DARK_TEXT_PRIMARY,
     900: COMMON_THEME.TEXT_DARK,
   },
-  // dark: {
-  //   light: COLOR.DARK_TEXT_PRIMARY,
-  //   main: COLOR.DARK_LEVEL_1,
-  //   dark: COLOR.DARK_LEVEL_2,
-  //   800: COLOR.DARK_BACKGROUND,
-  //   900: COLOR.DARK_PAPER,
-  // },
+
   text: {
     primary: COMMON_THEME.DARK_TEXT_PRIMARY,
     secondary: COMMON_THEME.DARK_TEXT_SECONDARY,
-    // dark: COMMON_THEME.TEXT_DARK,
-    // hint: COLOR.GREY_100,
   },
   background: {
     paper: COMMON_THEME.PAPER,

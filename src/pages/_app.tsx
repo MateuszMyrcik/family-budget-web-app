@@ -9,8 +9,10 @@ import { Provider } from "react-redux";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import clsx from "clsx";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+
 import { LayoutProvider } from "@/app/layout";
-import { ThemeProvider } from "@/app";
+import { WithThemeProvider } from "@/app";
 import { appWithTranslation } from "next-i18next";
 import pl from "date-fns/locale/pl";
 
@@ -23,18 +25,20 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const containerClasses = clsx(roboto.className);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={pl}>
-      <ThemeProvider>
-        <LayoutProvider>
-          <div className={containerClasses}>
-            <div className=""></div>
-            <Provider store={store}>
-              <Component {...pageProps} />
-            </Provider>
-          </div>
-        </LayoutProvider>
-      </ThemeProvider>
-    </LocalizationProvider>
+    <UserProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <WithThemeProvider>
+          <LayoutProvider>
+            <div className={containerClasses}>
+              <div className=""></div>
+              <Provider store={store}>
+                <Component {...pageProps} />
+              </Provider>
+            </div>
+          </LayoutProvider>
+        </WithThemeProvider>
+      </LocalizationProvider>
+    </UserProvider>
   );
 };
 

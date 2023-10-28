@@ -18,7 +18,7 @@ type ProviderProps = {
   children: React.ReactNode;
 };
 
-export const ThemeProvider = ({ children }: ProviderProps) => {
+export const WithThemeProvider = ({ children }: ProviderProps) => {
   const appTheme = getTheme();
 
   return <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>;
