@@ -27,13 +27,16 @@ export const THEME_COMPONENTS: ThemeOptions["components"] & LabComponents = {
       },
     },
   },
-  MuiTabPanel: {
+
+  MuiPaper: {
     styleOverrides: {
       root: {
-        marginTop: 24,
-        padding: 0,
-        border: `1px solid ${COLOR.PRIMARY_LIGHT}`,
-        borderRadius: "12px",
+        border: `2px solid ${COLOR.GREY_200}`,
+        borderRadius: 12,
+        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.05)",
+        "&:hover": {
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+        },
       },
     },
   },

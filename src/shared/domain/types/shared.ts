@@ -1,4 +1,4 @@
-import { UniqueId } from "../../commonTypes";
+import { UniqueId } from '../../commonTypes';
 
 // SHARED DOMAIN TYPES
 export type Ownership = {
@@ -59,7 +59,7 @@ export type ExpenseDetails = {
   category: string;
   groupCategoryLabel: string;
   categoryLabel: string;
-  type: "EXPENSE";
+  type: 'EXPENSE';
 };
 
 export type IncomeDetails = {
@@ -67,36 +67,36 @@ export type IncomeDetails = {
   category: IncomeCategory | string;
   groupCategoryLabel: string;
   categoryLabel: string;
-  type: "INCOME";
+  type: 'INCOME';
 };
 
-export type TransactionType = "EXPENSE" | "INCOME";
+export type TransactionType = 'EXPENSE' | 'INCOME';
 
 export enum TransactionTypeEnum {
-  EXPENSE = "EXPENSE",
-  INCOME = "INCOME",
+  EXPENSE = 'EXPENSE',
+  INCOME = 'INCOME',
 }
 
 // EXPENSES
 export type ExpenseGroupCategory =
-  | "SHOPPING"
-  | "OTHER"
-  | "HOUSING"
-  | "TRANSPORT"
-  | "HEALTHCARE"
-  | "ENTERTAINMENT";
+  | 'SHOPPING'
+  | 'OTHER'
+  | 'HOUSING'
+  | 'TRANSPORT'
+  | 'HEALTHCARE'
+  | 'ENTERTAINMENT';
 
 // INCOME
-export type IncomeGroupCategory = "SALARY" | "INVESTMENTS" | "OTHER";
+export type IncomeGroupCategory = 'SALARY' | 'INVESTMENTS' | 'OTHER';
 
 export type IncomeCategory =
-  | "FULL_TIME"
-  | "PART_TIME"
-  | "FREELANCE"
-  | "RENTAL_INCOME"
-  | "INTEREST"
-  | "DIVIDENDS"
-  | "OTHER";
+  | 'FULL_TIME'
+  | 'PART_TIME'
+  | 'FREELANCE'
+  | 'RENTAL_INCOME'
+  | 'INTEREST'
+  | 'DIVIDENDS'
+  | 'OTHER';
 
 // BUDGET
 export type Budget = {

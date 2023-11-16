@@ -1,7 +1,8 @@
 import { User } from "@/shared/domain";
 
 export const MOCKED_USER: User = {
-  id: "1",
+  _id: "1",
+  isInvitePending: false,
   name: "John",
   surname: "Doe",
   email: "john.doe@gmail.com",

@@ -1,2 +1,3 @@
 export { WithThemeProvider } from "./WithThemeProvider";
-export { WithAuthProvider } from "./WithAuthProvider";
+export { WithToastProvider } from "./WithToastProvider";
+export { WithScreenInterceptorProvider } from "./WithScreenInterceptorProvider";

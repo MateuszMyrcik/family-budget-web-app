@@ -12,7 +12,11 @@ import clsx from "clsx";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 import { LayoutProvider } from "@/app/layout";
-import { WithThemeProvider } from "@/app";
+import {
+  WithScreenInterceptorProvider,
+  WithThemeProvider,
+  WithToastProvider,
+} from "@/app";
 import { appWithTranslation } from "next-i18next";
 import pl from "date-fns/locale/pl";
 
@@ -26,18 +30,21 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <UserProvider>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <WithThemeProvider>
-          <LayoutProvider>
-            <div className={containerClasses}>
-              <div className=""></div>
-              <Provider store={store}>
-                <Component {...pageProps} />
-              </Provider>
-            </div>
-          </LayoutProvider>
-        </WithThemeProvider>
-      </LocalizationProvider>
+      <Provider store={store}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <WithThemeProvider>
+            <WithToastProvider>
+              <LayoutProvider>
+                <div className={containerClasses}>
+                  <WithScreenInterceptorProvider>
+                    <Component {...pageProps} />
+                  </WithScreenInterceptorProvider>
+                </div>
+              </LayoutProvider>
+            </WithToastProvider>
+          </WithThemeProvider>
+        </LocalizationProvider>
+      </Provider>
     </UserProvider>
   );
 };
