@@ -1,17 +1,29 @@
 import { SummaryView } from "@/views/summary";
-import { GetStaticProps } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-type Props = {};
+import { useEffect } from "react";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale as string, ["common"])),
-  },
-});
+function MainPage(props: any) {
+  const { user } = useUser();
 
-function SummaryPage() {
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/user-info");
+        const data = await res.json();
+        console.log("data", data);
+        const tokenRaw = await fetch("/api/token");
+        const token = await tokenRaw.json();
+        console.log("token", token);
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+      }
+    };
+
+    fetchToken();
+  }, []);
+
   return <SummaryView />;
 }
 
-export default SummaryPage;
+export default withPageAuthRequired(MainPage);

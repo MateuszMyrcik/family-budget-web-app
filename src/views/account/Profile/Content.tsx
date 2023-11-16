@@ -45,10 +45,10 @@ export const ProfileContent = () => {
           }}
         >
           <form onSubmit={handleSubmit(onSubmit)} id="personal-details">
-            {user.avatar && (
+            {user.avatarUrl && (
               <Avatar
-                alt={user.avatar.alt}
-                src={user.avatar.url}
+                alt={user.avatarUrl}
+                src={user.name}
                 sx={{ marginBottom: "24px" }}
               />
             )}

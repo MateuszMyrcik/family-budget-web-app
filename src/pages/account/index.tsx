@@ -1,6 +1,7 @@
 import { AccountView } from "@/views/account";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
 type Props = {};
 
@@ -14,4 +15,4 @@ function AccountPage() {
   return <AccountView />;
 }
 
-export default AccountPage;
+export default withPageAuthRequired(AccountPage);

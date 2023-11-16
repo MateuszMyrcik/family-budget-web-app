@@ -10,7 +10,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import { Box, Tab } from "@mui/material";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { FamilyContent } from "./Family/Content";
 import { PasswordContent } from "./Password/Content";
@@ -18,13 +18,31 @@ import { ProfileContent } from "./Profile/Content";
 import { useTranslation } from "next-i18next";
 import { TransactionCategoryContent } from "./TransactionCategory/Content";
 
+const TAB_NAME = {
+  PROFILE: "profile",
+  PASSWORD: "password",
+  FAMILY: "family",
+  TRANSACTION_CATEGORIES: "transactionCategories",
+};
+
+const DEFAULT_TAB = TAB_NAME.PROFILE;
+
 export const AccountView = () => {
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState(DEFAULT_TAB);
   const { t } = useTranslation("common");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+    history.pushState(null, "", `?tab=${newValue}`);
   };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tab = urlParams.get("tab");
+    if (tab) {
+      setValue(tab);
+    }
+  }, []);
 
   return (
     <>
@@ -46,7 +64,7 @@ export const AccountView = () => {
                           {t("account.profileTab")}
                         </div>
                       }
-                      value="1"
+                      value={TAB_NAME.PROFILE}
                     />
                     <Tab
                       label={
@@ -55,7 +73,7 @@ export const AccountView = () => {
                           {t("account.changePasswordTab")}
                         </div>
                       }
-                      value="2"
+                      value={TAB_NAME.PASSWORD}
                     />
                     <Tab
                       label={
@@ -64,7 +82,7 @@ export const AccountView = () => {
                           {t("account.familyGroupTab")}
                         </div>
                       }
-                      value="3"
+                      value={TAB_NAME.FAMILY}
                     />
                     <Tab
                       label={
@@ -73,21 +91,21 @@ export const AccountView = () => {
                           {t("account.transactionCategoryTab")}
                         </div>
                       }
-                      value="4"
+                      value={TAB_NAME.TRANSACTION_CATEGORIES}
                     />
                   </TabList>
                 </Box>
 
-                <TabPanel value="1">
+                <TabPanel value={TAB_NAME.PROFILE}>
                   <ProfileContent />
                 </TabPanel>
-                <TabPanel value="2">
+                <TabPanel value={TAB_NAME.PASSWORD}>
                   <PasswordContent />
                 </TabPanel>
-                <TabPanel value="3">
+                <TabPanel value={TAB_NAME.FAMILY}>
                   <FamilyContent />
                 </TabPanel>
-                <TabPanel value="4">
+                <TabPanel value={TAB_NAME.TRANSACTION_CATEGORIES}>
                   <TransactionCategoryContent />
                 </TabPanel>
               </TabContext>

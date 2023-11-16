@@ -1,6 +1,7 @@
 import { StatsView } from "@/views/stats";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
 type Props = {};
 
@@ -14,4 +15,4 @@ function StatsPage() {
   return <StatsView />;
 }
 
-export default StatsPage;
+export default withPageAuthRequired(StatsPage);

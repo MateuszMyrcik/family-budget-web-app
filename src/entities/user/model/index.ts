@@ -1,3 +1,11 @@
-export { UserReducer, getUser, userSlice } from "./slice";
+export { UserReducer, userSlice } from "./slice";
 
-export { useAction as useUserAction } from "./hooks";
+export {
+  useAction as useUserAction,
+  useIsActiveUser,
+  useServiceStatus as useUserServiceStatus,
+  useIsInvitePending as useUserIsInvitePending,
+  useHousehold as useUserHousehold,
+  useIsOwner as useUserIsOwner,
+  useHouseholdOwnerId as useUserHouseholdOwnerId,
+} from "./hooks";
