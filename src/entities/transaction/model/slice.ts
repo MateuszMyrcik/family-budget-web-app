@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import {
   NotSpecificTransaction,
@@ -11,6 +11,7 @@ import { MOCKED_TRANSACTION_CATEGORIES } from "@/mocks/transactionCategories";
 const initialState = {
   transactions: MOCKED_TRANSACTIONS,
   categories: MOCKED_TRANSACTION_CATEGORIES,
+  loading: "idle",
 };
 
 export const transactionSlice = createSlice({

@@ -37,7 +37,7 @@
     "name": "First Name",
     "email": "Email",
     "surname": "Surname",
-    "categories": "Categories",
+    "categories": "Classifications",
     "profileTab": "Profile",
     "newPassword": "New Password",
     "updateProfile": "Update Profile",
@@ -48,7 +48,7 @@
     "repeatNewPassword": "Repeat New Password",
     "changePasswordTab": "Change Password",
     "changePasswordHeader": "Change Password",
-    "transactionCategoryTab": "Transaction Categories"
+    "transactionCategoryTab": "Transaction Classifications"
   },
   "navItem": {
     "home": "Home",
@@ -129,5 +129,13 @@
     "namePlaceholder": "E.g. Shopping at the supermarket",
     "amountPlaceholder": "Enter the amount",
     "commentPlaceholder": "Enter a comment regarding the transaction"
+  },
+   "classification": {
+    "newInputLabel": "New classification",
+    "addButton": "Add",
+    "editModalHeader": "Edit classification",
+    "editModalDescription": "New classification name will replace the previous one for all transactions.",
+    "saveButton": "Save",
+    "cancelButton": "Cancel"
   }
 }

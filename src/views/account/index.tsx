@@ -16,7 +16,7 @@ import { FamilyContent } from "./Family/Content";
 import { PasswordContent } from "./Password/Content";
 import { ProfileContent } from "./Profile/Content";
 import { useTranslation } from "next-i18next";
-import { TransactionCategoryContent } from "./TransactionCategory/Content";
+import { ClassificationContent } from "./Classification";
 
 const TAB_NAME = {
   PROFILE: "profile",
@@ -106,7 +106,7 @@ export const AccountView = () => {
                   <FamilyContent />
                 </TabPanel>
                 <TabPanel value={TAB_NAME.TRANSACTION_CATEGORIES}>
-                  <TransactionCategoryContent />
+                  <ClassificationContent />
                 </TabPanel>
               </TabContext>
             </Box>

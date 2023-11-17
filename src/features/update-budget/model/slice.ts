@@ -13,7 +13,7 @@ const date = new Date();
 
 const initialState: UpdateBudgetState = {
   date: date,
-  isEmpty: false,
+  isEmpty: true,
   budget: MOCKED_BUDGET[0],
 };
 

@@ -1,13 +1,16 @@
 import {
   GetUserInfoResponse,
   GetUserProfileResponse,
+  UniqueId,
   UserRole,
 } from "@/shared";
 import { Household } from "@/shared/domain/types/household";
 
 export type User = GetUserProfileResponse;
 
-export type FetchUserInfoResponse = GetUserInfoResponse;
+export type FetchUserInfoResponse = Omit<GetUserInfoResponse, "_id"> & {
+  _id: UniqueId;
+};
 export type FetchUserProfileResponse = GetUserProfileResponse;
 
 export type UserInfo = {

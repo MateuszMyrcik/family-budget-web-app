@@ -20,6 +20,7 @@ export type User = {
 
 export type GetUserInfoResponse = Pick<
   User,
-  "_id" | "email" | "household" | "isInvitePending" | "role"
->;
+  "email" | "household" | "isInvitePending" | "role"
+> & { id: UniqueId };
+
 export type GetUserProfileResponse = Omit<User, "createdAt">;

@@ -34,7 +34,6 @@ export const WithScreenInterceptorProvider = ({ children }: Props) => {
       handleLogout();
     }
   }, [isSessionActive, status.isError]);
-  
 
   if (status.isPending || status.isIdle) {
     return (

@@ -4,7 +4,7 @@ import { useUserIsInvitePending } from "@/entities/user";
 import { Box } from "@mui/material";
 
 import { Provider } from "react-redux";
-// import { HouseholdManager } from "./HouseholdManager";
+import { HouseholdManager } from "./HouseHoldManager";
 
 export const WelcomeView = () => {
   const isInvitePending = useUserIsInvitePending();
@@ -46,8 +46,9 @@ export const WelcomeView = () => {
                 </Box>
               </Box>
             </Box>
-          ) : // <HouseholdManager />
-          null}
+          ) : (
+            <HouseholdManager />
+          )}
         </Box>
       </Box>
     </Provider>

@@ -1,3 +1,4 @@
+import { UniqueId } from "@/shared/commonTypes";
 import { User } from "./user";
 
 export type Household = {
@@ -9,9 +10,9 @@ export type Household = {
 };
 
 export type Invite = {
+  _id: UniqueId;
   sender: User;
   createdAt: Date;
-  _id: string;
 };
 
 export type GetHouseholdResponse = Household;

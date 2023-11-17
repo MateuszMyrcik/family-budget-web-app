@@ -38,7 +38,7 @@
     "email": "Email",
     "surname": "Nazwisko",
     "profileTab": "Profil",
-    "categories": "Kategorie",
+    "categories": "Klasyfikacje",
     "newPassword": "Nowe hasło",
     "updateProfile": "Zaktualizuj profil",
     "familyGroupTab": "Grupa rodzinna",
@@ -48,7 +48,7 @@
     "repeatNewPassword": "Powtórz nowe hasło",
     "changePasswordTab": "Zmień hasło",
     "changePasswordHeader": "Zmień hasło",
-    "transactionCategoryTab": "Kategorie transakcji"
+    "transactionCategoryTab": "klassyfikacje transakcji"
   },
   "navItem": {
     "home": "Strona główna",
@@ -129,5 +129,13 @@
     "namePlaceholder": "Np. Zakupy w supermarkecie",
     "amountPlaceholder": "Wpisz kwotę",
     "commentPlaceholder": "Wpisz komentarz dt. transakcji"
+  },
+  "classification": {
+    "newInputLabel": "Nowa klassyfikacja",
+    "addButton": "Dodaj",
+    "editModalHeader": "Edytuj klassyfikację",
+    "editModalDescription": "Nowa nazwa klasyfikacji zastąpi poprzednią dla wszystkich transakcji.",
+    "saveButton": "Zapisz",
+    "cancelButton": "Anuluj"
   }
 }
