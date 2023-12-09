@@ -19,6 +19,8 @@ import {
 } from "@/app";
 import { appWithTranslation } from "next-i18next";
 import pl from "date-fns/locale/pl";
+import en from "date-fns/locale/en-US";
+import { useLang } from "@/hooks/useLang";
 
 const roboto = Roboto({
   subsets: ["latin", "latin-ext"],
@@ -27,11 +29,16 @@ const roboto = Roboto({
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const containerClasses = clsx(roboto.className);
+  const { currentLang } = useLang();
+  const locale = currentLang === "pl" ? pl : en;
 
   return (
     <UserProvider>
       <Provider store={store}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider
+          dateAdapter={AdapterDateFns}
+          adapterLocale={locale}
+        >
           <WithThemeProvider>
             <WithToastProvider>
               <LayoutProvider>

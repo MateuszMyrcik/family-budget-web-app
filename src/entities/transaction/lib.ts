@@ -4,7 +4,6 @@ import {
   TRANSACTION_TYPE,
 } from "@/shared/domain";
 
-
 export const isExpenseTransaction = (
   transaction: Transaction
 ): transaction is Transaction<"EXPENSE"> =>
@@ -20,3 +19,9 @@ export const isIncome = (type: TransactionType) =>
 
 export const isExpense = (type: TransactionType) =>
   type === TRANSACTION_TYPE.EXPENSE;
+
+export const getActualTransactions = (transactions: Transaction[]) => {
+  return transactions.filter(
+    (transaction) => new Date(transaction.transactionDate) < new Date()
+  );
+};

@@ -12,7 +12,7 @@ import { USER_ROLE } from "@/shared";
 const initialState: UserState = {
   user: EMPTY_USER,
   info: {
-    _id: "",
+    id: "",
     email: "",
     household: undefined,
     role: USER_ROLE.GUEST,
@@ -169,11 +169,7 @@ export const fetchUserProfile = createAsyncThunk<
 export const userSlice = createSlice<UserState, UserReducers, "user">({
   name: "user",
   initialState,
-  reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserInfo.pending, (state) => {
@@ -202,6 +198,6 @@ export const userSlice = createSlice<UserState, UserReducers, "user">({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUser } = userSlice.actions;
+export const {} = userSlice.actions;
 
 export const UserReducer = userSlice.reducer;

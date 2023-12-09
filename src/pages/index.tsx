@@ -1,11 +1,19 @@
 import { SummaryView } from "@/views/summary";
 
 import { useEffect } from "react";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetStaticProps } from "next";
 
-function MainPage(props: any) {
-  const { user } = useUser();
+type Props = {};
 
+export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale as string, ["common"])),
+  },
+});
+
+function MainPage() {
   useEffect(() => {
     const fetchToken = async () => {
       try {

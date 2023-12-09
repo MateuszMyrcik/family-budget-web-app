@@ -4,21 +4,25 @@ import { ClassificationRecord } from "@/shared";
 
 type Data = {
   error?: string;
-  data?: ClassificationRecord[];
+  data?: ClassificationRecord;
 };
 
 const API_URL = process.env.API_URL;
 
-async function getClassification(
+async function updateTransaction(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   try {
     const { accessToken } = await getAccessToken(req, res);
-    const response = await fetch(`${API_URL}/classifications`, {
-      method: "GET",
+    const { id, ...body } = JSON.parse(req.body);
+
+    const response = await fetch(`${API_URL}/transactions/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
       },
     });
 
@@ -27,10 +31,12 @@ async function getClassification(
       return res.status(response.status).json({ error: errorData.message });
     }
 
-    res.status(200).json({ data: await response.json() });
+    const data = await response.json();
+
+    res.status(200).json({ data });
   } catch (error: unknown) {
     res.status(500).json({ error: (error as Error).message });
   }
 }
 
-export default withApiAuthRequired(getClassification);
+export default withApiAuthRequired(updateTransaction);

@@ -9,8 +9,7 @@ import {
 } from "./slice";
 import { RootState } from "@/app/store";
 import { useDispatch, useSelector } from "react-redux";
-import { UserInfo } from "../type";
-import { setUser } from "./slice";
+
 import { isOwner } from "../lib";
 
 type ServiceStatus = {
@@ -25,7 +24,6 @@ export const useAction = () => {
   const dispatch = useDispatch();
 
   return {
-    setUser: (payload: UserInfo) => dispatch(setUser(payload)),
     fetchUserInfo: () => dispatch(fetchUserInfo() as any),
     joinHousehold: (ownerEmail: string) =>
       dispatch(joinHousehold(ownerEmail) as any),
@@ -76,4 +74,9 @@ export const useHouseholdOwnerId = () => {
   const userSlice = useSelector((state: RootState) => state.userSlice);
   console.log("useHouseholdOwnerId", userSlice.info.household);
   return userSlice.info.household?.owner._id;
+};
+
+export const useUserId = () => {
+  const { info } = useSelector((state: RootState) => state.userSlice);
+  return { userId: info.id };
 };

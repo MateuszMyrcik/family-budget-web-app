@@ -1,62 +1,149 @@
 import { useTransactionAction } from "@/entities/transaction";
-import { Transaction, TRANSACTION_TYPE } from "@/shared/domain";
+import {
+  ClassificationType,
+  Frequency,
+  TRANSACTION_TYPE,
+} from "@/shared/domain";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { expenseSchema } from "./schema";
+import { transactionSchema } from "./schema";
 
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/store";
 import { getSelectItems } from "./lib";
+import { useClassificationRecords } from "@/entities/classification";
+import { useLang } from "@/hooks/useLang";
+import { useUserId } from "@/entities/user";
+import { FormValues } from "./types";
 
-type FormValues = Transaction; // TODO: TS issue to cover, should be Omit<Transaction, "groupCategory">; https://stackoverflow.com/questions/60586984/typescript-omit-property-from-a-generic-interface
+import { UniqueId } from "@/shared";
+import { useEffect } from "react";
 
-export const useRecordsForm = () => {
-  const { addTransaction } = useTransactionAction();
-  const { categories } = useSelector(
-    (state: RootState) => state.transactionSlice
-  );
+type UseRecordsFormArgs = {
+  actionType: "add" | "update";
+  defaultValues?: Partial<FormValues>;
+  transactionId?: UniqueId;
+};
+
+export const useRecordsForm = ({
+  actionType,
+  defaultValues,
+  transactionId,
+}: UseRecordsFormArgs) => {
+  const { createTransaction, updateTransaction, createCyclicTransaction } =
+    useTransactionAction();
+  const { classificationRecords } = useClassificationRecords();
+
+  const { userId } = useUserId();
+  const { currentLang } = useLang();
   const { push } = useRouter();
-  const { control, handleSubmit, watch, formState } = useForm<
+  const { watch, control, handleSubmit, resetField, reset } = useForm<
     Partial<FormValues>
   >({
-    resolver: yupResolver(expenseSchema),
-    defaultValues: { date: new Date() },
+    resolver: yupResolver(transactionSchema),
+    defaultValues: {
+      ...defaultValues,
+    },
   });
 
-  const watchType = watch("type") ?? TRANSACTION_TYPE.EXPENSE;
+  const watchType = (watch("type") ??
+    TRANSACTION_TYPE.EXPENSE) as ClassificationType;
+  const isCyclic = watch("isCyclic") ?? false;
 
-  const selectItems = getSelectItems(watchType, categories);
-  const onSubmit = (data: Partial<FormValues>) => {
-    const isValid = expenseSchema.isValidSync(data);
-    const transactionDetails = categories.find(
-      (category) => category.category === data.category
+  const selectItems = getSelectItems(
+    watchType,
+    currentLang,
+    classificationRecords
+  );
+
+  const onAddRecord = (data: Partial<FormValues>) => {
+    const isValid = transactionSchema.isValidSync(data);
+    const classificationRecord = classificationRecords.find(
+      (record) => record._id === data.classificationRecordId
     );
 
-    if (isValid && transactionDetails) {
-      const mockedFamilyId = "1";
-      const mockedOwnerId = "1";
-
-      addTransaction({
-        ...data,
-        ownership: {
-          familyId: mockedFamilyId,
-          ownerId: mockedOwnerId,
-        },
+    if (isCyclic && isValid && classificationRecord) {
+      createCyclicTransaction({
+        creatorId: userId,
+        householdId: classificationRecord.householdId,
+        name: data.name,
+        startDate: data.date,
+        classificationRecordId: data.classificationRecordId,
+        comment: data.comments,
         amount: {
           currency: "PLN",
           value: data.amount.value,
         },
-        ...transactionDetails,
+        occurrences: data.occurrences as number,
+        frequency: data.frequency as Frequency,
+      }).then(() => {
+        push("/finance");
       });
-      push("/finance");
+      return;
+    }
+
+    if (isValid && classificationRecord) {
+      createTransaction({
+        creatorId: userId,
+        householdId: classificationRecord.householdId,
+        name: data.name,
+        transactionDate: data.date,
+        classificationRecordId: data.classificationRecordId,
+        comment: data.comments,
+        amount: {
+          currency: "PLN",
+          value: data.amount.value,
+        },
+      }).then(() => {
+        push("/finance");
+      });
+
+      return;
     }
   };
+
+  const onUpdateRecord = (data: Partial<FormValues>) => {
+    const isValid = transactionSchema.isValidSync(data);
+    const classificationRecord = classificationRecords.find(
+      (record) => record._id === data.classificationRecordId
+    );
+
+    if (!transactionId) {
+      return;
+    }
+
+    if (isValid && classificationRecord) {
+      updateTransaction({
+        id: transactionId,
+        creatorId: userId,
+        householdId: classificationRecord.householdId,
+        name: data.name,
+        transactionDate: data.date,
+        classificationRecordId: data.classificationRecordId,
+        comment: data.comments,
+        amount: {
+          currency: "PLN",
+          value: data.amount.value,
+        },
+      }).then(() => {
+        push("/finance");
+      });
+    }
+  };
+
+  const onSubmit = actionType === "add" ? onAddRecord : onUpdateRecord;
+
+  useEffect(() => {
+    resetField("date", { defaultValue: null });
+    resetField("occurrences");
+    resetField("frequency");
+  }, [isCyclic, resetField]);
 
   return {
     control,
     onSubmit,
+    isCyclic,
     selectItems,
     handleSubmit,
+    onUpdateRecord,
   };
 };

@@ -1,26 +1,68 @@
+import { AppDispatch, RootState } from "@/app/store";
 import {
-  NotSpecificTransaction,
-  TransactionCategory,
-  TransactionDetails,
-} from "@/shared/domain";
-import { useDispatch } from "react-redux";
+  CreateCyclicTransactionRequest,
+  CreateTransactionRequest,
+  UpdateTransactionRequest,
+} from "@/shared";
+import { useDispatch, useSelector } from "react-redux";
+import { getActualTransactions } from "../lib";
+import { ServiceStatus } from "../types";
 import {
-  addCategory,
-  addTransaction,
-  getTransaction,
-  removeCategory,
+  createCyclicTransaction,
+  createTransaction,
+  getTransactions,
+  removeTransaction,
+  updateTransaction,
 } from "./slice";
 
 export const useAction = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   return {
-    addTransaction: (transaction: NotSpecificTransaction) =>
-      dispatch(addTransaction(transaction)),
-    getTransactions: () => dispatch(getTransaction()),
-    addCategory: (category: TransactionDetails) =>
-      dispatch(addCategory(category)),
-    removeCategory: (id: TransactionCategory["id"]) =>
-      dispatch(removeCategory(id)),
+    createTransaction: (transaction: CreateTransactionRequest) =>
+      dispatch(createTransaction(transaction)),
+    updateTransaction: (transaction: UpdateTransactionRequest) =>
+      dispatch(updateTransaction(transaction)),
+    getTransactions: () => dispatch(getTransactions()),
+    removeTransaction: (transactionId: string) =>
+      dispatch(removeTransaction(transactionId)),
+    createCyclicTransaction: (
+      cyclicTransaction: CreateCyclicTransactionRequest
+    ) => dispatch(createCyclicTransaction(cyclicTransaction)),
+  };
+};
+
+export const useTransactions = () => {
+  const { transactions } = useSelector(
+    (state: RootState) => state.transactionSlice
+  );
+
+  return {
+    transactions,
+  };
+};
+
+export const useTransaction = (transactionId: string) => {
+  const { transactions } = useSelector(
+    (state: RootState) => state.transactionSlice
+  );
+
+  const transaction = transactions.find(
+    (transaction) => transaction.id === transactionId
+  );
+
+  return {
+    transaction,
+  };
+};
+
+export const useServiceStatus = (): ServiceStatus => {
+  const slice = useSelector((state: RootState) => state.transactionSlice);
+  return {
+    error: slice.error,
+    isIdle: slice.loading === "idle",
+    isError: slice.loading === "error",
+    isPending: slice.loading === "loading",
+    isSuccess: slice.loading === "loaded",
   };
 };

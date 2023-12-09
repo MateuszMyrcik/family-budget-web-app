@@ -16,7 +16,8 @@
       "stats": "Statystyki",
       "budget": "Budżet",
       "finance": "Finanse"
-    }
+    },
+    "sidebarHeadline": "Strony"
   },
   "budget": {
     "pageTitle": "Budżet",
@@ -60,7 +61,15 @@
     "pageTitle": "Zarządzaj finansami",
     "incomeTotal": "Przychody:",
     "expenseTotal": "Wydatki:",
-    "addTransaction": "Dodaj transakcję"
+    "addTransaction": "Dodaj transakcję",
+    "transactionDate": "Data",
+    "transactionName": "Nazwa",
+    "transactionClassification": "Klasyfikacja",
+    "transactionAmount": "Kwota",
+    "transactionAction": "Akcja",
+    "deleteTransaction": "Usuń",
+    "editTransaction": "Edytuj",
+    "showPlannedTransactions": "Zaplanowane transakcje"
   },
   "register": {
     "nameLabel": "Imię",
@@ -102,10 +111,12 @@
       "MAINTENANCE": "Naprawy",
       "PUBLIC_TRANSPORT": "Komunikacja miejska"
     },
-    "pageTitle": "Transakcje",
+    "addTransactionTitle": "Dodaj transakcję",
+    "updateTransactionTitle": "Zaktualizuj transakcję",
     "nameLabel": "Nazwa",
     "dateLabel": "Wybierz datę",
     "addButton": "Dodaj",
+    "updateButton": "Zaktualizuj",
     "backButton": "Wróć",
     "addCategory": "Dodaj kategorię",
     "incomeLabel": "Przychód",
@@ -128,7 +139,17 @@
     "categoryLabel": "Kategoria",
     "namePlaceholder": "Np. Zakupy w supermarkecie",
     "amountPlaceholder": "Wpisz kwotę",
-    "commentPlaceholder": "Wpisz komentarz dt. transakcji"
+    "commentPlaceholder": "Wpisz komentarz dt. transakcji",
+    "dailyOption": "Codziennie",
+    "weeklyOption": "Tygodniowo",
+    "monthlyOption": "Miesięcznie",
+    "yearlyOption": "Rocznie",
+    "occurrencesLabel": "Liczba powtórzeń",
+    "occurrencesPlaceholder": "Wpisz liczbę powtórzeń",
+    "frequencyLabel": "Częstotliwość",
+    "frequencyPlaceholder": "Wybierz częstotliwość",
+    "startDateLabel": "Data rozpoczęcia",
+    "isCyclicLabel": "Czy jest cykliczna?"
   },
   "classification": {
     "newInputLabel": "Nowa klassyfikacja",

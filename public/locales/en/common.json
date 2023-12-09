@@ -16,7 +16,8 @@
       "stats": "Statistics",
       "budget": "Budget",
       "finance": "Finance"
-    }
+    },
+    "sidebarHeadline": "Sites"
   },
   "budget": {
     "pageTitle": "Budget",
@@ -60,7 +61,15 @@
     "pageTitle": "Manage Finances",
     "incomeTotal": "Income:",
     "expenseTotal": "Expenses:",
-    "addTransaction": "Add Transaction"
+    "addTransaction": "Add Transaction",
+    "transactionDate": "Date",
+    "transactionName": "Name",
+    "transactionClassification": "Classification",
+    "transactionAmount": "Amount",
+    "transactionAction": "Action",
+    "deleteTransaction": "Delete",
+    "editTransaction": "Edit",
+    "showPlannedTransactions": "Planned Transactions"
   },
   "register": {
     "nameLabel": "First Name",
@@ -102,10 +111,12 @@
       "MAINTENANCE": "Repairs",
       "PUBLIC_TRANSPORT": "Public Transport"
     },
-    "pageTitle": "Transactions",
+    "addTransactionTitle": "Add Transaction",
+    "updateTransactionTitle": "Update Transaction",
     "nameLabel": "Name",
     "dateLabel": "Select Date",
     "addButton": "Add",
+    "updateButton": "Update",
     "backButton": "Back",
     "incomeLabel": "Income",
     "amountLabel": "Amount",
@@ -128,7 +139,17 @@
     "categoryLabel": "Category",
     "namePlaceholder": "E.g. Shopping at the supermarket",
     "amountPlaceholder": "Enter the amount",
-    "commentPlaceholder": "Enter a comment regarding the transaction"
+    "commentPlaceholder": "Enter a comment regarding the transaction",
+    "dailyOption": "Daily",
+    "weeklyOption": "Weekly",
+    "monthlyOption": "Monthly",
+    "yearlyOption": "Yearly",
+    "occurrencesLabel": "Occurrences",
+    "occurrencesPlaceholder": "Enter the number of occurrences",
+    "frequencyLabel": "Frequency",
+    "frequencyPlaceholder": "Select the frequency",
+    "startDateLabel": "Start Date",
+    "isCyclicLabel": "Is Cyclic"
   },
    "classification": {
     "newInputLabel": "New classification",
