@@ -17,6 +17,26 @@ export const DatePicker = ({
   ...props
 }: DatePickerProps) => {
   const pickerClasses = clsx(props.className, "w-full");
+  // const inputRef = React.useRef<HTMLInputElement | null>(null);
+
+  // React.useEffect(() => {
+  //   debugger;
+  //   if (inputRef.current && !props.value) {
+  //     inputRef.current.value = "";
+  //   }
+  // }, [props.value, inputRef, props]);
+
+  // React.useEffect(() => {
+  //   if (cleared) {
+  //     const timeout = setTimeout(() => {
+  //       setCleared(false);
+  //     }, 1500);
+
+  //     return () => clearTimeout(timeout);
+  //   }
+  //   return () => {};
+  // }, [cleared]);
+  // console.log("value", props.value);
   return (
     <>
       <MuiDatePicker className={pickerClasses} {...props} />

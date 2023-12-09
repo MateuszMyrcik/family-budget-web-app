@@ -1,28 +1,40 @@
-import { TransactionCategory, TransactionType } from "@/shared/domain";
-import { groupBy } from "@/shared/utils";
-
+import {
+  ClassificationSupportedLanguage,
+  ClassificationRecord,
+  TransactionType,
+} from "@/shared/domain";
+import { groupBy } from "rambda";
 
 export const getSelectItems = (
   type: TransactionType,
-  categories: TransactionCategory[]
+  lang: ClassificationSupportedLanguage,
+  classificationRecords: ClassificationRecord[]
 ) => {
-  const groupedCategories = groupBy("groupCategory")(
-    categories.filter((category) => type === category.type)
-  );
+  const groupedClassifications = groupBy(
+    (record: ClassificationRecord) => record.group._id
+  )(classificationRecords.filter((category) => type === category.type));
 
-  const selectItems = Object.keys(groupedCategories)
+  const selectItems = Object.keys(groupedClassifications)
     .map((key) => {
+      const groupLabel =
+        groupedClassifications[key][0].group.label.find(
+          (label) => label.lang === lang
+        )?.value ?? "No group label";
+
+      const id = groupedClassifications[key][0].group._id;
       const groupItem = {
-        label: groupedCategories[key][0].groupCategoryLabel,
-        value: key,
+        label: groupLabel,
+        value: id,
         isGroupItem: true,
       };
 
-      const options = groupedCategories[key].map(
-        (category: TransactionCategory) => {
+      const options = groupedClassifications[key].map(
+        (record: ClassificationRecord) => {
           return {
-            value: category.category,
-            label: category.categoryLabel,
+            value: record._id,
+            label:
+              record.labels.find((label) => label.lang === lang)?.value ??
+              "No label",
             isGroupItem: false,
           };
         }

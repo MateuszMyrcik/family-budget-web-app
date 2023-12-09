@@ -14,7 +14,7 @@ export type FetchUserInfoResponse = Omit<GetUserInfoResponse, "_id"> & {
 export type FetchUserProfileResponse = GetUserProfileResponse;
 
 export type UserInfo = {
-  _id: string;
+  id: string;
   email: string;
   role: UserRole;
   household?: Household;
@@ -28,6 +28,4 @@ export type UserState = {
   loading: "idle" | "loading" | "loaded" | "error";
 };
 
-export type UserReducers = {
-  setUser: (state: UserState, action: { payload: UserInfo }) => void;
-};
+export type UserReducers = {};

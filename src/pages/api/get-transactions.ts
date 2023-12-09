@@ -1,21 +1,21 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
-import { ClassificationRecord } from "@/shared";
+import { GetTransactionsResponse } from "@/shared";
 
 type Data = {
   error?: string;
-  data?: ClassificationRecord[];
+  data?: GetTransactionsResponse;
 };
 
 const API_URL = process.env.API_URL;
 
-async function getClassification(
+async function getTransactions(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   try {
     const { accessToken } = await getAccessToken(req, res);
-    const response = await fetch(`${API_URL}/classifications`, {
+    const response = await fetch(`${API_URL}/transactions`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -27,10 +27,12 @@ async function getClassification(
       return res.status(response.status).json({ error: errorData.message });
     }
 
-    res.status(200).json({ data: await response.json() });
+    const data = await response.json();
+
+    res.status(200).json({ data });
   } catch (error: unknown) {
     res.status(500).json({ error: (error as Error).message });
   }
 }
 
-export default withApiAuthRequired(getClassification);
+export default withApiAuthRequired(getTransactions);

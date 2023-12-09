@@ -17,8 +17,6 @@ async function updateClassification(
     const { accessToken } = await getAccessToken(req, res);
     const { id, ...body } = JSON.parse(req.body);
 
-    console.log("body", body);
-
     const response = await fetch(`${API_URL}/classifications/${id}`, {
       method: "POST",
       body: JSON.stringify(body),

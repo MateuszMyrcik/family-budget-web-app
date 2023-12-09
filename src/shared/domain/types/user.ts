@@ -1,8 +1,8 @@
-import { USER_ROLES } from "../constants";
-import { UniqueId } from "../../commonTypes";
-import { Household } from "./household";
+import { USER_ROLES } from '../constants';
+import { UniqueId } from '../../commonTypes';
+import { Household } from './household';
 
-export type UserRole = (typeof USER_ROLES)[number];
+export type UserRole = typeof USER_ROLES[number];
 
 export type User = {
   _id: UniqueId;
@@ -20,7 +20,7 @@ export type User = {
 
 export type GetUserInfoResponse = Pick<
   User,
-  "email" | "household" | "isInvitePending" | "role"
+  'email' | 'household' | 'isInvitePending' | 'role'
 > & { id: UniqueId };
 
-export type GetUserProfileResponse = Omit<User, "createdAt">;
+export type GetUserProfileResponse = Omit<User, 'createdAt'>;

@@ -1,5 +1,5 @@
-import { UniqueId } from "@/shared/commonTypes";
 import { User } from "./user";
+import { UniqueId } from "../../commonTypes";
 
 export type Household = {
   name: string;

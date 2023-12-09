@@ -8,4 +8,5 @@ export {
   useHousehold as useUserHousehold,
   useIsOwner as useUserIsOwner,
   useHouseholdOwnerId as useUserHouseholdOwnerId,
+  useUserId,
 } from "./hooks";
