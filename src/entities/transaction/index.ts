@@ -3,6 +3,7 @@ export {
   transactionSlice,
   useAction as useTransactionAction,
   useServiceStatus as useTransactionServiceStatus,
+  useActualTransactions,
   useTransaction,
   useTransactions,
 } from "./model";
@@ -13,4 +14,6 @@ export {
   isExpense,
   isIncome,
   getActualTransactions,
+  formatCurrencyValue,
+  groupTransactionByGroupId,
 } from "./lib";

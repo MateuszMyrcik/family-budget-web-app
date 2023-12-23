@@ -1,4 +1,9 @@
-import { isExpense, useTransactionAction } from "@/entities/transaction";
+import {
+  formatCurrencyValue,
+  isExpense,
+  isExpenseTransaction,
+  useTransactionAction,
+} from "@/entities/transaction";
 import { useLang } from "@/hooks/useLang";
 import { Transaction } from "@/shared";
 import { DeleteOutlineOutlined, EditOutlined } from "@mui/icons-material";
@@ -77,12 +82,10 @@ export const TransactionsTable = ({ transactions }: Props) => {
       {
         header: t("finance.transactionAmount"),
         accessorKey: "amount.value",
+        accessorFn: (value) =>
+          isExpense(value.type) ? value.amount.value * -1 : value.amount.value,
         Cell: ({ cell: { row } }) => {
           const transaction = row.original;
-          const formattedAmountValue = new Intl.NumberFormat("pl-PL", {
-            style: "currency",
-            currency: "PLN",
-          }).format(transaction.amount.value);
           return (
             <Typography
               sx={{
@@ -91,7 +94,7 @@ export const TransactionsTable = ({ transactions }: Props) => {
               }}
             >
               {isExpense(transaction.type) && "-"}
-              {formattedAmountValue}
+              {formatCurrencyValue(transaction.amount.value)}
             </Typography>
           );
         },

@@ -13,12 +13,16 @@
     "@auth0/nextjs-auth0": "^3.1.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@fontsource/roboto": "^5.0.8",
     "@hookform/resolvers": "^3.0.1",
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "5.0.0-alpha.140",
     "@mui/material": "^5.11.16",
+    "@mui/x-charts": "^6.18.3",
     "@mui/x-date-pickers": "^6.18.4",
     "@next/font": "13.1.6",
+    "@nivo/core": "^0.84.0",
+    "@nivo/pie": "^0.84.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
@@ -54,6 +58,7 @@
     "lodash”": "link:@types/lodash”",
     "postcss": "^8.4.21",
     "prettier": "2.8.4",
-    "tailwindcss": "^3.3.1"
+    "tailwindcss": "^3.3.1",
+    "use-resize-observer": "^9.1.0"
   }
 }

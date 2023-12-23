@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import clsx from "clsx";
 import { CSSProperties, ReactNode } from "react";
 import { useLayout } from "./Context";
@@ -25,7 +26,7 @@ export const BaseTemplate = ({
 
   const classes = {
     sidebar: clsx(state.withSidebar && "fixed  bg-white"),
-    contentInner: "p-6 mx-6 bg-primary-light min-h-full flex rounded-2xl",
+    contentInner: "md:p-6 md:mx-6 bg-primary-light min-h-full flex rounded-2xl",
   };
 
   const inlineStyles: Record<string, CSSProperties> = {
@@ -46,7 +47,7 @@ export const BaseTemplate = ({
   };
 
   return (
-    <div>
+    <Box>
       {header && <header>{header}</header>}
       {sidebar && (
         <aside className={classes.sidebar} style={inlineStyles.sidebar}>
@@ -57,6 +58,6 @@ export const BaseTemplate = ({
         <div className={classes.contentInner}>{children}</div>
       </main>
       {footer && <footer>{footer}</footer>}
-    </div>
+    </Box>
   );
 };

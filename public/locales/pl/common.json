@@ -71,6 +71,10 @@
     "editTransaction": "Edytuj",
     "showPlannedTransactions": "Zaplanowane transakcje"
   },
+  "stats": {
+    "annualStatement": "Roczne zestawienie",
+    "expensesInGroups": "Wydatki w grupach klasyfikacji"
+  },
   "register": {
     "nameLabel": "Imię",
     "formHeader": "Rejestracja",

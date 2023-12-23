@@ -7,3 +7,5 @@ export {
 } from "./model";
 
 export type { VitalClassificationRecord } from "./types";
+
+export { getClassificationGroupColors } from "./lib";

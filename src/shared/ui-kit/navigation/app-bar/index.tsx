@@ -29,7 +29,14 @@ export const AppBar = ({ onMenuIconClick }: AppBarProps) => {
   return (
     <MuiAppBar
       position="fixed"
-      className="bg-white text-primary shadow-none px-8"
+      sx={{
+        position: "fixed",
+        backgroundColor: "white",
+        color: "primary",
+        zIndex: 800,
+        px: 4,
+        boxShadow: "none",
+      }}
     >
       <div className="grid grid-cols-[100px_1fr_100px] items-center">
         {/* // TODO: possible bellow components will be reused in diffrent places */}
@@ -51,7 +58,7 @@ export const AppBar = ({ onMenuIconClick }: AppBarProps) => {
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar
                 className="h-9 w-9"
-                alt="Remy Sharp"
+                alt="Avatar"
                 src="/images/thor-avatar.jpeg"
               />
             </IconButton>
