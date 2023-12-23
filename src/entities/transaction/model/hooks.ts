@@ -42,6 +42,13 @@ export const useTransactions = () => {
   };
 };
 
+export const useActualTransactions = () => {
+  const { transactions } = useSelector(
+    (state: RootState) => state.transactionSlice
+  );
+  return { transactions: getActualTransactions(transactions) };
+};
+
 export const useTransaction = (transactionId: string) => {
   const { transactions } = useSelector(
     (state: RootState) => state.transactionSlice

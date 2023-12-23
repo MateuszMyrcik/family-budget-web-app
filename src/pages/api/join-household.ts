@@ -3,7 +3,7 @@ import { getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
 
 type Data = {
   error?: string;
-  expenses?: any;
+  data?: any;
 };
 
 const API_URL = process.env.API_URL;
@@ -26,7 +26,7 @@ async function createHousehold(
     );
 
     if (response.ok) {
-      res.status(200);
+      res.status(200).json({ data: await response.json() });
     } else {
       res.status(400).json({ error: await response.json() });
     }

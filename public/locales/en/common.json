@@ -71,6 +71,10 @@
     "editTransaction": "Edit",
     "showPlannedTransactions": "Planned Transactions"
   },
+  "stats": {
+    "annualStatement": "Annual Statement",
+    "expensesInGroups": "Expenses in classification groups"
+  },
   "register": {
     "nameLabel": "First Name",
     "formHeader": "Registration",

@@ -5,6 +5,8 @@ const nextConfig = {
     appDir: false,
   },
   i18n,
+  transpilePackages: ['@mui/x-charts'],
+  
 };
 
 module.exports = nextConfig;
