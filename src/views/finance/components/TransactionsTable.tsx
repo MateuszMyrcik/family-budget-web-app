@@ -1,7 +1,6 @@
 import {
   formatCurrencyValue,
   isExpense,
-  isExpenseTransaction,
   useTransactionAction,
 } from "@/entities/transaction";
 import { useLang } from "@/hooks/useLang";

@@ -1,20 +1,27 @@
-import { useDispatch } from "react-redux";
-import {
-  addNewBudget,
-  getBudget,
-  getBudgets,
-  UpdateBudgetEntity,
-  updateBudgetEntity,
-} from "./slice";
+import { AppDispatch, RootState } from "@/app/store";
+import { GetBudgetDto, UpdateBudgetRecordDto } from "@/shared";
+import { useDispatch, useSelector } from "react-redux";
+import { ServiceStatus } from "../types";
+import { createBudget, getBudget, updateBudgetRecord } from "./slice";
 
 export const useAction = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   return {
-    updateBudgetEntity: (payload: UpdateBudgetEntity) =>
-      dispatch(updateBudgetEntity(payload)),
-    addNewBudget: (date: Date) => dispatch(addNewBudget(date)),
-    getBudgets: () => dispatch(getBudgets()),
-    getBudget: (date: Date) => dispatch(getBudget(date)),
+    createBudget: (payload: Date) => dispatch(createBudget(payload)),
+    getBudget: (payload: GetBudgetDto) => dispatch(getBudget(payload)),
+    updateBudgetRecord: (payload: UpdateBudgetRecordDto) =>
+      dispatch(updateBudgetRecord(payload)),
+  };
+};
+
+export const useServiceStatus = (): ServiceStatus => {
+  const slice = useSelector((state: RootState) => state.budgetSlice);
+  return {
+    error: slice.error,
+    isIdle: slice.loading === "idle",
+    isError: slice.loading === "error",
+    isPending: slice.loading === "loading",
+    isSuccess: slice.loading === "loaded",
   };
 };

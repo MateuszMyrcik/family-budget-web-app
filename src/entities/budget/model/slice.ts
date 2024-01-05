@@ -1,7 +1,14 @@
-import { EMPTY_MOCKED_BUDGET } from "./../../../mocks/budget";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { MOCKED_BUDGET } from "@/mocks/budget";
+import { BudgetReducers, BudgetState } from "../types";
+import {
+  BudgetRecord,
+  CreateBudgetResponse,
+  GetBudgetDto,
+  GetBudgetResponse,
+  UpdateBudgetRecordDto,
+  UpdateBudgetRecordResponse,
+} from "@/shared";
 
 export type UpdateBudgetEntity = {
   budgetId: string;
@@ -9,63 +16,113 @@ export type UpdateBudgetEntity = {
   plannedTotal: number;
 };
 
-const initialState = {
-  budgets: MOCKED_BUDGET,
+export const getBudget = createAsyncThunk<GetBudgetResponse, GetBudgetDto>(
+  "budget/getBudget",
+  async ({ month, year }: GetBudgetDto) => {
+    const response = await fetch(`/api/get-budget/${month}/${year}`, {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = await response.json().then((res) => res.data);
+
+    return data;
+  }
+);
+
+export const createBudget = createAsyncThunk<CreateBudgetResponse, Date>(
+  "budget/createBudget",
+  async (date: Date) => {
+    const payload = {
+      month: date.getMonth() + 1,
+      year: date.getFullYear(),
+    };
+    const response = await fetch(`/api/create-budget`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().then((res) => res.data);
+
+    return data;
+  }
+);
+
+export const updateBudgetRecord = createAsyncThunk<
+  UpdateBudgetRecordResponse,
+  UpdateBudgetRecordDto
+>(
+  "budget/updateBudgetRecord",
+  async (
+    payload: UpdateBudgetRecordDto
+  ): Promise<UpdateBudgetRecordResponse> => {
+    const response = await fetch(`/api/update-budget-record`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().then((res) => res.data);
+
+    return data;
+  }
+);
+
+const initialState: BudgetState = {
+  records: [],
+  error: null,
+  loading: "idle",
 };
 
-export const budgetSlice = createSlice({
+export const budgetSlice = createSlice<BudgetState, BudgetReducers, "budget">({
   name: "budget",
   initialState,
-  reducers: {
-    addNewBudget: (state, action: PayloadAction<Date>) => {
-      const month = action.payload.getMonth() + 1;
-      const year = action.payload.getFullYear();
-      state.budgets.push({
-        ...EMPTY_MOCKED_BUDGET,
-        month,
-        year,
-      });
-    },
-    getBudgets: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.budgets = MOCKED_BUDGET;
-    },
-    getBudget: (state, action: PayloadAction<Date>) => {
-      const month = action.payload.getMonth() + 1;
-      const year = action.payload.getFullYear();
-      state.budgets = state.budgets.filter((budget) => {
-        return budget.month === month && budget.year === year;
-      });
-    },
-    updateBudgetEntity: (
-      state,
-      {
-        payload: { category, budgetId, plannedTotal },
-      }: PayloadAction<UpdateBudgetEntity>
-    ) => {
-      state.budgets = state.budgets.map((budget) => {
-        if (budget.id === budgetId) {
-          const categoryRecords = budget.categoryRecords.map(
-            (categoryRecord) => {
-              if (categoryRecord.category === category) {
-                return { ...categoryRecord, plannedTotal };
-              }
-              return categoryRecord;
-            }
-          );
-          return { ...budget, categoryRecords };
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getBudget.pending, (state) => {
+      state.loading = "loading";
+    });
+    builder.addCase(getBudget.fulfilled, (state, { payload }) => {
+      state.loading = "loaded";
+      if (!payload) {
+        return;
+      }
+      state.records = payload;
+    });
+    builder.addCase(getBudget.rejected, (state, { error }) => {
+      state.loading = "error";
+      state.error = error.message as string;
+    });
+    builder.addCase(createBudget.fulfilled, (state, { payload }) => {
+      state.loading = "loaded";
+      state.records = payload;
+    });
+    builder.addCase(createBudget.pending, (state) => {
+      state.loading = "loading";
+    });
+    builder.addCase(createBudget.rejected, (state, { error }) => {
+      state.loading = "error";
+      state.error = error.message as string;
+    });
+    builder.addCase(updateBudgetRecord.fulfilled, (state, action) => {
+      const payload = action.payload as unknown as BudgetRecord;
+      state.loading = "loaded";
+      state.records = state.records.map((record) => {
+        if (record._id === payload._id) {
+          return payload;
         }
-        return budget;
+        return record;
       });
-    },
+    });
+    builder.addCase(updateBudgetRecord.pending, (state) => {
+      state.loading = "loading";
+    });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getBudget, getBudgets, updateBudgetEntity, addNewBudget } =
-  budgetSlice.actions;
+export const {} = budgetSlice.actions;
 
 export const BudgetReducer = budgetSlice.reducer;

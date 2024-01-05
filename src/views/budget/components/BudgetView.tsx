@@ -3,8 +3,9 @@ import { store } from "@/app/store";
 import { UpdateBudgetForm } from "@/features/update-budget";
 import { useTranslation } from "react-i18next";
 import { Provider } from "react-redux";
+import { withModel } from "../withModel";
 
-export const BudgetView = () => {
+const Base = () => {
   const { t } = useTranslation("common");
 
   return (
@@ -19,3 +20,5 @@ export const BudgetView = () => {
     </>
   );
 };
+
+export const BudgetView = withModel(Base);

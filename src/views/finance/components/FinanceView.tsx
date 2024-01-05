@@ -21,11 +21,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Provider } from "react-redux";
-import {
-  getTransactionsBalance,
-  getTotalExpenseAmount,
-  getTotalIncomeAmount,
-} from "../lib";
+import { getTotalExpenseAmount, getTotalIncomeAmount } from "../lib";
 import { withModel } from "../withModel";
 import { TransactionsTable } from "./TransactionsTable";
 
