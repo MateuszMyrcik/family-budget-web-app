@@ -1,4 +1,4 @@
-import { Budget, BudgetCategoryRecord } from "@/shared/domain";
+import { BudgetRecord } from "@/shared/domain";
 import {
   Box,
   Chip,
@@ -18,31 +18,38 @@ import {
 import { DatePicker } from "@mui/x-date-pickers";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { getBudgetRecordStatus, getGroupedBudget, getTotal } from "../lib";
+import { getBudgetRecordStatus, getTotal } from "../lib";
 import { useRecordsForm } from "../model/useRecordsForm";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { EmptyContent } from "./EmptyContent";
 import { BarChart } from "@mui/icons-material";
+import { useLang } from "@/hooks/useLang";
+import { useBudgetAction, useBudgetServiceStatus } from "@/entities/budget";
+import { RecordsSkeleton } from "./RecordsSkeleton";
 
 export const UpdateBudgetForm = () => {
-  const { isEmpty } = useSelector(
-    (state: RootState) => state.updateBudgetSlice
-  );
+  const { date } = useSelector((state: RootState) => state.updateBudgetSlice);
+  const { isPending } = useBudgetServiceStatus();
+  const { currentLang } = useLang();
   const { t } = useTranslation("common");
   const { palette } = useTheme();
-  const { control, handleSubmit, onSubmit, budget, hideEmptyRecords } =
+  const { control, handleSubmit, onSubmit, hideEmptyRecords } =
     useRecordsForm();
-
-  const groupedRecords = isEmpty
-    ? []
-    : getGroupedBudget(budget as Budget).groupedRecords;
+  const { records } = useSelector((state: RootState) => state.budgetSlice);
+  const { getBudget } = useBudgetAction();
+  const currentRecords = records.filter((record) => {
+    return (
+      record.month === date.getMonth() + 1 && record.year === date.getFullYear()
+    );
+  });
+  const isEmpty = currentRecords.length === 0;
 
   const { actual, planned } = isEmpty
     ? { actual: 0, planned: 0 }
-    : getTotal(budget as Budget);
+    : getTotal(records);
 
-  const budgetRecordStatus = (record: BudgetCategoryRecord) => {
+  const budgetRecordStatus = (record: BudgetRecord) => {
     const { isOver, isUnder } = getBudgetRecordStatus(record);
 
     if (isUnder) {
@@ -54,15 +61,32 @@ export const UpdateBudgetForm = () => {
     }
   };
 
+  const isContentLoading = isPending;
+  const isContentEmpty = isEmpty && !isPending;
+  const isContentVisible = !isEmpty && !isPending;
+
   return (
-    <>
+    <Box>
       <form>
         <FormGroup row>
           <Controller
             name="date"
             control={control}
-            render={({ field }) => (
-              <DatePicker {...field} views={["month", "year"]} />
+            render={({ field: { onChange, ...field } }) => (
+              <DatePicker
+                {...field}
+                views={["month", "year"]}
+                onAccept={(date) => {
+                  onChange(date);
+                  return (
+                    date &&
+                    getBudget({
+                      month: date.getMonth() + 1,
+                      year: date.getFullYear(),
+                    })
+                  );
+                }}
+              />
             )}
           />
           <Controller
@@ -77,14 +101,14 @@ export const UpdateBudgetForm = () => {
             )}
           />
         </FormGroup>
+        {isContentLoading && <RecordsSkeleton />}
 
-        {isEmpty && <EmptyContent />}
-        {!isEmpty && (
+        {isContentEmpty && <EmptyContent />}
+        {isContentVisible && (
           <>
             <Box
               sx={{
                 display: "flex",
-
                 gap: 3,
                 alignItems: "center",
               }}
@@ -128,30 +152,39 @@ export const UpdateBudgetForm = () => {
                 </Typography>
               </Box>
             </Box>
-            <Table>
-              <TableContainer>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell variant="head">
-                        {t("budget.categoryLabel")}
-                      </TableCell>
-                      <TableCell variant="head" align="right">
-                        {t("budget.plannedAmountLabel")}
-                      </TableCell>
-                      <TableCell variant="head" align="right">
-                        {t("budget.actualAmountLabel")}
-                      </TableCell>
-                      <TableCell variant="head" align="right">
-                        {t("budget.differenceAmountLabel")}
-                      </TableCell>
-                      <TableCell variant="head" align="right">
-                        {t("budget.statusLabel")}
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {groupedRecords.map((record, index) => (
+
+            <TableContainer sx={{ minWidth: 342 }}>
+              <Table sx={{ overflow: "auto" }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell variant="head">
+                      {t("budget.categoryLabel")}
+                    </TableCell>
+                    <TableCell variant="head" align="right">
+                      {t("budget.plannedAmountLabel")}
+                    </TableCell>
+                    <TableCell variant="head" align="right">
+                      {t("budget.actualAmountLabel")}
+                    </TableCell>
+                    <TableCell variant="head" align="right">
+                      {t("budget.differenceAmountLabel")}
+                    </TableCell>
+                    <TableCell variant="head" align="right">
+                      {t("budget.statusLabel")}
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {currentRecords.map((record, index) => {
+                    if (!record.classification.labels) {
+                      debugger;
+                    }
+                    const categoryLabel =
+                      record.classification.labels.find(
+                        (classification) => classification.lang === currentLang
+                      )?.value ?? "";
+
+                    return (
                       <TableRow
                         key={index}
                         sx={{
@@ -164,12 +197,10 @@ export const UpdateBudgetForm = () => {
                               : "table-row",
                         }}
                       >
-                        <TableCell variant="body">
-                          {record.categoryLabel}
-                        </TableCell>
+                        <TableCell variant="body">{categoryLabel}</TableCell>
                         <TableCell variant="body" align="right">
                           <Controller
-                            name={`record.${record.category}`}
+                            name={`record.${record._id}`}
                             control={control}
                             render={({ field, fieldState: { error } }) => {
                               return (
@@ -178,9 +209,10 @@ export const UpdateBudgetForm = () => {
                                   size="small"
                                   inputProps={{ min: 0 }}
                                   inputMode="numeric"
+                                  defaultValue={record.plannedTotal}
                                   label={t("budget.plannedAmountLabel")}
                                   onBlur={handleSubmit((data) => {
-                                    data.updatedCategory = record.category;
+                                    data.updatedCategory = record._id;
                                     onSubmit(data);
                                   })}
                                   error={!!error}
@@ -202,14 +234,14 @@ export const UpdateBudgetForm = () => {
                           {budgetRecordStatus(record)}
                         </TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Table>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </>
         )}
       </form>
-    </>
+    </Box>
   );
 };

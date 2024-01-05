@@ -122,7 +122,7 @@ export const classificationSlice = createSlice<
       })
       .addCase(updateClassificationRecord.rejected, (state, action) => {
         state.loading = "error";
-        console.log("updateClassificationRecord:rejected", action);
+
         state.error = action.error.message ?? "Unknown error";
       });
   },

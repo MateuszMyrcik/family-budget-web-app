@@ -121,46 +121,36 @@ export const transactionSlice = createSlice<
       state.error = action.error.message as string;
     });
     builder.addCase(createTransaction.pending, (state) => {
-      console.log("createTransaction.pending");
       state.loading = "loading";
     });
     builder.addCase(createTransaction.fulfilled, (state) => {
-      console.log("createTransaction.fulfilled");
       state.loading = "loaded";
     });
     builder.addCase(createTransaction.rejected, (state, action) => {
-      console.log("createTransaction.rejected");
       state.loading = "error";
       state.error = action.error.message as string;
     });
     builder.addCase(updateTransaction.pending, (state) => {
-      console.log("updateTransaction.pending");
       state.loading = "loading";
     });
     builder.addCase(updateTransaction.fulfilled, (state) => {
-      console.log("updateTransaction.fulfilled");
       state.loading = "loaded";
     });
     builder.addCase(updateTransaction.rejected, (state, action) => {
-      console.log("updateTransaction.rejected");
       state.loading = "error";
       state.error = action.error.message as string;
     });
     builder.addCase(removeTransaction.pending, (state) => {
-      console.log("removeTransaction.pending");
       state.loading = "loading";
     });
     builder.addCase(removeTransaction.fulfilled, (state, action) => {
-      console.log("removeTransaction.fulfilled");
       state.loading = "loaded";
-      console.log(action.payload);
-      console.log(state.transactions);
+
       state.transactions = state.transactions.filter(
         (transaction) => transaction.id !== action.meta.arg
       );
     });
     builder.addCase(removeTransaction.rejected, (state, action) => {
-      console.log("removeTransaction.rejected");
       state.loading = "error";
       state.error = action.error.message as string;
     });

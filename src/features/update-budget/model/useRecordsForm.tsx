@@ -5,7 +5,6 @@ import { expenseSchema } from "./schema";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { useBudgetAction } from "@/entities/budget";
-import { getBudgetByDate } from "../lib";
 
 import { useEffect } from "react";
 import { useUpdateBudgetAction } from ".";
@@ -18,11 +17,10 @@ type FormValues = {
 };
 
 export const useRecordsForm = () => {
-  const { budgets } = useSelector((state: RootState) => state.budgetSlice);
+  const { records } = useSelector((state: RootState) => state.budgetSlice);
   const { date } = useSelector((state: RootState) => state.updateBudgetSlice);
-  const budget = getBudgetByDate(date, budgets);
 
-  const { updateBudgetEntity } = useBudgetAction();
+  const { updateBudgetRecord, getBudget } = useBudgetAction();
   const { dateChanged } = useUpdateBudgetAction();
 
   const arrayToObject = (array: any[]) =>
@@ -36,7 +34,7 @@ export const useRecordsForm = () => {
     values: {
       date,
       record: {
-        ...arrayToObject(budget?.categoryRecords ?? []),
+        ...arrayToObject(records ?? []),
       },
       hideEmptyRecords: false,
     },
@@ -52,23 +50,19 @@ export const useRecordsForm = () => {
   });
 
   const onSubmit = (data: Partial<FormValues>) => {
-    const isValid = [budget?.id, data.date, data.updatedCategory].every(
-      Boolean
-    );
+    const isValid = [data.date, data.updatedCategory].every(Boolean);
 
     if (!isValid) {
       return;
     }
 
-    const budgetId = budget?.id as string;
     const category = data.updatedCategory as string;
     const plannedTotal = Number(
       (data.record as any)[data.updatedCategory as string] as string
     );
 
-    updateBudgetEntity({
-      budgetId,
-      category,
+    updateBudgetRecord({
+      recordId: category,
       plannedTotal,
     });
   };
@@ -78,12 +72,12 @@ export const useRecordsForm = () => {
       return;
     }
 
-    dateChanged(dateField as Date, budgets);
+    dateChanged(dateField as Date);
   }, [dateField]);
 
   return {
     date,
-    budget,
+    records,
     control,
     onSubmit,
     handleSubmit,

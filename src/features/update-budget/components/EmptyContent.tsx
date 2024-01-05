@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export const EmptyContent = () => {
   const { t } = useTranslation("common");
-  const { addNewBudget } = useBudgetAction();
+  const { createBudget } = useBudgetAction();
   const { date } = useSelector((state: RootState) => state.updateBudgetSlice);
   return (
     <Box
@@ -31,7 +31,7 @@ export const EmptyContent = () => {
 
       <Typography variant="h4">{t("budget.noDataTitle")}</Typography>
       <Typography variant="h5">{t("budget.noDataDescription")}</Typography>
-      <Button onClick={() => addNewBudget(date)} variant={"contained"}>
+      <Button onClick={() => createBudget(date)} variant={"contained"}>
         <Add sx={{ marginRight: 1 }} /> {t("budget.addNewBudget")}
       </Button>
     </Box>

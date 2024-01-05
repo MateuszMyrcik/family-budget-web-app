@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { MOCKED_BUDGET } from "@/mocks/budget";
-import { Budget } from "@/shared/domain";
+import { Budget, BudgetRecord } from "@/shared/domain";
 
 type UpdateBudgetState = {
   date: Date;
-  budget: Budget | null;
+  currentRecords: BudgetRecord[];
   isEmpty: boolean;
 };
 
@@ -14,26 +13,15 @@ const date = new Date();
 const initialState: UpdateBudgetState = {
   date: date,
   isEmpty: true,
-  budget: MOCKED_BUDGET[0],
+  currentRecords: [],
 };
 
 export const updateBudgetSlice = createSlice({
   name: "update-budget",
   initialState,
   reducers: {
-    dateChanged: (
-      state,
-      action: PayloadAction<{ date: Date; budgets: Budget[] }>
-    ) => {
+    dateChanged: (state, action: PayloadAction<{ date: Date }>) => {
       state.date = action.payload.date;
-      state.budget =
-        action.payload.budgets.find((budget) => {
-          return (
-            budget.month === action.payload.date.getMonth() + 1 &&
-            budget.year === action.payload.date.getFullYear()
-          );
-        }) ?? null;
-      state.isEmpty = state.budget === null;
     },
   },
 });

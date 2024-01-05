@@ -72,7 +72,6 @@ export const useHousehold = () => {
 
 export const useHouseholdOwnerId = () => {
   const userSlice = useSelector((state: RootState) => state.userSlice);
-  console.log("useHouseholdOwnerId", userSlice.info.household);
   return userSlice.info.household?.owner._id;
 };
 
