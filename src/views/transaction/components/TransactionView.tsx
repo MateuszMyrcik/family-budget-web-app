@@ -90,8 +90,6 @@ const Base = ({
                   </RadioGroup>
                 )}
               />
-            </FormGroup>
-            <FormGroup row>
               <Controller
                 name="isCyclic"
                 control={control}
@@ -107,8 +105,9 @@ const Base = ({
                   />
                 )}
               ></Controller>
-
-              {isCyclic && (
+            </FormGroup>
+            {isCyclic && (
+              <FormGroup row>
                 <Controller
                   control={control}
                   name="occurrences"
@@ -119,13 +118,12 @@ const Base = ({
                       label={t("transaction.occurrencesLabel")}
                       placeholder={t("transaction.occurrencesPlaceholder")}
                       error={!!error}
-                      helperText={error?.message || null}
+                      helperText={error ? t(error.message) : null}
                       type="number"
                     />
                   )}
                 ></Controller>
-              )}
-              {isCyclic && (
+
                 <Controller
                   control={control}
                   name="frequency"
@@ -133,15 +131,19 @@ const Base = ({
                     <Select
                       {...field}
                       sx={{ flex: 1 }}
-                      error={error}
+                      error={
+                        error
+                          ? { ...error, message: t(error.message) }
+                          : undefined
+                      }
                       label={t("transaction.frequencyLabel")}
                       items={frequencySelectItems}
                       placeholder={t("transaction.frequencyPlaceholder")}
                     />
                   )}
                 ></Controller>
-              )}
-            </FormGroup>
+              </FormGroup>
+            )}
             <FormGroup row>
               <Controller
                 name="name"
@@ -151,7 +153,7 @@ const Base = ({
                     label={t("transaction.nameLabel")}
                     placeholder={t("transaction.namePlaceholder")}
                     error={!!error}
-                    helperText={error?.message || null}
+                    helperText={error ? t(error.message) : null}
                     {...field}
                   />
                 )}
@@ -163,7 +165,11 @@ const Base = ({
                 render={({ field, fieldState: { error } }) => (
                   <Select
                     {...field}
-                    error={error}
+                    error={
+                      error
+                        ? { ...error, message: t(error.message) }
+                        : undefined
+                    }
                     label={t("transaction.categoryLabel")}
                     items={selectItems}
                   />
@@ -180,7 +186,7 @@ const Base = ({
                     label={t("transaction.amountLabel")}
                     placeholder={t("transaction.amountPlaceholder")}
                     error={!!error}
-                    helperText={error?.message || null}
+                    helperText={error ? t(error.message) : null}
                     type="number"
                     prefix="PLN"
                   />
@@ -203,7 +209,7 @@ const Base = ({
                       disablePast={isCyclic}
                       disableFuture={!isCyclic}
                       error={!!error}
-                      helperText={error?.message || null}
+                      helperText={error ? t(error.message) : null}
                     />
                   );
                 }}
@@ -217,7 +223,7 @@ const Base = ({
                     label={t("transaction.commentLabel")}
                     placeholder={t("transaction.commentPlaceholder")}
                     error={!!error}
-                    helperText={error?.message || null}
+                    helperText={error ? t(error.message) : null}
                     {...field}
                   />
                 )}

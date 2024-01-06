@@ -25,7 +25,7 @@ const TAB_NAME = {
   TRANSACTION_CATEGORIES: "transactionCategories",
 };
 
-const DEFAULT_TAB = TAB_NAME.PROFILE;
+const DEFAULT_TAB = TAB_NAME.TRANSACTION_CATEGORIES;
 
 export const AccountView = () => {
   const [value, setValue] = useState(DEFAULT_TAB);
@@ -48,7 +48,7 @@ export const AccountView = () => {
     <>
       <Provider store={store}>
         <PrimaryTemplate>
-          <PrimaryTemplate.Content title={t("title")}>
+          <PrimaryTemplate.Content title={t("account.pageTitle")}>
             <Box sx={{ width: "100%", typography: "body1" }}>
               <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -60,20 +60,11 @@ export const AccountView = () => {
                     <Tab
                       label={
                         <div>
-                          <AccountCircle sx={{ marginRight: "12px" }} />
-                          {t("account.profileTab")}
+                          <Category sx={{ marginRight: "12px" }} />
+                          {t("account.transactionCategoryTab")}
                         </div>
                       }
-                      value={TAB_NAME.PROFILE}
-                    />
-                    <Tab
-                      label={
-                        <div>
-                          <Lock sx={{ marginRight: "12px" }} />
-                          {t("account.changePasswordTab")}
-                        </div>
-                      }
-                      value={TAB_NAME.PASSWORD}
+                      value={TAB_NAME.TRANSACTION_CATEGORIES}
                     />
                     <Tab
                       label={
@@ -85,13 +76,24 @@ export const AccountView = () => {
                       value={TAB_NAME.FAMILY}
                     />
                     <Tab
+                      disabled
                       label={
                         <div>
-                          <Category sx={{ marginRight: "12px" }} />
-                          {t("account.transactionCategoryTab")}
+                          <AccountCircle sx={{ marginRight: "12px" }} />
+                          {t("account.profileTab")}
                         </div>
                       }
-                      value={TAB_NAME.TRANSACTION_CATEGORIES}
+                      value={TAB_NAME.PROFILE}
+                    />
+                    <Tab
+                      disabled
+                      label={
+                        <div>
+                          <Lock sx={{ marginRight: "12px" }} />
+                          {t("account.changePasswordTab")}
+                        </div>
+                      }
+                      value={TAB_NAME.PASSWORD}
                     />
                   </TabList>
                 </Box>

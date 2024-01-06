@@ -1,4 +1,6 @@
 {
+
+  
   "login": {
     "formHeader": "Sign in",
     "emailLabel": "Email",
@@ -15,7 +17,10 @@
       "home": "Home",
       "stats": "Statistics",
       "budget": "Budget",
-      "finance": "Finance"
+      "finance": "Finance",
+      "profile": "Profile",
+      "logout": "Logout",
+      "settings": "Settings"
     },
     "sidebarHeadline": "Sites"
   },
@@ -34,7 +39,11 @@
     "plannedAmountLabel": "Planned Amount",
     "differenceAmountLabel": "Difference"
   },
+  "homepage": {
+    "pageTitle": "Home"
+  },
   "account": {
+    "pageTitle": "Account",
     "name": "First Name",
     "email": "Email",
     "surname": "Surname",
@@ -162,5 +171,19 @@
     "editModalDescription": "New classification name will replace the previous one for all transactions.",
     "saveButton": "Save",
     "cancelButton": "Cancel"
+  },
+  "validation": {
+    "mixed": {
+      "default": "Field is invalid",
+      "required": "Field is required",
+      "notType": "Enter a valid value"
+    },
+    "date": {
+      "min": "Date must be later than ${min}",
+      "max": "Date must be earlier than ${max}"
+    },
+    "string": {
+      "email": "Enter a valid email address"
+    }
   }
 }

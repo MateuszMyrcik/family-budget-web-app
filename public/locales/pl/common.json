@@ -15,7 +15,10 @@
       "home": "Strona główna",
       "stats": "Statystyki",
       "budget": "Budżet",
-      "finance": "Finanse"
+      "finance": "Finanse",
+      "profile": "Profil",
+      "logout": "Wyloguj się",
+      "settings": "Ustawienia"
     },
     "sidebarHeadline": "Strony"
   },
@@ -34,7 +37,11 @@
     "plannedAmountLabel": "Planowana kwota",
     "differenceAmountLabel": "Różnica"
   },
+   "homepage": {
+    "pageTitle": "Strona główna"
+  },
   "account": {
+    "pageTitle": "Ustawienia konta",
     "name": "Imię",
     "email": "Email",
     "surname": "Nazwisko",
@@ -162,5 +169,19 @@
     "editModalDescription": "Nowa nazwa klasyfikacji zastąpi poprzednią dla wszystkich transakcji.",
     "saveButton": "Zapisz",
     "cancelButton": "Anuluj"
+  },
+  "validation": {
+    "mixed": {
+      "default": "Nieprawidłowa wartość",
+      "required": "Pole jest wymagane",
+      "notType": "Wprowadz poprawną wartość"
+    },
+     "date": {
+      "min": "Data musi być późniejsza niż ${min}",
+      "max": "Date musi być wcześniejsza niż ${max}"
+    },
+    "string": {
+      "email": "Wprowadź poprawny adres email"
+    }
   }
 }

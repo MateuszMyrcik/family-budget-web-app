@@ -13,8 +13,6 @@ import {
   Grid,
   Switch,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
 
@@ -27,8 +25,6 @@ import { TransactionsTable } from "./TransactionsTable";
 
 const Base = () => {
   const [withPlannedTransactions, setWithPlannedTransactions] = useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { transactions } = useTransactions();
   const { push } = useRouter();
   const { t } = useTranslation("common");
