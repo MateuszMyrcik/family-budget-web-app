@@ -80,4 +80,13 @@ export const THEME_COMPONENTS: ThemeOptions["components"] & LabComponents = {
       },
     },
   },
+  MuiMenuItem: {
+    styleOverrides: {
+      root: {
+        "&:hover": {
+          backgroundColor: COLOR.SECONDARY_LIGHT,
+        },
+      },
+    },
+  },
 };

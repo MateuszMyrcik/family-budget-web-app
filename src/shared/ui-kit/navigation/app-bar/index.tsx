@@ -1,31 +1,18 @@
 import * as React from "react";
-import { AppBar as MuiAppBar } from "@mui/material";
+import { AppBar as MuiAppBar, Box } from "@mui/material";
 
-import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
 
-import { SettingsOutlined } from "@mui/icons-material";
 import Image from "next/image";
-import Link from "next/link";
+import { UserMenu } from "./UserMenu";
+import { LangToggler } from "./LangToggler";
 
 export type AppBarProps = {
   onMenuIconClick?: () => void;
+  initials: string;
 };
 
-export const AppBar = ({ onMenuIconClick }: AppBarProps) => {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
-
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
+export const AppBar = ({ onMenuIconClick, initials }: AppBarProps) => {
   return (
     <MuiAppBar
       position="fixed"
@@ -38,8 +25,7 @@ export const AppBar = ({ onMenuIconClick }: AppBarProps) => {
         boxShadow: "none",
       }}
     >
-      <div className="grid grid-cols-[100px_1fr_100px] items-center">
-        {/* // TODO: possible bellow components will be reused in diffrent places */}
+      <div className=" flex justify-between md:grid  md:grid-cols-[150px_1fr_150px] items-center">
         <div className="flex items-center">
           <button
             onClick={onMenuIconClick}
@@ -49,22 +35,15 @@ export const AppBar = ({ onMenuIconClick }: AppBarProps) => {
           </button>
         </div>
 
-        <div className="flex justify-center">
+        <div className="hidden md:flex justify-center ">
           <Image src="/images/logo.svg" alt="Logo" width={80} height={80} />
         </div>
 
-        <Link href="/account">
-          <div className="flex items-center cursor-pointer mr-0 ml-auto h-12 p-2 gap-4 rounded-full bg-primary-light hover:bg-primary-main text-primary-main hover:text-primary-light">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar
-                className="h-9 w-9"
-                alt="Avatar"
-                src="/images/thor-avatar.jpeg"
-              />
-            </IconButton>
-            <SettingsOutlined fontSize="small" className="" />
-          </div>
-        </Link>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <LangToggler />
+
+          <UserMenu initials={initials} />
+        </Box>
       </div>
     </MuiAppBar>
   );

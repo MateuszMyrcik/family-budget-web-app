@@ -1,9 +1,9 @@
-import * as yup from "yup";
+import yup from "@/shared/ui-kit/schema";
 
 export const transactionSchema = yup.object().shape({
   type: yup.string().required(),
   name: yup.string().required(),
-  date: yup.date().required(),
+  date: yup.date().required("a"),
   classificationRecordId: yup.string().required(),
   comments: yup.string(),
   amount: yup.object().shape({

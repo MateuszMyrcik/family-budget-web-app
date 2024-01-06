@@ -36,7 +36,8 @@ export const useRecordsForm = ({
   const { userId } = useUserId();
   const { currentLang } = useLang();
   const { push } = useRouter();
-  const { watch, control, handleSubmit, resetField, reset } = useForm<
+
+  const { watch, control, handleSubmit, resetField } = useForm<
     Partial<FormValues>
   >({
     resolver: yupResolver(transactionSchema),

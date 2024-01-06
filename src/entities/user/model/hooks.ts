@@ -79,3 +79,8 @@ export const useUserId = () => {
   const { info } = useSelector((state: RootState) => state.userSlice);
   return { userId: info.id };
 };
+
+export const useUserEmail = () => {
+  const { info } = useSelector((state: RootState) => state.userSlice);
+  return { email: info.email };
+};

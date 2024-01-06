@@ -15,20 +15,13 @@ export const AnnualStatementBarChart = ({ width, height }: Props) => {
   const { transactions } = useActualTransactions();
 
   const getMonthsNameFromNow = (months: number) => {
-    const now = new Date();
-    const currentMonth = now.getMonth();
-    // const currentYear = now.getFullYear();
-    const monthsName = [];
-    for (let i = 0; i < months; i++) {
-      const month = currentMonth - i;
-      // const year = currentYear;
-      monthsName.push(month + 1);
-      // monthsName.push(
-      //   new Date(year, month).toLocaleString(currentLang, { month: "short" })
-      // );
-    }
+    const monthsName: number[] = [];
 
-    return monthsName.reverse();
+    Array.from({ length: months }).forEach((_, i) => {
+      monthsName.push(i + 1);
+    });
+
+    return monthsName;
   };
 
   const groupNames = getMonthsNameFromNow(12);
@@ -62,32 +55,35 @@ export const AnnualStatementBarChart = ({ width, height }: Props) => {
     });
     return annualSummit;
   };
+
   const annualSummit = annualSummitMonthsFromNow(12);
   const transactionsMappedToAnnualSummit = mapTransactionsToAnnualSummit(
     transactions,
     annualSummit
   );
-  const expenses = Object.values(transactionsMappedToAnnualSummit)
-    .map((transactions) => {
+
+  const expenses = Object.values(transactionsMappedToAnnualSummit).map(
+    (transactions) => {
       return transactions.reduce((acc, transaction) => {
         if (isExpenseTransaction(transaction)) {
           return acc + transaction.amount.value;
         }
         return acc;
       }, 0);
-    })
-    .reverse();
-
-  const incomes = Object.values(transactionsMappedToAnnualSummit)
-    .map((transactions) => {
+    }
+  );
+  const incomes = Object.values(transactionsMappedToAnnualSummit).map(
+    (transactions) => {
       return transactions.reduce((acc, transaction) => {
         if (isIncomeTransaction(transaction)) {
           return acc + transaction.amount.value;
         }
         return acc;
       }, 0);
-    })
-    .reverse();
+    }
+  );
+
+  console.log(expenses, incomes);
 
   return (
     <BarChart

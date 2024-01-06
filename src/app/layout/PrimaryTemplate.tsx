@@ -1,3 +1,5 @@
+import { useUserIsOwner } from "@/entities/user";
+import { useUserEmail } from "@/entities/user/model/hooks";
 import { AppBar, Sidebar } from "@/shared/ui-kit";
 import { BaseTemplate } from "./BaseTemplate";
 import { useLayout } from "./Context";
@@ -11,6 +13,8 @@ type PrimaryTemplateProps = {
 
 const PrimaryTemplate = ({ children }: PrimaryTemplateProps) => {
   const { headerHeight, toggleSidebar, isMobileDrawerOpen } = useLayout();
+  const { email } = useUserEmail();
+  const initials = email.slice(0, 2).toUpperCase();
   const navItems = getNavItems();
 
   const sidebar = (
@@ -21,7 +25,7 @@ const PrimaryTemplate = ({ children }: PrimaryTemplateProps) => {
 
   return (
     <BaseTemplate
-      header={<AppBar onMenuIconClick={toggleSidebar} />}
+      header={<AppBar onMenuIconClick={toggleSidebar} initials={initials} />}
       sidebar={sidebar}
     >
       <Sidebar
