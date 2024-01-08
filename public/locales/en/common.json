@@ -22,7 +22,8 @@
       "logout": "Logout",
       "settings": "Settings"
     },
-    "sidebarHeadline": "Sites"
+    "sidebarHeadline": "Sites",
+    "noData": "No data to display"
   },
   "budget": {
     "pageTitle": "Budget",
@@ -81,6 +82,7 @@
     "showPlannedTransactions": "Planned Transactions"
   },
   "stats": {
+    "title":"Statistics",
     "annualStatement": "Annual Statement",
     "expensesInGroups": "Expenses in classification groups"
   },
