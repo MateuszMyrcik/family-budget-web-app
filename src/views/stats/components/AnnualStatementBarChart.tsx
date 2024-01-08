@@ -4,7 +4,9 @@ import {
   useActualTransactions,
 } from "@/entities/transaction";
 import { Transaction } from "@/shared";
+import { Box, Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   width: number;
@@ -12,7 +14,24 @@ type Props = {
 };
 
 export const AnnualStatementBarChart = ({ width, height }: Props) => {
+  const { t } = useTranslation("common");
   const { transactions } = useActualTransactions();
+  const isEmpty = transactions.length === 0;
+
+  if (isEmpty) {
+    return (
+      <Box
+        sx={{
+          minHeight: height,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="body2">{t("global.noData")}</Typography>
+      </Box>
+    );
+  }
 
   const getMonthsNameFromNow = (months: number) => {
     const monthsName: number[] = [];
@@ -82,8 +101,6 @@ export const AnnualStatementBarChart = ({ width, height }: Props) => {
       }, 0);
     }
   );
-
-  console.log(expenses, incomes);
 
   return (
     <BarChart

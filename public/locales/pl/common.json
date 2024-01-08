@@ -20,7 +20,8 @@
       "logout": "Wyloguj się",
       "settings": "Ustawienia"
     },
-    "sidebarHeadline": "Strony"
+    "sidebarHeadline": "Strony",
+    "noData": "Brak danych do wyświetlenia"
   },
   "budget": {
     "pageTitle": "Budżet",
@@ -79,6 +80,7 @@
     "showPlannedTransactions": "Zaplanowane transakcje"
   },
   "stats": {
+    "title": "Statystyki",
     "annualStatement": "Roczne zestawienie",
     "expensesInGroups": "Wydatki w grupach klasyfikacji"
   },

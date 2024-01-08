@@ -8,11 +8,30 @@ import {
 } from "@/entities/transaction";
 
 import { useLang } from "@/hooks/useLang";
+import { Box, Typography } from "@mui/material";
 import { ResponsivePie } from "@nivo/pie";
+import { useTranslation } from "react-i18next";
 
 export const GroupedExpensesPieChart = () => {
   const { transactions } = useTransactions();
+  const { t } = useTranslation("common");
   const { currentLang } = useLang();
+  const isEmpty = transactions.length === 0;
+
+  if (isEmpty) {
+    return (
+      <Box
+        sx={{
+          minHeight: 400,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="body2">{t("global.noData")}</Typography>
+      </Box>
+    );
+  }
 
   const actualTransactions = getActualTransactions(transactions);
   const expensesTransactions = actualTransactions.filter(isExpenseTransaction);

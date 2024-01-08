@@ -27,7 +27,7 @@ const Base = () => {
     <>
       <Provider store={store}>
         <PrimaryTemplate>
-          <PrimaryTemplate.Content title="Statystyki">
+          <PrimaryTemplate.Content title={t("")}>
             <Grid container spacing={2}>
               <Grid item xs={12} lg={6}>
                 <Paper elevation={0}>
