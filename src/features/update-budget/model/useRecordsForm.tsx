@@ -20,7 +20,7 @@ export const useRecordsForm = () => {
   const { records } = useSelector((state: RootState) => state.budgetSlice);
   const { date } = useSelector((state: RootState) => state.updateBudgetSlice);
 
-  const { updateBudgetRecord, getBudget } = useBudgetAction();
+  const { updateBudgetRecord } = useBudgetAction();
   const { dateChanged } = useUpdateBudgetAction();
 
   const arrayToObject = (array: any[]) =>
@@ -60,6 +60,10 @@ export const useRecordsForm = () => {
     const plannedTotal = Number(
       (data.record as any)[data.updatedCategory as string] as string
     );
+
+    if (!plannedTotal) {
+      return;
+    }
 
     updateBudgetRecord({
       recordId: category,
