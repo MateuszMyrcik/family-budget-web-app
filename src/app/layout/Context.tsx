@@ -43,7 +43,7 @@ export const LayoutProvider = ({ children }: LayoutProviderProps) => {
     } else {
       setSidebarWidth(SIDEBAR_WIDTH);
     }
-  }, []);
+  }, [isMobile]);
 
   return (
     <LayoutContext.Provider
