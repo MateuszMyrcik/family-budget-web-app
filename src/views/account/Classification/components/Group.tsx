@@ -115,7 +115,7 @@ export const ClassificationGroup = ({
                 }}
               >
                 <Typography variant="caption">{recordName}</Typography>
-                {item.isDeletable && (
+                {/* {item.isDeletable && (
                   <Delete
                     onClick={() => removeClassificationRecord(item._id)}
                     fontSize="small"
@@ -126,7 +126,7 @@ export const ClassificationGroup = ({
                       marginLeft: "auto",
                     }}
                   />
-                )}
+                )} */}
                 {item.isEditable && (
                   <>
                     <Edit
@@ -136,7 +136,7 @@ export const ClassificationGroup = ({
                         "&:hover": {
                           color: palette.secondary.dark,
                         },
-                        marginLeft: 1,
+                        marginLeft: "auto",
                       }}
                     ></Edit>
                     <EditClassificationModal
