@@ -1,3 +1,2 @@
-export { UpdateBudgetReducer, updateBudgetSlice } from "./slice";
-
-export { useAction as useUpdateBudgetAction } from "./hooks";
+export * from "./hooks";
+export * from "./slice";

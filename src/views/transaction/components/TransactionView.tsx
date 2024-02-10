@@ -150,6 +150,7 @@ const Base = ({
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
+                    sx={{ flex: 1 }}
                     label={t("transaction.nameLabel")}
                     placeholder={t("transaction.namePlaceholder")}
                     error={!!error}

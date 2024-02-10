@@ -13,7 +13,7 @@ export default async function token(
   try {
     const { accessToken } = (await getAccessToken(
       req,
-      res
+      res,
     )) as GetAccessTokenResult;
 
     console.log(accessToken);
