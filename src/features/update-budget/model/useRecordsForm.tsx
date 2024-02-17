@@ -7,7 +7,7 @@ import { RootState } from "@/app/store";
 import { useBudgetAction } from "@/entities/budget";
 
 import { useEffect } from "react";
-import { useUpdateBudgetAction } from ".";
+import { useAction } from "./hooks";
 
 type FormValues = {
   date: Date;
@@ -21,7 +21,7 @@ export const useRecordsForm = () => {
   const { date } = useSelector((state: RootState) => state.updateBudgetSlice);
 
   const { updateBudgetRecord } = useBudgetAction();
-  const { dateChanged } = useUpdateBudgetAction();
+  const { dateChanged } = useAction();
 
   const arrayToObject = (array: any[]) =>
     array.reduce((obj, item) => {

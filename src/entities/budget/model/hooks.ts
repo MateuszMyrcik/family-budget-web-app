@@ -2,7 +2,7 @@ import { AppDispatch, RootState } from "@/app/store";
 import { GetBudgetDto, UpdateBudgetRecordDto } from "@/shared";
 import { useDispatch, useSelector } from "react-redux";
 import { ServiceStatus } from "../types";
-import { createBudget, getBudget, updateBudgetRecord } from "./slice";
+import { createBudget, getBudget, updateBudgetRecord } from "./services";
 
 export const useAction = () => {
   const dispatch: AppDispatch = useDispatch();
