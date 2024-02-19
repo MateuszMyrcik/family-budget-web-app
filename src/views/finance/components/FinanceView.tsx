@@ -1,10 +1,6 @@
 import { PrimaryTemplate } from "@/app/layout";
 import { store } from "@/app/store";
-import {
-  useTransactions,
-  getActualTransactions,
-  formatCurrencyValue,
-} from "@/entities/transaction";
+import { useTransactions, formatCurrencyValue } from "@/entities/transaction";
 import { TrendingDownOutlined, TrendingUpOutlined } from "@mui/icons-material";
 
 import {
@@ -15,11 +11,17 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
+import { DatePicker } from "@mui/x-date-pickers";
 
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Provider } from "react-redux";
-import { getTotalExpenseAmount, getTotalIncomeAmount } from "../lib";
+import {
+  getPlannedTransactions,
+  getTotalExpenseAmount,
+  getTotalIncomeAmount,
+  getTransactionByMonth,
+} from "../lib";
 import { withModel } from "../withModel";
 import { TransactionsTable } from "./TransactionsTable";
 
@@ -28,10 +30,11 @@ const Base = () => {
   const { transactions } = useTransactions();
   const { push } = useRouter();
   const { t } = useTranslation("common");
+  const [date, setDate] = useState<Date>(new Date());
 
   const selectedTransactions = withPlannedTransactions
-    ? transactions
-    : getActualTransactions(transactions);
+    ? getPlannedTransactions(transactions)
+    : getTransactionByMonth(transactions, date);
 
   const incomeTotal = getTotalIncomeAmount(selectedTransactions);
   const expenseTotal = getTotalExpenseAmount(selectedTransactions);
@@ -41,8 +44,32 @@ const Base = () => {
       <Provider store={store}>
         <PrimaryTemplate>
           <PrimaryTemplate.Content title={t("finance.pageTitle")}>
+            <Grid container pb={2} sx={{ alignItems: "center", gap: 2 }}>
+              <DatePicker
+                views={["month", "year"]}
+                value={date}
+                disableFuture
+                disabled={withPlannedTransactions}
+                onAccept={(date) => {
+                  setDate(date as any);
+                }}
+              />
+
+              <FormControlLabel
+                control={
+                  <Switch
+                    value={withPlannedTransactions}
+                    onChange={() => {
+                      setWithPlannedTransactions(!withPlannedTransactions);
+                    }}
+                  />
+                }
+                label={t("finance.showPlannedTransactions")}
+              />
+            </Grid>
+
             <Grid container pb={2} sx={{ alignItems: "center" }}>
-              <Grid item xs={12} md={4} sx={{ display: "flex", gap: 2 }}>
+              <Grid item xs={6} md={6} sx={{ display: "flex", gap: 2 }}>
                 <Typography
                   variant="h5"
                   sx={{ color: "success.main", fontWeight: "bold" }}
@@ -64,24 +91,10 @@ const Base = () => {
                   {formatCurrencyValue(expenseTotal)}
                 </Typography>
               </Grid>
-              <Grid item xs={6} md={4}>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      value={withPlannedTransactions}
-                      onChange={() =>
-                        setWithPlannedTransactions(!withPlannedTransactions)
-                      }
-                      disabled={!transactions.length}
-                    />
-                  }
-                  label={t("finance.showPlannedTransactions")}
-                />
-              </Grid>
               <Grid
                 item
                 xs={6}
-                md={4}
+                md={6}
                 sx={{ display: "flex", justifyContent: "flex-end" }}
               >
                 <Button

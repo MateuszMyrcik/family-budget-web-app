@@ -39,3 +39,22 @@ export const getTotalIncomeAmount = (
     .filter((transaction) => isIncomeTransaction(transaction))
     .reduce((acc, { amount }) => acc + amount.value, 0);
 };
+
+export const getTransactionByMonth = (
+  transactions: Transaction[],
+  date: Date
+) => {
+  return transactions.filter(
+    (transaction) =>
+      new Date(transaction.transactionDate).getMonth() === date.getMonth() &&
+      new Date(transaction.transactionDate).getFullYear() ===
+        date.getFullYear() &&
+      new Date(transaction.transactionDate) < new Date()
+  );
+};
+
+export const getPlannedTransactions = (transactions: Transaction[]) => {
+  return transactions.filter(
+    (transaction) => new Date(transaction.transactionDate) > new Date()
+  );
+};
