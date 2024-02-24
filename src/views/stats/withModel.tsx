@@ -15,18 +15,12 @@ export const withModel = (
   const ComponentWithModel = function ComponentWithModel(props: any) {
     const { getTransactions } = useTransactionAction();
     const { fetchClassification } = useClassificationAction();
-    const status = useTransactionServiceStatus();
-    const statusClasification = useClassificationServiceStatus();
 
     useEffect(() => {
       getTransactions();
       fetchClassification();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    if (!status.isSuccess || !statusClasification.isSuccess) {
-      return null;
-    }
 
     return <Component {...props} />;
   };

@@ -9,11 +9,14 @@ import dynamic from "next/dynamic";
 
 import { AnnualStatementBarChart } from "./AnnualStatementBarChart";
 import useResizeObserver from "use-resize-observer";
+import { useTransactionServiceStatus } from "@/entities/transaction";
+import { StatsCardSkeleton } from "./StatsCardSkeleton";
 
 const Base = () => {
   const { t } = useTranslation("common");
   const { ref: barChartRef, width: barChartWidth = 0 } =
     useResizeObserver<HTMLDivElement>();
+  const { isPending } = useTransactionServiceStatus();
 
   const GroupedExpensesPieChart = dynamic(
     () =>
@@ -22,6 +25,8 @@ const Base = () => {
       ),
     { ssr: false }
   );
+
+  const isLoading = isPending;
 
   return (
     <>
@@ -42,9 +47,14 @@ const Base = () => {
                     <Typography variant="h5">
                       {t("stats.expensesInGroups")}
                     </Typography>
-                    <Box height={400}>
-                      <GroupedExpensesPieChart />
-                    </Box>
+
+                    {isLoading ? (
+                      <StatsCardSkeleton />
+                    ) : (
+                      <Box height={400}>
+                        <GroupedExpensesPieChart />
+                      </Box>
+                    )}
                   </Card>
                 </Paper>
               </Grid>
@@ -62,10 +72,14 @@ const Base = () => {
                     <Typography variant="h5">
                       {t("stats.annualStatement")}
                     </Typography>
-                    <AnnualStatementBarChart
-                      height={400}
-                      width={barChartWidth}
-                    />
+                    {isLoading ? (
+                      <StatsCardSkeleton />
+                    ) : (
+                      <AnnualStatementBarChart
+                        height={400}
+                        width={barChartWidth}
+                      />
+                    )}
                   </Card>
                 </Paper>
               </Grid>

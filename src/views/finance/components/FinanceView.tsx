@@ -1,6 +1,10 @@
 import { PrimaryTemplate } from "@/app/layout";
 import { store } from "@/app/store";
-import { useTransactions, formatCurrencyValue } from "@/entities/transaction";
+import {
+  useTransactions,
+  formatCurrencyValue,
+  useTransactionServiceStatus,
+} from "@/entities/transaction";
 import { TrendingDownOutlined, TrendingUpOutlined } from "@mui/icons-material";
 
 import {
@@ -24,10 +28,12 @@ import {
 } from "../lib";
 import { withModel } from "../withModel";
 import { TransactionsTable } from "./TransactionsTable";
+import { TableSkeleton } from "./TableSkeleton";
 
 const Base = () => {
   const [withPlannedTransactions, setWithPlannedTransactions] = useState(false);
   const { transactions } = useTransactions();
+  const { isPending } = useTransactionServiceStatus();
   const { push } = useRouter();
   const { t } = useTranslation("common");
   const [date, setDate] = useState<Date>(new Date());
@@ -38,6 +44,8 @@ const Base = () => {
 
   const incomeTotal = getTotalIncomeAmount(selectedTransactions);
   const expenseTotal = getTotalExpenseAmount(selectedTransactions);
+
+  const isLoading = isPending;
 
   return (
     <>
@@ -108,7 +116,10 @@ const Base = () => {
               </Grid>
             </Grid>
 
-            <TransactionsTable transactions={selectedTransactions} />
+            {isLoading && <TableSkeleton />}
+            {!isLoading && (
+              <TransactionsTable transactions={selectedTransactions} />
+            )}
           </PrimaryTemplate.Content>
         </PrimaryTemplate>
       </Provider>

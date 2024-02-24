@@ -1,12 +1,5 @@
-import {
-  useClassificationAction,
-  useClassificationServiceStatus,
-} from "@/entities/classification";
-import {
-  useTransaction,
-  useTransactionAction,
-  useTransactionServiceStatus,
-} from "@/entities/transaction";
+import { useClassificationAction } from "@/entities/classification";
+import { useTransaction, useTransactionAction } from "@/entities/transaction";
 import { useIdFromParams } from "@/hooks/useIdFromParams";
 import { useRouter } from "next/router";
 import { ComponentType, useEffect } from "react";
@@ -22,9 +15,6 @@ export const withUpdateModel = (
     const { id } = useIdFromParams();
     const { transaction } = useTransaction(id);
 
-    const classificationService = useClassificationServiceStatus();
-    const transactionService = useTransactionServiceStatus();
-
     const { fetchClassification } = useClassificationAction();
     const { getTransactions } = useTransactionAction();
 
@@ -33,10 +23,6 @@ export const withUpdateModel = (
       getTransactions();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    if (!classificationService.isSuccess || !transactionService.isSuccess) {
-      return null;
-    }
 
     if (!transaction) {
       router.push("/404"); // TODO: 404 page
