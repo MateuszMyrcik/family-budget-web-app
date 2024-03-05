@@ -19,10 +19,6 @@ export const withAddModel = (
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (!isSuccess) {
-      return null;
-    }
-
     return <Component {...props} />;
   };
 

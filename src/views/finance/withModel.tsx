@@ -1,11 +1,5 @@
-import {
-  useClassificationAction,
-  useClassificationServiceStatus,
-} from "@/entities/classification";
-import {
-  useTransactionAction,
-  useTransactionServiceStatus,
-} from "@/entities/transaction";
+import { useClassificationAction } from "@/entities/classification";
+import { useTransactionAction } from "@/entities/transaction";
 import { ComponentType, useEffect } from "react";
 
 export const withModel = (
@@ -15,18 +9,12 @@ export const withModel = (
   const ComponentWithModel = function ComponentWithModel(props: any) {
     const { getTransactions } = useTransactionAction();
     const { fetchClassification } = useClassificationAction();
-    const status = useTransactionServiceStatus();
-    const statusClasification = useClassificationServiceStatus();
 
     useEffect(() => {
       getTransactions();
       fetchClassification();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    if (!status.isSuccess || !statusClasification.isSuccess) {
-      return null;
-    }
 
     return <Component {...props} />;
   };
