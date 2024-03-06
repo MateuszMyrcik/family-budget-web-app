@@ -45,15 +45,13 @@ export const AnnualStatementBarChart = ({ width, height }: Props) => {
 
   const groupNames = getMonthsNameFromNow(12);
 
-  const annualSummitMonthsFromNow = (months: number) => {
+  const getCurrentYearAnnualSummitKeys = () => {
     const now = new Date();
-    const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
     const annualSummit = {};
-    for (let i = 0; i < months; i++) {
-      const month = currentMonth - i;
-      const year = currentYear;
-      const key = `${year}-${month}`;
+    for (let i = 0; i < 12; i++) {
+      const month = i + 1;
+      const key = `${currentYear}-${month}`;
       (annualSummit as any)[key] = [];
     }
     return annualSummit;
@@ -66,8 +64,9 @@ export const AnnualStatementBarChart = ({ width, height }: Props) => {
     transactions.forEach((transaction) => {
       const date = new Date(transaction.transactionDate);
       const year = date.getFullYear();
-      const month = date.getMonth();
+      const month = date.getMonth() + 1;
       const key = `${year}-${month}`;
+
       if (annualSummit[key]) {
         annualSummit[key].push(transaction);
       }
@@ -75,7 +74,7 @@ export const AnnualStatementBarChart = ({ width, height }: Props) => {
     return annualSummit;
   };
 
-  const annualSummit = annualSummitMonthsFromNow(12);
+  const annualSummit = getCurrentYearAnnualSummitKeys();
   const transactionsMappedToAnnualSummit = mapTransactionsToAnnualSummit(
     transactions,
     annualSummit
