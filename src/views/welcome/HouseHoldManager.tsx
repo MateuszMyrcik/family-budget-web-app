@@ -113,6 +113,7 @@ export const HouseholdManager = () => {
             Stworz nowa grupe domowa
           </Button>
         </Box>
+        {/* <a href="/api/auth/logout">wylogujs</a> */}
       </Box>
     </Box>
   );

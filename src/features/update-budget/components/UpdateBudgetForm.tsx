@@ -27,6 +27,7 @@ import { BarChart } from "@mui/icons-material";
 import { useLang } from "@/hooks/useLang";
 import { useBudgetAction, useBudgetServiceStatus } from "@/entities/budget";
 import { RecordsSkeleton } from "./RecordsSkeleton";
+import { formatCurrencyValue } from "@/entities/transaction";
 
 export const UpdateBudgetForm = () => {
   const { date } = useSelector((state: RootState) => state.updateBudgetSlice);
@@ -225,10 +226,12 @@ export const UpdateBudgetForm = () => {
                           ></Controller>
                         </TableCell>
                         <TableCell variant="body" align="right">
-                          {record.actualTotal}
+                          {formatCurrencyValue(record.actualTotal)}
                         </TableCell>
                         <TableCell variant="body" align="right">
-                          {record.plannedTotal - record.actualTotal}
+                          {formatCurrencyValue(
+                            record.plannedTotal - record.actualTotal
+                          )}
                         </TableCell>
                         <TableCell variant="body" align="right">
                           {budgetRecordStatus(record)}

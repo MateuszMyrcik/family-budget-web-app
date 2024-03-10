@@ -1,4 +1,5 @@
 import {
+  formatCurrencyValue,
   isExpenseTransaction,
   isIncomeTransaction,
   useActualTransactions,
@@ -17,6 +18,7 @@ export const AnnualStatementBarChart = ({ width, height }: Props) => {
   const { t } = useTranslation("common");
   const { transactions } = useActualTransactions();
   const isEmpty = transactions.length === 0;
+  const valueFormatter = formatCurrencyValue;
 
   if (isEmpty) {
     return (
@@ -105,7 +107,10 @@ export const AnnualStatementBarChart = ({ width, height }: Props) => {
     <BarChart
       colors={["lightGreen", "#f73378"]}
       xAxis={[{ scaleType: "band", data: groupNames }]}
-      series={[{ data: incomes }, { data: expenses }]}
+      series={[
+        { data: incomes, valueFormatter },
+        { data: expenses, valueFormatter },
+      ]}
       width={width}
       height={height}
     />
